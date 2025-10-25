@@ -31,7 +31,14 @@
   <div class="hero-visual">
     {%- if product.featured_media -%}
       <figure class="product-hero-visual">
-        {{ product.featured_media | media_tag: class: 'product-hero-image', loading: 'eager' }}
+        <img
+          class="product-hero-image"
+          src="{{ product.featured_media | image_url: width: 1200 }}"
+          srcset="{{ product.featured_media | image_url: width: 600 }} 600w, {{ product.featured_media | image_url: width: 900 }} 900w, {{ product.featured_media | image_url: width: 1200 }} 1200w, {{ product.featured_media | image_url: width: 1800 }} 1800w, {{ product.featured_media | image_url: width: 2048 }} 2048w"
+          sizes="(min-width: 1024px) 40vw, 90vw"
+          alt="{{ product.featured_media.alt | default: product.title }}"
+          loading="eager"
+        >
         {%- if product.featured_media.alt != blank -%}
           <figcaption class="visually-hidden">{{ product.featured_media.alt }}</figcaption>
         {%- endif -%}
