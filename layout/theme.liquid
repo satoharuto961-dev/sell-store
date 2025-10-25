@@ -29,7 +29,42 @@
       {{ content_for_layout }}
     </main>
     <footer class="site-footer">
-      <small>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}</small>
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <h2 class="footer-title">{{ shop.name }}</h2>
+          <p>
+            Thoughtfully curated resources for clinicians, caregivers, and anyone exploring emotional wellbeing.
+          </p>
+        </div>
+        <div class="footer-section">
+          <h3 class="footer-heading">Explore</h3>
+          <ul class="footer-links">
+            <li><a href="/collections/all">Shop all titles</a></li>
+            <li><a href="/pages/about">About our collective</a></li>
+            <li><a href="/pages/contact">Consultations &amp; workshops</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3 class="footer-heading">Connect</h3>
+          <ul class="footer-links">
+            {% if shop.email %}
+              <li><a href="mailto:{{ shop.email }}">{{ shop.email }}</a></li>
+            {% endif %}
+            {% if shop.phone %}
+              <li>
+                <a href="tel:{{ shop.phone | replace: ' ', '' | replace: '-', '' | replace: '(', '' | replace: ')', '' }}">
+                  {{ shop.phone }}
+                </a>
+              </li>
+            {% endif %}
+            <li><a href="https://www.instagram.com" rel="noopener noreferrer" target="_blank">Instagram community</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <small>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}</small>
+        <small>All content is for educational purposes and is not a substitute for professional care.</small>
+      </div>
     </footer>
     {{ content_for_footer }}
     <script>
