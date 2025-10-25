@@ -139,9 +139,27 @@
   </header>
   <div class="purchase-panel">
     <div class="purchase-pricing">
-      <span class="purchase-price">{{ product.price | money }}</span>
+      <span class="purchase-trending">In 20+ carts</span>
+      <div class="purchase-primary-row">
+        <div class="purchase-price-group">
+          {%- if product.compare_at_price > product.price -%}
+            <span class="purchase-price-label">Now</span>
+          {%- endif -%}
+          <span class="purchase-price">{{ product.price | money }}</span>
+          {%- if product.compare_at_price > product.price -%}
+            <span class="purchase-compare">{{ product.compare_at_price | money }}</span>
+          {%- endif -%}
+        </div>
+        <span class="purchase-badge">New markdown!</span>
+      </div>
       {%- if product.compare_at_price > product.price -%}
-        <span class="purchase-compare">{{ product.compare_at_price | money }}</span>
+        {%- assign discount_amount = product.compare_at_price | minus: product.price -%}
+        {%- assign discount_percent = discount_amount | times: 100 | divided_by: product.compare_at_price -%}
+        <div class="purchase-secondary-row">
+          <span class="purchase-discount">{{ discount_percent }}% off</span>
+          <span class="purchase-bullet" aria-hidden="true">&bull;</span>
+          <span class="purchase-countdown">Sale ends in 20:18:27</span>
+        </div>
       {%- endif -%}
     </div>
 
