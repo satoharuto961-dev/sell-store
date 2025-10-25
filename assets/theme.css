@@ -1085,6 +1085,7 @@ img {
   .hero-meta {
     flex-direction: column;
     align-items: stretch;
+    gap: 1.5rem;
   }
 
   .product-form,
@@ -1103,6 +1104,11 @@ img {
 
   .hero-actions .button {
     flex: 1 1 100%;
+  }
+
+  .hero-visual {
+    max-width: none;
+    width: 100%;
   }
 
   .product-experience {
@@ -1152,6 +1158,22 @@ img {
   .cta-ribbon,
   .cta-banner {
     padding: 2rem;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .cta-content,
+  .cta-banner-copy {
+    text-align: center;
+  }
+
+  .cta-form {
+    max-width: 420px;
+    width: 100%;
+  }
+
+  .cta-banner .button {
+    width: 100%;
   }
 
   .sale-current {
@@ -1160,6 +1182,33 @@ img {
 
   .product-purchase .purchase-panel {
     padding: 2.25rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .cta-ribbon,
+  .cta-banner {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .cta-form .button,
+  .cta-banner .button {
+    width: 100%;
+  }
+
+  .hero-meta {
+    width: 100%;
+  }
+
+  .hero-sale-card {
+    width: 100%;
+  }
+
+  .hero-rating {
+    width: 100%;
+    justify-content: center;
   }
 }
 
@@ -1198,6 +1247,24 @@ img {
     width: 100%;
   }
 
+  .landing-hero {
+    padding: 2rem;
+    gap: 2.5rem;
+  }
+
+  .hero-list {
+    gap: 0.65rem;
+  }
+
+  .hero-sale-card {
+    padding: 1.25rem 1.5rem;
+  }
+
+  .hero-guarantee {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
   .sale-discount {
     flex-direction: column;
     align-items: flex-start;
@@ -1205,5 +1272,33 @@ img {
 
   .sale-divider {
     display: none;
+  }
+}
+
+@media (max-width: 440px) {
+  .site-main {
+    padding: 2.5rem 1rem 3.5rem;
+    gap: 3rem;
+  }
+
+  .hero-copy p,
+  .hero-guarantee,
+  .feature-intro p,
+  .section-header p {
+    font-size: 0.98rem;
+  }
+
+  .bundle-section,
+  .landing-section,
+  .featured-product-gallery,
+  .testimonial-section,
+  .cta-banner,
+  .cta-ribbon {
+    border-radius: 22px;
+  }
+
+  .cta-ribbon,
+  .cta-banner {
+    gap: 1.25rem;
   }
 }
