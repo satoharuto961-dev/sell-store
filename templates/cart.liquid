@@ -18,7 +18,7 @@
               <h2>{{ item.product.title | escape }}</h2>
               <p>{{ item.variant.title | escape }}</p>
               <div class="cart-limit-item-quantity">
-                <label class="cart-limit-item-quantity-label" for="cart-quantity-{{ forloop.index }}">Quantity</label>
+                <span class="cart-limit-item-quantity-label">Quantity</span>
                 <div class="cart-limit-item-quantity-controls">
                   <form method="post" action="{{ routes.cart_change_url }}" class="cart-limit-quantity-form">
                     <input type="hidden" name="line" value="{{ forloop.index }}">
@@ -27,11 +27,7 @@
                       <span aria-hidden="true">&minus;</span>
                     </button>
                   </form>
-                  <form method="post" action="{{ routes.cart_change_url }}" class="cart-limit-quantity-form cart-limit-quantity-input">
-                    <input type="hidden" name="line" value="{{ forloop.index }}">
-                    <input id="cart-quantity-{{ forloop.index }}" type="number" min="1" name="quantity" value="{{ item.quantity }}">
-                    <button type="submit" class="button button-secondary">Update</button>
-                  </form>
+                  <span class="cart-limit-item-quantity-value" aria-live="polite">{{ item.quantity }}</span>
                   <form method="post" action="{{ routes.cart_change_url }}" class="cart-limit-quantity-form">
                     <input type="hidden" name="line" value="{{ forloop.index }}">
                     <input type="hidden" name="quantity" value="{{ item.quantity | plus: 1 }}">
@@ -42,11 +38,6 @@
                 </div>
               </div>
             </div>
-            <form method="post" action="{{ routes.cart_change_url }}" class="cart-limit-remove">
-              <input type="hidden" name="line" value="{{ forloop.index }}">
-              <input type="hidden" name="quantity" value="0">
-              <button type="submit" class="button">Remove this item</button>
-            </form>
           </li>
         {% endfor %}
       </ul>
@@ -87,11 +78,6 @@
                 </div>
               </div>
             </div>
-            <form method="post" action="{{ routes.cart_change_url }}" class="cart-limit-remove">
-              <input type="hidden" name="line" value="{{ forloop.index }}">
-              <input type="hidden" name="quantity" value="0">
-              <button type="submit" class="button">Remove this item</button>
-            </form>
           </li>
         {% endfor %}
       </ul>
