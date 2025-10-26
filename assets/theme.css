@@ -23,6 +23,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  align-items: stretch;
 }
 
 img {
@@ -50,6 +51,7 @@ img {
   color: #f7f9ff;
   text-align: center;
   padding: 2.5rem 1.5rem;
+  width: 100%;
 }
 
 .site-logo {
@@ -149,6 +151,22 @@ img {
 .site-footer small {
   font-size: 0.95rem;
   color: rgba(247, 249, 255, 0.8);
+}
+
+@supports (padding: max(0px)) {
+  .site-header,
+  .site-footer {
+    padding-left: max(1.5rem, env(safe-area-inset-left));
+    padding-right: max(1.5rem, env(safe-area-inset-right));
+  }
+
+  .site-header {
+    padding-top: calc(2.5rem + env(safe-area-inset-top));
+  }
+
+  .site-footer {
+    padding-bottom: calc(2.5rem + env(safe-area-inset-bottom));
+  }
 }
 
 @media (max-width: 900px) {
