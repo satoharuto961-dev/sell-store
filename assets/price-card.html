@@ -1,0 +1,85 @@
+<style>
+  .price-card {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    max-width: 360px;
+    margin: 0 auto;
+    padding: 28px;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
+    display: grid;
+    gap: 16px;
+    text-align: left;
+  }
+
+  .price-card__badge {
+    justify-self: start;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: #dcfce7;
+    color: #166534;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .price-card__caption {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #64748b;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .price-card__now {
+    font-size: clamp(2rem, 6vw, 2.5rem);
+    font-weight: 700;
+    color: #0f172a;
+    margin-right: 12px;
+  }
+
+  .price-card__original {
+    font-size: 1rem;
+    color: #94a3b8;
+    text-decoration: line-through;
+    align-self: end;
+  }
+
+  .price-card__price-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: baseline;
+  }
+
+  .price-card__subtext {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #166534;
+  }
+
+  @media (max-width: 480px) {
+    .price-card {
+      padding: 24px;
+      text-align: center;
+    }
+
+    .price-card__badge {
+      justify-self: center;
+    }
+
+    .price-card__price-row {
+      justify-content: center;
+    }
+  }
+</style>
+<div class="price-card">
+  <div class="price-card__caption">In 20+ carts</div>
+  <div class="price-card__badge">Introductory price</div>
+  <div class="price-card__price-row">
+    <span class="price-card__now">Now $29.00</span>
+    <span class="price-card__original">$120.00</span>
+  </div>
+  <div class="price-card__subtext">70% off &bull; Sale ends in 59:12</div>
+</div>
