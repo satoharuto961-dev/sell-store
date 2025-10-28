@@ -212,7 +212,6 @@
     }
 
     var checkoutUrl = '{{ routes.checkout_url }}';
-    var fallbackCartUrl = '{{ routes.cart_url }}';
     var clearCartUrl = '{{ routes.cart_clear_url }}.js';
 
     var bindBuyNowForm = function (form) {
@@ -223,6 +222,11 @@
       form.dataset.buyNowBound = 'true';
 
       form.addEventListener('submit', function (event) {
+        if (form.dataset.buyNowBypass === 'true') {
+          form.dataset.buyNowBypass = 'false';
+          return;
+        }
+
         event.preventDefault();
 
         var submitButton = form.querySelector('button[type="submit"]');
@@ -238,34 +242,53 @@
           }
         };
 
-        fetch(clearCartUrl, {
+        var finalizeWithFallback = function () {
+          restoreButtonState();
+          form.dataset.buyNowBypass = 'true';
+          form.submit();
+        };
+
+        var formData = new FormData(form);
+        var variantId = formData.get('id');
+        var quantity = formData.get('quantity') || 1;
+        var sellingPlan = formData.get('selling_plan');
+
+        if (!variantId) {
+          finalizeWithFallback();
+          return;
+        }
+
+        var payload = {
+          items: [
+            {
+              id: variantId,
+              quantity: parseInt(quantity, 10) || 1
+            }
+          ]
+        };
+
+        if (sellingPlan) {
+          payload.items[0].selling_plan = sellingPlan;
+        }
+
+        var requestOptions = {
           method: 'POST',
+          credentials: 'same-origin',
           headers: {
             'Content-Type': 'application/json',
-            'Accept': 'application/json'
+            'Accept': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest'
           }
-        })
+        };
+
+        fetch(clearCartUrl, requestOptions)
           .catch(function () {
-            // Swallow clear cart errors so we can still attempt to add the item.
+            // Continue even if the cart could not be cleared so we can still attempt checkout.
           })
           .then(function () {
-            var formData = new FormData(form);
-            var params = new URLSearchParams();
-
-            formData.forEach(function (value, key) {
-              if (key !== 'return_to') {
-                params.append(key, value);
-              }
-            });
-
-            return fetch(form.action + '.js', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-                'Accept': 'application/json'
-              },
-              body: params.toString()
-            });
+            return fetch(form.action + '.js', Object.assign({}, requestOptions, {
+              body: JSON.stringify(payload)
+            }));
           })
           .then(function (response) {
             if (!response || !response.ok) {
@@ -275,8 +298,7 @@
             window.location.href = checkoutUrl;
           })
           .catch(function () {
-            restoreButtonState();
-            window.location.href = fallbackCartUrl;
+            finalizeWithFallback();
           });
       });
     };
