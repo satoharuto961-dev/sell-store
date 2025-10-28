@@ -798,26 +798,88 @@ a:focus {
 }
 
 .product-pricing {
-  display: flex;
+  display: grid;
+  gap: 0.75rem;
+  padding: 1.75rem 1.5rem;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(255, 255, 255, 0.9));
+  border: 1px solid rgba(168, 85, 247, 0.15);
+  box-shadow: 0 26px 50px -28px rgba(47, 27, 71, 0.45);
+}
+
+.product-pricing__popularity {
+  margin: 0;
+  display: inline-flex;
   align-items: center;
-  gap: 1rem;
-  font-size: 1.8rem;
+  justify-content: center;
+  width: fit-content;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(124, 58, 237, 0.12);
+  color: var(--color-accent-dark);
+  font-size: 0.85rem;
   font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
-.product-price {
-  color: var(--color-accent);
+.product-pricing__primary {
+  display: flex;
+  align-items: baseline;
+  gap: 0.85rem;
 }
 
-.product-price--compare {
+.product-pricing__price {
+  font-size: clamp(2.25rem, 2vw + 1.5rem, 3rem);
+  font-weight: 800;
+  color: var(--color-accent-dark);
+}
+
+.product-pricing__compare {
   font-size: 1rem;
-  font-weight: 500;
-  color: var(--color-muted);
+  font-weight: 600;
+  color: rgba(47, 27, 71, 0.45);
   text-decoration: line-through;
 }
 
-.product-price--sale {
+.product-pricing__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 0.95rem;
+}
+
+.product-pricing__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.3rem 0.9rem;
+  border-radius: 999px;
+  background: rgba(76, 217, 159, 0.16);
+  color: #0f9d58;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.product-pricing__discount {
   color: var(--color-accent-dark);
+  font-weight: 700;
+}
+
+.product-pricing__detail {
+  color: var(--color-muted);
+}
+
+.product-pricing__timer {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 8px;
+  background: rgba(47, 27, 71, 0.08);
+  color: var(--color-text);
+  font-variant-numeric: tabular-nums;
 }
 
 .product-description {
@@ -974,6 +1036,16 @@ a:focus {
 
   .product-header h1 {
     font-size: 1.8rem;
+  }
+
+  .product-pricing {
+    padding: 1.25rem 1rem;
+    gap: 0.65rem;
+  }
+
+  .product-pricing__primary {
+    flex-wrap: wrap;
+    gap: 0.5rem;
   }
 
   .product-cta {
