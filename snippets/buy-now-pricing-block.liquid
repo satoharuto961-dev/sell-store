@@ -19,7 +19,8 @@
   assign discount_percentage = ''
   if compare_price_candidate != blank and compare_price_candidate > current_price
     assign formatted_compare_price = compare_price_candidate | money
-    assign discount_percentage = compare_price_candidate | minus: current_price | times: 100 | divided_by: compare_price_candidate
+    assign discount_ratio = compare_price_candidate | minus: current_price | times: 100.0 | divided_by: compare_price_candidate
+    assign discount_percentage = discount_ratio | round
   endif
 
   assign badge_text = context_product.metafields.custom.intro_badge
@@ -42,10 +43,8 @@
   endif
 
   assign checkout_disabled = true
-  assign checkout_href = ''
   if context_product.available and primary_variant
     assign checkout_disabled = false
-    assign checkout_href = '/cart/' | append: primary_variant.id | append: ':1?checkout=1'
   endif
 -%}
 <div class="buy-now-card" role="region" aria-label="Checkout offer">
@@ -65,7 +64,12 @@
   {%- if checkout_disabled -%}
     <span class="buy-now-card__button buy-now-card__button--disabled" role="button" aria-disabled="true">Sold out</span>
   {%- else -%}
-    <a href="{{ checkout_href }}" class="buy-now-card__button">Buy Now</a>
+    <form method="post" action="{{ routes.cart_add_url }}" class="buy-now-card__form">
+      <input type="hidden" name="id" value="{{ primary_variant.id }}">
+      <input type="hidden" name="quantity" value="1">
+      <input type="hidden" name="return_to" value="/checkout">
+      <button type="submit" class="buy-now-card__button">Buy Now</button>
+    </form>
   {%- endif -%}
 </div>
 
@@ -145,6 +149,10 @@
     font-variant-numeric: tabular-nums;
   }
 
+  .buy-now-card__form {
+    width: 100%;
+  }
+
   .buy-now-card__button {
     width: 100%;
     display: inline-flex;
@@ -158,6 +166,8 @@
     border-radius: 9999px;
     text-decoration: none;
     box-shadow: 0 14px 30px rgba(5, 150, 105, 0.25);
+    border: none;
+    cursor: pointer;
     transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
   }
 
