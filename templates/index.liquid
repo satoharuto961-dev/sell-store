@@ -1,9 +1,35 @@
+{% assign featured_collection = collections['frontpage'] %}
+{% if featured_collection == nil or featured_collection.products_count == 0 %}
+  {% assign featured_collection = collections['all'] %}
+{% endif %}
+
+{% assign featured_product = nil %}
+{% assign direct_checkout_variant_id = nil %}
+{% if featured_collection and featured_collection.products_count > 0 %}
+  {% assign featured_product = featured_collection.products | first %}
+  {% if featured_product %}
+    {% assign featured_variant = featured_product.selected_or_first_available_variant %}
+    {% if featured_variant and featured_variant.available %}
+      {% assign direct_checkout_variant_id = featured_variant.id %}
+    {% endif %}
+  {% endif %}
+{% endif %}
+
 <section class="hero" aria-labelledby="hero-title">
   <div class="hero-content">
     <p class="hero-badge">Digital Therapy Resources</p>
     <h1 id="hero-title">CBT Worksheets Mega Bundle: Ready-to-Use Tools for Therapists &amp; Counselors</h1>
     <p class="hero-subtitle">Equip every session with 200+ evidence-based worksheets, handouts, and activities crafted for cognitive behavioral therapy.</p>
-    <a class="button button-primary" href="/checkout">Get Instant Access</a>
+    <a
+      class="button button-primary"
+      href="{{ featured_product.url | default: routes.root_url }}"
+      {% if direct_checkout_variant_id %}
+        data-checkout-variant="{{ direct_checkout_variant_id }}"
+        data-checkout-quantity="1"
+        data-checkout-redirect="{{ routes.checkout_url }}"
+        data-checkout-loading-text="Redirecting&hellip;"
+      {% endif %}
+    >Get Instant Access</a>
     <p class="hero-trust">Printable PDFs • Editable formats • Immediate digital download after purchase.</p>
   </div>
   <div class="hero-visual" aria-hidden="true">
@@ -33,15 +59,8 @@
   </div>
 </section>
 
-{% assign featured_collection = collections['frontpage'] %}
-{% if featured_collection == nil or featured_collection.products_count == 0 %}
-  {% assign featured_collection = collections['all'] %}
-{% endif %}
-
-{% if featured_collection and featured_collection.products_count > 0 %}
-  {% assign featured_product = featured_collection.products | first %}
-  {% if featured_product %}
-    <section class="product-highlight" aria-labelledby="product-highlight-title">
+{% if featured_product %}
+  <section class="product-highlight" aria-labelledby="product-highlight-title">
       <div class="section-heading">
         <h2 id="product-highlight-title">Inside the CBT Worksheets Mega Bundle</h2>
         <p>Get a closer look at the flagship product included with your purchase.</p>
@@ -88,8 +107,7 @@
           <a class="button button-primary" href="{{ featured_product.url }}">View product details</a>
         </div>
       </div>
-    </section>
-  {% endif %}
+  </section>
 {% endif %}
 
 <section class="features" id="features" aria-labelledby="features-title">
@@ -142,9 +160,36 @@
     <p>Explore the variety of printable packets ready to deploy in your next session.</p>
   </div>
   <div class="example-links">
-    <a class="example-card" href="/checkout">Anxiety &amp; Mood Packet</a>
-    <a class="example-card" href="/checkout">Youth &amp; Teens Activities</a>
-    <a class="example-card" href="/checkout">Progress Trackers &amp; Logs</a>
+    <a
+      class="example-card"
+      href="{{ featured_product.url | default: routes.root_url }}"
+      {% if direct_checkout_variant_id %}
+        data-checkout-variant="{{ direct_checkout_variant_id }}"
+        data-checkout-quantity="1"
+        data-checkout-redirect="{{ routes.checkout_url }}"
+        data-checkout-loading-text="Redirecting&hellip;"
+      {% endif %}
+    >Anxiety &amp; Mood Packet</a>
+    <a
+      class="example-card"
+      href="{{ featured_product.url | default: routes.root_url }}"
+      {% if direct_checkout_variant_id %}
+        data-checkout-variant="{{ direct_checkout_variant_id }}"
+        data-checkout-quantity="1"
+        data-checkout-redirect="{{ routes.checkout_url }}"
+        data-checkout-loading-text="Redirecting&hellip;"
+      {% endif %}
+    >Youth &amp; Teens Activities</a>
+    <a
+      class="example-card"
+      href="{{ featured_product.url | default: routes.root_url }}"
+      {% if direct_checkout_variant_id %}
+        data-checkout-variant="{{ direct_checkout_variant_id }}"
+        data-checkout-quantity="1"
+        data-checkout-redirect="{{ routes.checkout_url }}"
+        data-checkout-loading-text="Redirecting&hellip;"
+      {% endif %}
+    >Progress Trackers &amp; Logs</a>
   </div>
 </section>
 
@@ -228,7 +273,16 @@
     <p class="pricing-badge">Instant Download</p>
     <h2 id="pricing-title">Unlock the CBT Worksheets Mega Bundle today.</h2>
     <p>One-time payment • Unlimited client use • Free lifetime updates</p>
-    <a class="button button-primary" href="/checkout">Purchase Bundle</a>
+    <a
+      class="button button-primary"
+      href="{{ featured_product.url | default: routes.root_url }}"
+      {% if direct_checkout_variant_id %}
+        data-checkout-variant="{{ direct_checkout_variant_id }}"
+        data-checkout-quantity="1"
+        data-checkout-redirect="{{ routes.checkout_url }}"
+        data-checkout-loading-text="Redirecting&hellip;"
+      {% endif %}
+    >Purchase Bundle</a>
   </div>
 </section>
 
@@ -236,6 +290,15 @@
   <div class="cta-card">
     <h2 id="cta-title">Ready to streamline your sessions?</h2>
     <p>Give every client a clear roadmap with structured CBT resources you can trust.</p>
-    <a class="button button-primary" href="/checkout">Get the Mega Bundle</a>
+    <a
+      class="button button-primary"
+      href="{{ featured_product.url | default: routes.root_url }}"
+      {% if direct_checkout_variant_id %}
+        data-checkout-variant="{{ direct_checkout_variant_id }}"
+        data-checkout-quantity="1"
+        data-checkout-redirect="{{ routes.checkout_url }}"
+        data-checkout-loading-text="Redirecting&hellip;"
+      {% endif %}
+    >Get the Mega Bundle</a>
   </div>
 </section>

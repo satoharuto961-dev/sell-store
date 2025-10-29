@@ -524,6 +524,13 @@ a:focus {
   transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
+.button.is-loading,
+.example-card.is-loading {
+  pointer-events: none;
+  cursor: wait;
+  opacity: 0.7;
+}
+
 .button-primary {
   background: linear-gradient(135deg, var(--color-accent), #13a46a);
   color: #ffffff;
