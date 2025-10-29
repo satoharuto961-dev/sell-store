@@ -39,40 +39,57 @@
 {% endif %}
 
 {% if featured_collection and featured_collection.products_count > 0 %}
-  <section class="product-showcase" aria-labelledby="product-showcase-title">
-    <div class="section-heading">
-      <h2 id="product-showcase-title">See the bundle in action</h2>
-      <p>Preview real pages from the CBT Worksheets Mega Bundle and explore the variety of therapist-ready resources.</p>
-    </div>
-    <div class="product-showcase-grid">
-      {% for product in featured_collection.products limit: 3 %}
-        <article class="product-card">
-          <a class="product-card__link" href="{{ product.url }}">
-            {% if product.featured_image %}
+  {% assign featured_product = featured_collection.products | first %}
+  {% if featured_product %}
+    <section class="product-highlight" aria-labelledby="product-highlight-title">
+      <div class="section-heading">
+        <h2 id="product-highlight-title">Inside the CBT Worksheets Mega Bundle</h2>
+        <p>Get a closer look at the flagship product included with your purchase.</p>
+      </div>
+      <div class="product-highlight__body">
+        <div class="product-highlight__gallery" role="list">
+          {% if featured_product.images.size > 0 %}
+            {% for image in featured_product.images limit: 3 %}
+              <figure class="product-highlight__frame" role="listitem">
+                <img
+                  class="product-highlight__image"
+                  src="{{ image | img_url: '900x' }}"
+                  alt="{{ image.alt | default: featured_product.title | escape }}"
+                  loading="lazy"
+                  width="{{ image.width }}"
+                  height="{{ image.height }}"
+                >
+              </figure>
+            {% endfor %}
+          {% elsif featured_product.featured_image %}
+            <figure class="product-highlight__frame" role="listitem">
               <img
-                class="product-card__image"
-                src="{{ product.featured_image | img_url: '720x' }}"
-                alt="{{ product.featured_image.alt | default: product.title | escape }}"
+                class="product-highlight__image"
+                src="{{ featured_product.featured_image | img_url: '900x' }}"
+                alt="{{ featured_product.featured_image.alt | default: featured_product.title | escape }}"
                 loading="lazy"
-                width="{{ product.featured_image.width }}"
-                height="{{ product.featured_image.height }}"
+                width="{{ featured_product.featured_image.width }}"
+                height="{{ featured_product.featured_image.height }}"
               >
-            {% else %}
-              <div class="product-card__placeholder" aria-hidden="true">
-                {{ product.title | escape }}
-              </div>
-            {% endif %}
-            <div class="product-card__content">
-              <h3 class="product-card__title">{{ product.title | escape }}</h3>
-              {% if product.price %}
-                <p class="product-card__price">{{ product.price | money }}</p>
-              {% endif %}
+            </figure>
+          {% else %}
+            <div class="product-highlight__placeholder" role="listitem" aria-hidden="true">
+              {{ featured_product.title | escape }}
             </div>
-          </a>
-        </article>
-      {% endfor %}
-    </div>
-  </section>
+          {% endif %}
+        </div>
+        <div class="product-highlight__meta">
+          <h3 class="product-highlight__title">{{ featured_product.title | escape }}</h3>
+          {% if featured_product.description != blank %}
+            <p class="product-highlight__description">
+              {{ featured_product.description | strip_html | truncate: 160 }}
+            </p>
+          {% endif %}
+          <a class="button button-primary" href="{{ featured_product.url }}">View product details</a>
+        </div>
+      </div>
+    </section>
+  {% endif %}
 {% endif %}
 
 <section class="features" id="features" aria-labelledby="features-title">
