@@ -80,13 +80,20 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: stretch;
+    justify-content: flex-start;
+    align-items: center;
     gap: clamp(2rem, 5vw, 4rem);
     max-width: 1400px;
     margin: 0 auto;
     padding: clamp(3.5rem, 7vw, 5rem) clamp(1.75rem, 5vw, 2.5rem);
     width: 100%;
+    flex-wrap: wrap;
+  }
+
+  @media (min-width: 768px) {
+    .hero-inner {
+      padding: clamp(4rem, 6vw, 5rem) clamp(2.5rem, 5vw, 3rem);
+    }
   }
 
   @media (min-width: 768px) {
@@ -100,7 +107,9 @@
       flex-direction: row;
       justify-content: center;
       align-items: flex-start;
+      gap: 4rem;
       padding: 80px 40px;
+      flex-wrap: nowrap;
     }
   }
 
@@ -140,12 +149,19 @@
   }
 
   @media (min-width: 1024px) {
+    .hero-card,
+    .hero-visual {
+      flex: 1 1 0;
+      min-width: 480px;
+      max-width: 600px;
+    }
+
     .hero-card {
-      flex: 0 1 55%;
+      max-width: 640px;
     }
 
     .hero-visual {
-      flex: 0 1 45%;
+      max-width: 560px;
     }
   }
 
@@ -198,6 +214,8 @@
     font-weight: 600;
     color: var(--color-text);
     letter-spacing: -0.025em;
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
 
   .hero-subtitle {
@@ -205,6 +223,8 @@
     color: rgba(30, 41, 59, 0.78);
     line-height: 1.9;
     font-weight: 400;
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
 
   .hero-points {
@@ -461,6 +481,8 @@
     font-weight: 600;
     margin-bottom: 1.1rem;
     color: var(--color-text);
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
 
   .hero-showcase-list {
