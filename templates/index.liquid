@@ -73,32 +73,47 @@
 
   .hero {
     position: relative;
-    padding-top: clamp(4rem, 8vw, 6rem);
-    padding-bottom: clamp(4.5rem, 9vw, 7rem);
+    padding: clamp(1.5rem, 4vw, 2.75rem) 0;
   }
 
-  .hero-inner {
+  .hero-container {
     position: relative;
-    display: grid;
-    gap: clamp(1.75rem, 4vw, 2.75rem);
-    align-items: start;
-    justify-items: start;
-    max-width: 1240px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    gap: clamp(2rem, 4vw, 3.5rem);
+    max-width: 1280px;
     margin: 0 auto;
-    width: 100%;
+    padding: clamp(3rem, 6vw, 4.75rem) clamp(1.5rem, 4vw, 2.75rem);
+    box-sizing: border-box;
+    overflow-x: hidden;
   }
 
-  @media (min-width: 1024px) {
-    .hero-inner {
-      grid-template-columns: minmax(0, 0.56fr) minmax(0, 0.44fr);
-      gap: clamp(2.25rem, 4vw, 3.25rem);
-      align-items: start;
+  .hero-column {
+    flex: 1 1 clamp(300px, 43vw, 560px);
+    max-width: clamp(340px, 46vw, 620px);
+    min-width: 0;
+  }
+
+  .hero-column h1,
+  .hero-column p {
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  @media (max-width: 1023px) {
+    .hero-container {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 2rem;
     }
-  }
 
-  @media (min-width: 1360px) {
-    .hero-inner {
-      grid-template-columns: minmax(0, 0.54fr) minmax(0, 0.46fr);
+    .hero-column {
+      width: min(100%, 720px);
+      max-width: none;
+      min-width: auto;
     }
   }
 
@@ -108,7 +123,7 @@
     }
 
     .hero-showcase {
-      width: min(100%, 420px);
+      width: min(100%, 480px);
       margin: 0 auto;
     }
   }
@@ -126,7 +141,8 @@
     backdrop-filter: blur(18px);
     width: 100%;
     align-content: start;
-    align-self: start;
+    align-self: stretch;
+    min-width: 0;
   }
 
   @media (max-width: 639px) {
@@ -178,6 +194,8 @@
     font-weight: 600;
     color: var(--color-text);
     letter-spacing: -0.025em;
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
 
   .hero-subtitle {
@@ -185,6 +203,8 @@
     color: rgba(30, 41, 59, 0.78);
     line-height: 1.9;
     font-weight: 400;
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
 
   .hero-points {
@@ -322,33 +342,41 @@
     flex-direction: column;
     align-items: stretch;
     justify-content: flex-start;
-    padding: clamp(1rem, 2.5vw, 1.75rem);
-    align-self: start;
-    margin-top: 0;
+    background: var(--color-surface);
+    border-radius: calc(var(--radius-xl) + 10px);
+    padding: clamp(2.4rem, 3vw, 3rem);
+    box-shadow: 0 44px 82px rgba(15, 23, 42, 0.15);
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    backdrop-filter: blur(18px);
+    align-self: stretch;
+    min-width: 0;
+    overflow: hidden;
   }
 
   .hero-visual::before,
   .hero-visual::after {
     content: "";
     position: absolute;
-    width: clamp(260px, 38vw, 420px);
-    height: clamp(260px, 38vw, 420px);
-    border-radius: 50%;
-    filter: blur(45px);
+    inset: 0;
+    border-radius: inherit;
     z-index: 0;
-    opacity: 0.6;
+    pointer-events: none;
   }
 
   .hero-visual::before {
-    background: rgba(59, 130, 246, 0.35);
-    top: 0;
-    right: 12%;
+    background: radial-gradient(circle at 78% 18%, rgba(59, 130, 246, 0.25), transparent 58%),
+      radial-gradient(circle at 18% 82%, rgba(16, 185, 129, 0.18), transparent 65%);
+    opacity: 0.85;
   }
 
   .hero-visual::after {
-    background: rgba(16, 185, 129, 0.18);
-    bottom: 2rem;
-    left: 8%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.45), transparent 55%);
+    opacity: 0.9;
+  }
+
+  .hero-visual > * {
+    position: relative;
+    z-index: 1;
   }
 
   .hero-showcase {
@@ -356,7 +384,7 @@
     width: 100%;
     max-width: 640px;
     display: grid;
-    gap: clamp(1.5rem, 2.5vw, 2.25rem);
+    gap: clamp(1.4rem, 2.4vw, 2.1rem);
     z-index: 1;
     justify-items: stretch;
     justify-self: stretch;
@@ -373,7 +401,7 @@
   .hero-showcase-card {
     background: rgba(255, 255, 255, 0.92);
     border-radius: calc(var(--radius-xl) + 6px);
-    padding: clamp(1.85rem, 2.2vw, 2.4rem);
+    padding: clamp(1.75rem, 2.2vw, 2.3rem);
     box-shadow: 0 28px 62px rgba(15, 23, 42, 0.12);
     border: 1px solid rgba(148, 163, 184, 0.18);
     backdrop-filter: blur(12px);
@@ -381,7 +409,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 1.2rem;
+    gap: 1.1rem;
   }
 
   @media (min-width: 1200px) {
@@ -433,6 +461,8 @@
     font-weight: 600;
     margin-bottom: 1.1rem;
     color: var(--color-text);
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
 
   .hero-showcase-list {
@@ -462,18 +492,18 @@
   .hero-testimonial {
     display: flex;
     flex-direction: column;
-    gap: 1.2rem;
+    gap: 1rem;
     font-size: 1.05rem;
     color: rgba(71, 85, 105, 0.88);
-    line-height: 1.75;
+    line-height: 1.7;
     background: linear-gradient(160deg, rgba(37, 99, 235, 0.12), rgba(255, 255, 255, 0.96));
     border: 1px solid rgba(37, 99, 235, 0.14);
-    box-shadow: 0 32px 70px rgba(37, 99, 235, 0.14);
+    box-shadow: 0 32px 64px rgba(37, 99, 235, 0.16);
   }
 
   .hero-testimonial p {
-    font-size: 1.15rem;
-    line-height: 1.85;
+    font-size: 1.1rem;
+    line-height: 1.8;
     color: rgba(30, 41, 59, 0.9);
   }
 
@@ -897,8 +927,8 @@
 <div class="page-wrapper">
   <div class="content-max">
     <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-inner">
-        <article class="hero-card" data-animate="fade-up">
+      <div class="hero-container">
+        <article class="hero-card hero-column" data-animate="fade-up">
           <div class="hero-header">
             <span class="hero-badge">Professional CBT Toolkit</span>
             <h1 id="hero-title" class="hero-title">Therapy Resource Library</h1>
@@ -945,7 +975,7 @@
           </div>
           <p class="hero-trust">Created for licensed clinicians guiding clients through anxiety, depression, OCD, ADHD, insomnia, addiction, chronic pain, and eating disorders.</p>
         </article>
-        <div class="hero-visual" aria-hidden="true">
+        <div class="hero-visual hero-column" aria-hidden="true">
           <div class="hero-showcase">
             <div class="hero-showcase-card" data-animate="fade-up" data-animate-delay="0.15">
               <h3>Inside the Mega Bundle</h3>
