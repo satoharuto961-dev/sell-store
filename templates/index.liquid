@@ -33,56 +33,6 @@
     padding-bottom: 4rem;
   }
 
-  .goodreads-header {
-    background: #fff;
-    border-bottom: 1px solid var(--goodreads-border);
-    box-shadow: 0 8px 24px rgba(32, 21, 12, 0.08);
-    position: sticky;
-    top: 0;
-    z-index: 10;
-  }
-
-  .goodreads-header-inner {
-    max-width: 1240px;
-    margin: 0 auto;
-    padding: 1rem 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-  }
-
-  .goodreads-brand {
-    font-size: 1.85rem;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    color: var(--goodreads-green);
-    text-decoration: none;
-  }
-
-  .goodreads-nav {
-    display: flex;
-    gap: 1.25rem;
-    font-size: 0.95rem;
-    margin-left: auto;
-  }
-
-  .goodreads-nav a {
-    color: var(--goodreads-muted);
-    text-decoration: none;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-  }
-
-  .goodreads-nav a:hover {
-    color: var(--goodreads-green);
-  }
-
-  .goodreads-auth {
-    display: flex;
-    gap: 0.75rem;
-  }
-
   .goodreads-button {
     background: transparent;
     border: 1px solid var(--goodreads-border);
@@ -421,33 +371,7 @@
     font-family: inherit;
   }
 
-  .goodreads-footer {
-    max-width: 1240px;
-    margin: 0 auto;
-    padding: 2rem 1.5rem 3rem;
-    color: var(--goodreads-muted);
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    text-align: center;
-  }
-
   @media (max-width: 768px) {
-    .goodreads-header-inner {
-      flex-wrap: wrap;
-    }
-
-    .goodreads-nav {
-      order: 3;
-      width: 100%;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .goodreads-auth {
-      margin-left: auto;
-    }
-
     .hero-search {
       grid-template-columns: 1fr;
       border-radius: 18px;
@@ -465,31 +389,10 @@
       align-self: flex-start;
       margin-bottom: -0.5rem;
     }
-
-    .goodreads-auth {
-      width: 100%;
-      justify-content: center;
-    }
   }
 </style>
 
 <div class="goodreads-page">
-  <header class="goodreads-header" role="banner">
-    <div class="goodreads-header-inner">
-      <a class="goodreads-brand" href="/">GoodReads</a>
-      <nav class="goodreads-nav" role="navigation" aria-label="Primary">
-        <a href="#lists">Lists</a>
-        <a href="#new-releases">New Releases</a>
-        <a href="#community">Community</a>
-        <a href="#quotes">Quotes</a>
-      </nav>
-      <div class="goodreads-auth">
-        <a class="goodreads-button" href="/account/login">Sign In</a>
-        <a class="goodreads-button primary" href="/account/register">Join Goodreads</a>
-      </div>
-    </div>
-  </header>
-
   <main>
     <section class="goodreads-hero">
       <div class="hero-text">
@@ -549,7 +452,7 @@
 
     <section id="lists" class="section">
       <header>
-        <h2 class="section-title">Trending on Goodreads</h2>
+        <h2 class="section-title">Trending on PsychoReads</h2>
         <p class="section-subtitle">Shelves and collections readers are loving this week. Dive into themed lists and discover what everyone is talking about.</p>
       </header>
       <div class="featured-lists">
@@ -579,7 +482,7 @@
     <section id="new-releases" class="section">
       <header>
         <h2 class="section-title">New releases from our bookstore</h2>
-        <p class="section-subtitle">Keep your to-read list fresh with the latest arrivals loved by the Goodreads community.</p>
+        <p class="section-subtitle">Keep your to-read list fresh with the latest arrivals loved by the PsychoReads community.</p>
       </header>
       <div class="product-grid">
         {% if featured_collection and featured_collection.products_count > 0 %}
@@ -657,7 +560,7 @@
 
     <section class="section" id="community">
       <header>
-        <h2 class="section-title">Join the Goodreads newsletter</h2>
+        <h2 class="section-title">Join the PsychoReads newsletter</h2>
         <p class="section-subtitle">Weekly updates featuring trending reviews, new releases, and tailored recommendations.</p>
       </header>
       <div class="newsletter">
@@ -671,13 +574,4 @@
       </div>
     </section>
   </main>
-
-  <footer class="goodreads-footer">
-    <p>&copy; {{ 'now' | date: '%Y' }} Goodreads, Inc. All rights reserved.</p>
-    <p>
-      <a href="/policies/privacy-policy" style="color: inherit; text-decoration: underline;">Privacy</a> ·
-      <a href="/policies/terms-of-service" style="color: inherit; text-decoration: underline;">Terms</a> ·
-      <a href="/pages/contact" style="color: inherit; text-decoration: underline;">Help Center</a>
-    </p>
-  </footer>
 </div>
