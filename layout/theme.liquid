@@ -29,53 +29,9 @@
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M2H2S2ZK"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
-    <header class="site-header" id="top">
-      <div class="header-inner">
-        <a class="brand" href="#top" aria-label="Psychoreads home">
-          <span class="brand-mark" aria-hidden="true">PR</span>
-          <span class="brand-name">Psychoreads</span>
-        </a>
-        <nav class="primary-nav" aria-label="Primary">
-          <ul>
-            <li><a href="#features">Features</a></li>
-            <li><a href="#conversions">Why It Converts</a></li>
-            <li><a href="#examples">Examples</a></li>
-            <li><a href="#faq">FAQ</a></li>
-            <li><a href="#contact" class="nav-cta">Contact</a></li>
-          </ul>
-        </nav>
-      </div>
-    </header>
     <main class="site-main{% if template.name == 'index' or template == 'index' %} site-main--full-bleed{% endif %}" role="main">
       {{ content_for_layout }}
     </main>
-    <footer class="site-footer">
-      <div class="footer-inner">
-        <div class="footer-brand">
-          <div class="brand">
-            <span class="brand-mark" aria-hidden="true">MT</span>
-            <span class="brand-name">Mindful Therapy Collective</span>
-          </div>
-          <p>Compassionate, evidence-based counseling for individuals, couples, and families seeking lasting emotional wellness.</p>
-        </div>
-        <div class="footer-links">
-          <h2>Explore</h2>
-          <ul>
-            <li><a href="#services">Therapy Services</a></li>
-            <li><a href="#approach">Our Approach</a></li>
-            <li><a href="#team">Meet the Therapists</a></li>
-          </ul>
-        </div>
-        <div class="footer-cta" id="contact">
-          <h2>Ready to feel better?</h2>
-          <p>Reach out to schedule a free consultation and start your path toward meaningful change.</p>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <small>&copy; {{ 'now' | date: '%Y' }} Mindful Therapy Collective. All rights reserved.</small>
-        <small>Licensed professionals delivering compassionate care and confidential support.</small>
-      </div>
-    </footer>
     {{ 'theme.js' | asset_url | script_tag }}
     {{ content_for_footer }}
   </body>
