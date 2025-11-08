@@ -1,10 +1,42 @@
 {% assign featured_collection = nil %}
+
+{%- comment -%}
+  Gather the most relevant candidate collections in priority order:
+  1. The collection selected in the theme settings
+  2. The historical "frontpage" collection used by Shopify themes
+  3. The automatic "all" collection as a last resort
+{%- endcomment -%}
+{% assign collection_candidates = '' %}
 {% if settings.home_featured_collection != blank %}
-  {% assign featured_collection = collections[settings.home_featured_collection] %}
+  {% assign collection_candidates = settings.home_featured_collection %}
 {% endif %}
+{% assign collection_candidates = collection_candidates | append: ',frontpage,all' | split: ',' %}
+
+{%- for handle in collection_candidates -%}
+  {% assign trimmed_handle = handle | strip %}
+  {% if trimmed_handle != blank and (featured_collection == nil or featured_collection.products_count == 0) %}
+    {% assign candidate_collection = collections[trimmed_handle] %}
+    {% if candidate_collection and candidate_collection.products_count > 0 %}
+      {% assign featured_collection = candidate_collection %}
+    {% endif %}
+  {% endif %}
+{%- endfor -%}
+
+{%- comment -%}
+  If no candidate handles return a populated collection (for example, if the
+  original handle was renamed in the admin), fall back to the first published
+  collection with products to keep the homepage populated automatically.
+{%- endcomment -%}
 {% if featured_collection == nil or featured_collection.products_count == 0 %}
-  {% assign featured_collection = collections['frontpage'] %}
+  {% for collection in collections %}
+    {% assign fallback_candidate = collection[1] | default: collection %}
+    {% if fallback_candidate and fallback_candidate.handle != 'all' and fallback_candidate.products_count > 0 %}
+      {% assign featured_collection = fallback_candidate %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
 {% endif %}
+
 {% if featured_collection == nil or featured_collection.products_count == 0 %}
   {% assign featured_collection = collections['all'] %}
 {% endif %}
