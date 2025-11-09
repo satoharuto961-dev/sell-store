@@ -17,8 +17,13 @@
     endif
   endif
   if therapist_page_url == ''
-    assign therapist_page_url = '/pages/therapist-landing'
+    assign fallback_therapist_page = pages['therapist-landing']
+    if fallback_therapist_page
+      assign therapist_page_url = fallback_therapist_page.url
+      assign therapist_page_title = fallback_therapist_page.title
+    endif
   endif
+  assign show_therapist_links = therapist_page_url != ''
 %}
 <!doctype html>
 <html lang="en"{% if is_therapist_landing %} class="therapist-landing-html"{% endif %}>
@@ -67,7 +72,9 @@
               <li><a href="/#lists">Lists</a></li>
               <li><a href="/#new-releases">New Releases</a></li>
               <li><a href="/#community">Community</a></li>
-              <li><a href="{{ therapist_page_url }}">{{ therapist_page_title | default: 'For Therapists' }}</a></li>
+              {% if show_therapist_links %}
+                <li><a href="{{ therapist_page_url }}">{{ therapist_page_title | default: 'For Therapists' }}</a></li>
+              {% endif %}
               <li><a href="/#quotes">Quotes</a></li>
             </ul>
           </nav>
@@ -101,7 +108,9 @@
             <li><a href="/#lists">Trending lists</a></li>
             <li><a href="/#new-releases">New Releases</a></li>
             <li><a href="/collections/all">Browse all books</a></li>
-            <li><a href="{{ therapist_page_url }}">{{ therapist_page_title | default: 'Therapist Landing' }}</a></li>
+            {% if show_therapist_links %}
+              <li><a href="{{ therapist_page_url }}">{{ therapist_page_title | default: 'Therapist Landing' }}</a></li>
+            {% endif %}
           </ul>
         </div>
         <div class="footer-links">
