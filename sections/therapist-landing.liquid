@@ -272,8 +272,8 @@
           <div class="landing-eyebrow">Digital Download</div>
           <h1 id="landing-headline-{{ section.id }}" class="landing-headline">{{ section.settings.headline }}</h1>
           <p class="landing-subhead">{{ section.settings.subhead }}</p>
-          {% if request.design_mode and landing_product == nil %}
-            <div class="landing-error">Update the product handle to a valid product so this landing page can render.</div>
+          {% if landing_product == nil %}
+            <div class="landing-error">Update the product handle to a valid product so this landing page can render purchase details.</div>
           {% endif %}
           {% if landing_product %}
             <div class="landing-price">

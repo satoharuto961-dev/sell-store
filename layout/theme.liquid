@@ -1,8 +1,9 @@
 {% liquid
   assign is_therapist_landing = false
-  if template.name == 'page' and template.suffix == 'therapist-landing'
+  assign template_string = template | append: ''
+  if template_string == 'page.therapist-landing' or template_string == 'page.therapist-landing.json'
     assign is_therapist_landing = true
-  elsif template == 'page.therapist-landing'
+  elsif template.name and template.name == 'page' and template.suffix == 'therapist-landing'
     assign is_therapist_landing = true
   endif
 %}
@@ -74,37 +75,35 @@
     <main class="site-main{% if template.name == 'index' or template == 'index' %} site-main--full-bleed{% endif %}" role="main">
       {{ content_for_layout }}
     </main>
-    {% unless is_therapist_landing %}
-      <footer class="site-footer" role="contentinfo">
-        <div class="footer-inner">
-          <div class="footer-brand">
-            <span class="brand-mark brand-mark--footer" aria-hidden="true">gr</span>
-            <p>Track the books you&apos;re reading, discover recommendations, and join conversations with readers everywhere.</p>
-          </div>
-          <div class="footer-links">
-            <h3>Discover</h3>
-            <ul>
-              <li><a href="/#lists">Trending lists</a></li>
-              <li><a href="/#new-releases">New Releases</a></li>
-              <li><a href="/collections/all">Browse all books</a></li>
-            </ul>
-          </div>
-          <div class="footer-links">
-            <h3>Community</h3>
-            <ul>
-              <li><a href="/account/register">Create an account</a></li>
-              <li><a href="/#community">Join discussions</a></li>
-              <li><a href="/pages/contact">Contact support</a></li>
-            </ul>
-          </div>
-          <div class="footer-links">
-            <h3>Connect</h3>
-            <ul>
-              <li><a href="mailto:{{ shop.email | default: 'support@example.com' | escape }}">Email us</a></li>
-              <li><a href="https://www.instagram.com" rel="noopener noreferrer" target="_blank">Instagram</a></li>
-              <li><a href="https://www.facebook.com" rel="noopener noreferrer" target="_blank">Facebook</a></li>
-            </ul>
-          </div>
+    <footer class="site-footer" role="contentinfo">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <span class="brand-mark brand-mark--footer" aria-hidden="true">gr</span>
+          <p>Track the books you&apos;re reading, discover recommendations, and join conversations with readers everywhere.</p>
+        </div>
+        <div class="footer-links">
+          <h3>Discover</h3>
+          <ul>
+            <li><a href="/#lists">Trending lists</a></li>
+            <li><a href="/#new-releases">New Releases</a></li>
+            <li><a href="/collections/all">Browse all books</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h3>Community</h3>
+          <ul>
+            <li><a href="/account/register">Create an account</a></li>
+            <li><a href="/#community">Join discussions</a></li>
+            <li><a href="/pages/contact">Contact support</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h3>Connect</h3>
+          <ul>
+            <li><a href="mailto:{{ shop.email | default: 'support@example.com' | escape }}">Email us</a></li>
+            <li><a href="https://www.instagram.com" rel="noopener noreferrer" target="_blank">Instagram</a></li>
+            <li><a href="https://www.facebook.com" rel="noopener noreferrer" target="_blank">Facebook</a></li>
+          </ul>
         </div>
         <div class="footer-bottom">
           <span>© {{ 'now' | date: '%Y' }} {{ shop.name | default: 'PsychoReads' | escape }}. All rights reserved.</span>
