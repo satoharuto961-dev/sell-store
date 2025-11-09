@@ -24,7 +24,7 @@
     {{ content_for_header }}
     {{ 'theme.css' | asset_url | stylesheet_tag }}
   </head>
-  <body>
+  <body class="template-{{ template | replace: '.', '-' }}{% if template.name %} template-name-{{ template.name | handleize }}{% endif %}{% if template.suffix %} template-suffix-{{ template.suffix | handleize }}{% endif %}">
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M2H2S2ZK"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
