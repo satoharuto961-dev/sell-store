@@ -10,6 +10,31 @@
   endif
   assign product_available = landing_product and landing_product.available
   assign product_price = landing_variant.price | default: landing_product.price | default: 0
+
+  assign hero_headline = section.settings.headline | strip
+  if hero_headline == blank
+    assign hero_headline = 'Therapist-Approved 3-in-1 Workbook — CBT • DBT • ACT.'
+  endif
+
+  assign hero_subhead = section.settings.subhead | strip
+  if hero_subhead == blank
+    assign hero_subhead = 'Evidence-based, ready-to-use tools for your next session. Download instantly.'
+  endif
+
+  assign hero_button_label = section.settings.button_label | strip
+  if hero_button_label == blank
+    assign hero_button_label = 'Buy Now'
+  endif
+
+  assign meta_title = section.settings.meta_title | strip
+  if meta_title == blank
+    assign meta_title = hero_headline
+  endif
+
+  assign meta_description = section.settings.meta_description | strip
+  if meta_description == blank
+    assign meta_description = 'Download therapist-approved CBT, DBT, and ACT worksheets instantly. Evidence-based tools ready for your next session.'
+  endif
 %}
 
 <div class="therapist-landing" data-section-id="{{ section.id }}">
@@ -270,30 +295,49 @@
       <section class="landing-hero" aria-labelledby="landing-headline-{{ section.id }}">
         <div class="landing-hero__content">
           <div class="landing-eyebrow">Digital Download</div>
-          <h1 id="landing-headline-{{ section.id }}" class="landing-headline">{{ section.settings.headline }}</h1>
-          <p class="landing-subhead">{{ section.settings.subhead }}</p>
-          {% if request.design_mode and landing_product == nil %}
-            <div class="landing-error">Update the product handle to a valid product so this landing page can render.</div>
+          <h1 id="landing-headline-{{ section.id }}" class="landing-headline">{{ hero_headline }}</h1>
+          <p class="landing-subhead">{{ hero_subhead }}</p>
+          {% if landing_product == nil %}
+            <div class="landing-error">Update the product handle to a valid product so this landing page can render purchase details.</div>
           {% endif %}
           {% if landing_product %}
             <div class="landing-price">
               {{ landing_product.price | money_with_currency }}
             </div>
           {% endif %}
-          <div class="landing-benefits">
-            <ul>
-              {% for block in section.blocks where block.type == 'benefit' %}
-                <li {{ block.shopify_attributes }}>{{ block.settings.text }}</li>
-              {% endfor %}
-            </ul>
-          </div>
+          {% assign benefit_blocks = section.blocks | where: 'type', 'benefit' %}
+          {% assign has_configured_benefit = false %}
+          {% for block in benefit_blocks %}
+            {% if block.settings.text != blank %}
+              {% assign has_configured_benefit = true %}
+              {% break %}
+            {% endif %}
+          {% endfor %}
+          {% assign default_benefits = 'Save time in every session||Professional-grade visuals||Used by 10,000+ therapists worldwide||Ready to print or use in telehealth' | split: '||' %}
+          {% if has_configured_benefit or default_benefits.size > 0 %}
+            <div class="landing-benefits">
+              <ul>
+                {% if has_configured_benefit %}
+                  {% for block in benefit_blocks %}
+                    {% unless block.settings.text == blank %}
+                      <li {{ block.shopify_attributes }}>{{ block.settings.text }}</li>
+                    {% endunless %}
+                  {% endfor %}
+                {% else %}
+                  {% for benefit in default_benefits %}
+                    <li>{{ benefit }}</li>
+                  {% endfor %}
+                {% endif %}
+              </ul>
+            </div>
+          {% endif %}
           <button
             class="landing-button"
             type="button"
             data-variant-id="{% if landing_variant %}{{ landing_variant.id }}{% endif %}"
             {% unless product_available %}disabled{% endunless %}
           >
-            {{ section.settings.button_label }}
+            {{ hero_button_label }}
           </button>
         </div>
         <div class="landing-hero__media">
@@ -366,7 +410,7 @@
           data-variant-id="{% if landing_variant %}{{ landing_variant.id }}{% endif %}"
           {% unless product_available %}disabled{% endunless %}
         >
-          {{ section.settings.button_label }}
+          {{ hero_button_label }}
         </button>
       </div>
     {% endif %}
@@ -399,11 +443,11 @@
     root.classList.add('therapist-landing-html');
 
     function setMeta() {
-      var metaTitle = {{ section.settings.meta_title | json }};
+      var metaTitle = {{ meta_title | json }};
       if (metaTitle) {
         document.title = metaTitle;
       }
-      var metaDescription = {{ section.settings.meta_description | json }};
+      var metaDescription = {{ meta_description | json }};
       if (metaDescription) {
         var descriptionTag = document.querySelector('meta[name="description"]');
         if (!descriptionTag) {
