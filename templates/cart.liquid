@@ -41,6 +41,11 @@
                     <button type="submit" class="cart-limit-remove-button" aria-label="Remove {{ item.product.title | escape }} from your cart">Remove</button>
                   </form>
                 </div>
+                <form method="post" action="{{ routes.cart_change_url }}" class="cart-limit-remove-form">
+                  <input type="hidden" name="line" value="{{ forloop.index }}">
+                  <input type="hidden" name="quantity" value="0">
+                  <button type="submit" class="cart-limit-remove-button" aria-label="Remove {{ item.product.title | escape }} from cart">Remove</button>
+                </form>
               </div>
             </div>
           </li>
@@ -86,6 +91,11 @@
                     <button type="submit" class="cart-limit-remove-button" aria-label="Remove {{ item.product.title | escape }} from your cart">Remove</button>
                   </form>
                 </div>
+                <form method="post" action="{{ routes.cart_change_url }}" class="cart-limit-remove-form">
+                  <input type="hidden" name="line" value="{{ forloop.index }}">
+                  <input type="hidden" name="quantity" value="0">
+                  <button type="submit" class="cart-limit-remove-button" aria-label="Remove {{ item.product.title | escape }} from cart">Remove</button>
+                </form>
               </div>
             </div>
           </li>
