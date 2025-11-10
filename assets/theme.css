@@ -434,31 +434,27 @@ a:focus {
   margin: 0;
 }
 
-.cart-limit-remove-form {
-  margin: 0;
-  margin-top: 0.5rem;
-}
-
 .cart-limit-remove-button {
   border: none;
   background: none;
-  color: var(--color-accent);
+  padding: 0.25rem 0.5rem;
+  font-size: 0.85rem;
   font-weight: 600;
-  cursor: pointer;
-  padding: 0;
+  color: var(--color-accent);
   text-decoration: underline;
-  text-underline-offset: 0.2em;
+  cursor: pointer;
+  border-radius: 999px;
 }
 
 .cart-limit-remove-button:hover,
 .cart-limit-remove-button:focus {
-  color: var(--color-accent-dark, #0e7c4b);
+  color: var(--color-accent-dark, #0b5c39);
+  text-decoration: none;
 }
 
 .cart-limit-remove-button:focus-visible {
   outline: none;
   box-shadow: 0 0 0 3px rgba(14, 124, 75, 0.3);
-  border-radius: 4px;
 }
 
 .cart-limit-item-quantity-button {
