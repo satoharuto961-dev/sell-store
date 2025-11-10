@@ -51,13 +51,32 @@
       font-weight: 700;
       color: #1d4ed8;
       margin-bottom: 0.75rem;
+      display: inline-flex;
+      flex-direction: column;
+      gap: 0.35rem;
     }
     .hero-price small {
-      display: block;
+      display: inline-block;
       font-size: 0.95rem;
+      color: #1f2937;
+      font-weight: 600;
+      background: #e0e7ff;
+      padding: 0.4rem 0.75rem;
+      border-radius: 999px;
+    }
+    .hero-license-note {
+      font-size: 0.9rem;
       color: #475569;
-      font-weight: 500;
-      margin-top: 0.35rem;
+      margin-bottom: 1rem;
+    }
+    .hero-license-note a {
+      color: #2563eb;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .hero-license-note a:hover,
+    .hero-license-note a:focus {
+      text-decoration: underline;
     }
     .buy-now {
       display: inline-flex;
@@ -93,6 +112,21 @@
       font-size: 0.9rem;
       color: #64748b;
       margin-top: 0.75rem;
+    }
+    .hero-guarantee {
+      margin-top: 1rem;
+      background: #ecfdf5;
+      color: #047857;
+      border-radius: 12px;
+      padding: 0.9rem 1rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+    .hero-guarantee strong {
+      font-weight: 700;
     }
     .hero-trust {
       display: flex;
@@ -184,9 +218,17 @@
       margin-bottom: 0.75rem;
     }
     .inside-columns p {
-      margin: 0;
+      margin: 0 0 0.75rem;
       color: #475569;
       line-height: 1.6;
+    }
+    .inside-bullets {
+      margin: 0;
+      padding-left: 1.1rem;
+      color: #334155;
+      display: grid;
+      gap: 0.35rem;
+      font-size: 0.95rem;
     }
     .inside-highlights {
       margin-top: 2rem;
@@ -443,25 +485,30 @@
       </div>
       <div class="hero-content">
         <h1>Therapist-Approved 3-in-1 Workbook — CBT • DBT • ACT.</h1>
-        <p>Evidence-based tools to help clients overcome anxiety, low self-esteem, and emotional dysregulation — while saving you prep time.</p>
+        <p>Evidence-based tools that help clients regulate faster, understand the work visually, and keep your prep under five minutes.</p>
         <div class="hero-price">
           {{ available_variant.price | default: product.price | money }}
-          <small>One-time professional license.</small>
+          <small>One-time professional license — instant download.</small>
         </div>
+        <p class="hero-license-note">One license covers one clinician with unlimited clients. Need a clinic license? <a href="/pages/contact">Contact us.</a></p>
         <button class="buy-now js-buy-now" type="button" data-variant-id="{{ available_variant.id }}" {% unless is_available %}disabled{% endunless %}>
           {% if is_available %}
-            Buy Now — Instant Therapist Edition
+            Buy Now — Use in Your Next Session
           {% else %}
             Sold Out
           {% endif %}
         </button>
         <p class="buy-now__message" role="status" aria-live="polite"></p>
-        <p class="cta-reassurance">Instant PDF download after secure checkout.</p>
-        <a class="sample-link" href="{{ product.url }}?sample=pdf" target="_blank" rel="noopener">Free Sample Pages (PDF)</a>
+        <p class="cta-reassurance">Instant PDF download after secure checkout — ready for your next client.</p>
+        <a class="sample-link" href="{{ product.url }}?sample=pdf" target="_blank" rel="noopener">Download 5 sample pages (PDF)</a>
         <div class="hero-trust">
           <span>✔ Secure Checkout</span>
           <span>✔ Instant Download</span>
           <span>✔ Professional License</span>
+        </div>
+        <div class="hero-guarantee">
+          <strong>Therapist Guarantee:</strong>
+          If it doesn’t fit your style within 7 days, email us and we’ll make it right.
         </div>
       </div>
     </section>
@@ -470,20 +517,20 @@
       <h2>Why Therapists Love This Workbook</h2>
       <div class="benefit-grid">
         <div class="benefit-card">
-          <h3>Save time in every session.</h3>
-          <p>Open the workbook and move straight into targeted interventions.</p>
+          <h3>Saves ~10 minutes of prep every session.</h3>
+          <p>Pull a worksheet, open Zoom, and start — the prompts and scripts are already done for you.</p>
         </div>
         <div class="benefit-card">
-          <h3>Professional-grade visuals clients instantly understand.</h3>
-          <p>Illustrated worksheets translate complex concepts into clear takeaways.</p>
+          <h3>Visual tools clients instantly understand.</h3>
+          <p>Illustrated diagrams translate cognitive distortions into plain language clients remember.</p>
         </div>
         <div class="benefit-card">
-          <h3>Integrates CBT, DBT &amp; ACT in one resource.</h3>
-          <p>Blend modalities seamlessly without juggling multiple manuals.</p>
+          <h3>Covers CBT, DBT &amp; ACT in one kit.</h3>
+          <p>Blend modalities seamlessly without juggling multiple manuals or subscriptions.</p>
         </div>
         <div class="benefit-card">
-          <h3>Perfect for telehealth and print use.</h3>
-          <p>Share screens, email packets, or print pages with professional polish.</p>
+          <h3>Print or use digitally in telehealth.</h3>
+          <p>Screen-share, email, or print branded pages — all optimized for in-person and remote work.</p>
         </div>
       </div>
       <blockquote>
@@ -497,23 +544,38 @@
       <h2>Inside the Workbook</h2>
       <div class="inside-columns">
         <div>
-          <h3>CBT — challenge automatic thoughts.</h3>
-          <p>Use guided prompts to surface distortions, test beliefs, and map healthier cognitive patterns.</p>
+          <h3>CBT — challenge automatic thoughts fast.</h3>
+          <p>Lead clients through evidence-based thought records without writing new handouts from scratch.</p>
+          <ul class="inside-bullets">
+            <li>Printable worksheets</li>
+            <li>Cognitive distortion cheat sheets</li>
+            <li>Homework planners that boost follow-through</li>
+          </ul>
         </div>
         <div>
-          <h3>DBT — teach emotional regulation and distress tolerance.</h3>
-          <p>Deploy ready-to-facilitate handouts, diary cards, and skills labs that calm the nervous system.</p>
+          <h3>DBT — coach emotional regulation with confidence.</h3>
+          <p>Drop in ready-to-teach skills labs that reinforce distress tolerance and interpersonal effectiveness.</p>
+          <ul class="inside-bullets">
+            <li>Diary cards clients actually complete</li>
+            <li>Skills scripts for in-session practice</li>
+            <li>Ready for teletherapy screen sharing</li>
+          </ul>
         </div>
         <div>
-          <h3>ACT — build psychological flexibility and values-based living.</h3>
-          <p>Guide clients toward committed action with defusion scripts, values maps, and experiential exercises.</p>
+          <h3>ACT — build psychological flexibility quickly.</h3>
+          <p>Guide values work, defusion, and committed action with visuals that resonate in session.</p>
+          <ul class="inside-bullets">
+            <li>Values and commitment maps</li>
+            <li>Mindfulness micro-practices</li>
+            <li>Client reflection prompts for between sessions</li>
+          </ul>
         </div>
       </div>
       <ul class="inside-highlights">
-        <li>Step-by-step exercises</li>
-        <li>Real-world examples</li>
-        <li>Printable worksheets</li>
-        <li>Therapist notes</li>
+        <li>Ready for teletherapy and print</li>
+        <li>Instant PDF download</li>
+        <li>Editable fields for digital use</li>
+        <li>Session recap notes for clinicians</li>
       </ul>
       {% if gallery_images.size > 0 %}
         <div class="gallery-grid">
@@ -590,10 +652,10 @@
 
     <section class="container cta-section">
       <h2>Ready to Simplify Your Sessions?</h2>
-      <p>Download the professional therapist edition today and use it in your next appointment.</p>
+      <p>Download the professional therapist edition today and have it open for your next appointment.</p>
       <button class="buy-now js-buy-now" type="button" data-variant-id="{{ available_variant.id }}" {% unless is_available %}disabled{% endunless %}>
         {% if is_available %}
-          Buy Now — Instant Therapist Edition
+          Buy Now — Use in Your Next Session
         {% else %}
           Sold Out
         {% endif %}
@@ -612,8 +674,8 @@
         <p>Instant PDF download — ready for print or telehealth.</p>
       </div>
       <div class="faq-item">
-        <h3>Can I use it with multiple clients?</h3>
-        <p>Yes — unlimited personal clinical use.</p>
+        <h3>How does the license work?</h3>
+        <p>Your purchase includes a one-clinician professional license with unlimited client use. Need more seats? Reach out for clinic-wide options.</p>
       </div>
       <div class="faq-item">
         <h3>Is it good for trainees?</h3>
@@ -621,7 +683,7 @@
       </div>
       <div class="faq-item">
         <h3>Can I get a clinic license?</h3>
-        <p>Contact us for multi-therapist licensing.</p>
+        <p>Yes — email us to set up multi-therapist licensing with discounted volume pricing.</p>
       </div>
     </section>
 
@@ -629,7 +691,7 @@
       <p>Join thousands of therapists simplifying their sessions with this 3-in-1 workbook. Buy once — use it forever.</p>
       <button class="buy-now js-buy-now" type="button" data-variant-id="{{ available_variant.id }}" {% unless is_available %}disabled{% endunless %}>
         {% if is_available %}
-          Buy Now — Instant Therapist Edition
+          Buy Now — Use in Your Next Session
         {% else %}
           Sold Out
         {% endif %}
@@ -643,7 +705,7 @@
         <span class="sticky-bar-price">{{ available_variant.price | default: product.price | money }}</span>
       </div>
       <button class="buy-now js-buy-now" type="button" data-variant-id="{{ available_variant.id }}" {% unless is_available %}disabled{% endunless %}>
-        Buy Now
+        Buy Now — Instant Download
       </button>
     </div>
 
