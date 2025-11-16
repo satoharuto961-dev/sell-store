@@ -1,5 +1,11 @@
 {% assign product = all_products['cognitive-behavioral-therapy-worksheets'] %}
-{% assign available_variant = product.first_available_variant %}
+{% if product == blank %}
+  {% assign product = all_products['cbt-worksheets-bundle'] %}
+{% endif %}
+{% assign available_variant = nil %}
+{% if product %}
+  {% assign available_variant = product.first_available_variant %}
+{% endif %}
 {% assign is_available = false %}
 {% if product and product.available and available_variant and available_variant.available %}
   {% assign is_available = true %}
