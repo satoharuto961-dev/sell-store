@@ -1,7 +1,8 @@
 {
   "sections": {
     "main": {
-      "type": "cbt-worksheets-landing"
+      "type": "therapist-landing",
+      "settings": {}
     }
   },
   "order": [
