@@ -43,11 +43,13 @@
       <div class="benefits">
         <h2>How these worksheets help</h2>
         <div class="benefit-grid">
-          {% for block in section.blocks | where: 'type', 'benefit_item' %}
+          {% for block in section.blocks %}
+            {% if block.type == 'benefit_item' %}
             <div class="benefit-item" {{ block.shopify_attributes }}>
               <div class="benefit-icon">✓</div>
               <p>{{ block.settings.item_text }}</p>
             </div>
+            {% endif %}
           {% endfor %}
         </div>
       </div>
@@ -55,11 +57,13 @@
       <div class="inside-look" id="inside">
         <h2>Inside the toolkit</h2>
         <div class="inside-grid">
-          {% for block in section.blocks | where: 'type', 'inside_item' %}
+          {% for block in section.blocks %}
+            {% if block.type == 'inside_item' %}
             <div class="inside-item" {{ block.shopify_attributes }}>
               <div class="inside-badge">Included</div>
               <p>{{ block.settings.item_text }}</p>
             </div>
+            {% endif %}
           {% endfor %}
         </div>
       </div>
@@ -115,11 +119,13 @@
 
       <div class="social-proof">
         <div class="social-proof-grid">
-          {% for block in section.blocks | where: 'type', 'social_proof' %}
+          {% for block in section.blocks %}
+            {% if block.type == 'social_proof' %}
             <div class="proof-item" {{ block.shopify_attributes }}>
               <div class="proof-stat">{{ block.settings.stat }}</div>
               <p>{{ block.settings.caption }}</p>
             </div>
+            {% endif %}
           {% endfor %}
         </div>
       </div>
@@ -127,11 +133,13 @@
       <div class="testimonials">
         <h2>Therapists are saying</h2>
         <div class="testimonial-grid">
-          {% for block in section.blocks | where: 'type', 'testimonial' %}
+          {% for block in section.blocks %}
+            {% if block.type == 'testimonial' %}
             <div class="testimonial-card" {{ block.shopify_attributes }}>
               <p class="quote">“{{ block.settings.quote }}”</p>
               <p class="name">— {{ block.settings.name }}</p>
             </div>
+            {% endif %}
           {% endfor %}
         </div>
       </div>
@@ -153,8 +161,8 @@
             </form>
           {% endif %}
           <div class="final-cta-links">
-            {% for block in section.blocks | where: 'type', 'final_cta' %}
-              {% if block.settings.link != blank %}
+            {% for block in section.blocks %}
+              {% if block.type == 'final_cta' and block.settings.link != blank %}
                 <a href="{{ block.settings.link }}" class="final-link" {{ block.shopify_attributes }}>{{ block.settings.text }}</a>
               {% endif %}
             {% endfor %}
@@ -165,11 +173,13 @@
       <div class="faq">
         <h2>Questions therapists ask</h2>
         <div class="faq-list">
-          {% for block in section.blocks | where: 'type', 'faq_item' %}
+          {% for block in section.blocks %}
+            {% if block.type == 'faq_item' %}
             <details class="faq-item" {{ block.shopify_attributes }}>
               <summary>{{ block.settings.question }}</summary>
               <p>{{ block.settings.answer }}</p>
             </details>
+            {% endif %}
           {% endfor %}
         </div>
       </div>
