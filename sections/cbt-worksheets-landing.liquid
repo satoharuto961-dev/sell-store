@@ -1,4 +1,5 @@
-{% assign product = all_products['cbt-worksheets'] %}
+{% assign product_handle = section.settings.product_handle | default: 'cbt-worksheets' %}
+{% assign product = all_products[product_handle] %}
 {% if product == blank %}
   <section class="landing-not-found">
     <div class="landing-container">
@@ -465,6 +466,7 @@
 {
   "name": "CBT Landing",
   "settings": [
+    {"type": "text", "id": "product_handle", "label": "Product handle", "default": "cbt-worksheets"},
     {"type": "text", "id": "hero_title", "label": "Hero title"},
     {"type": "text", "id": "hero_subtitle", "label": "Hero subtitle"},
     {"type": "image_picker", "id": "hero_image", "label": "Hero image"},
