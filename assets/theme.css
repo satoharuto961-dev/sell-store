@@ -55,6 +55,35 @@ a:focus {
 }
 
 /* ---------------- HEADER ---------------- */
+.announcement-banner {
+  background: linear-gradient(90deg, #111111, #331b00);
+  color: var(--color-secondary);
+  text-align: center;
+  padding: 0.65rem 1rem;
+  border-bottom: 2px solid #d45500;
+  box-shadow: 0 10px 24px rgba(17, 17, 17, 0.2);
+}
+
+.announcement-banner__content {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+}
+
+.announcement-banner__headline {
+  text-transform: uppercase;
+}
+
+.announcement-banner__subtext {
+  color: var(--color-accent-light);
+}
+
 .site-header {
   position: sticky;
   top: 0;
