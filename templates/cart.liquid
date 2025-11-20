@@ -51,9 +51,12 @@
           </li>
         {% endfor %}
       </ul>
-      <form method="post" action="{{ routes.checkout_url }}" class="cart-review-checkout">
-        <button type="submit" name="checkout" class="button button-primary">Continue to checkout</button>
-      </form>
+      <div class="cart-review-actions">
+        <a class="button button-secondary" href="/">Continue shopping</a>
+        <form method="post" action="{{ routes.checkout_url }}" class="cart-review-checkout">
+          <button type="submit" name="checkout" class="button button-primary">Continue to checkout</button>
+        </form>
+      </div>
     </div>
   </section>
 {% else %}
@@ -101,6 +104,9 @@
           </li>
         {% endfor %}
       </ul>
+      <div class="cart-review-actions">
+        <a class="button button-secondary" href="/">Continue shopping</a>
+      </div>
     </div>
   </section>
 {% endif %}
