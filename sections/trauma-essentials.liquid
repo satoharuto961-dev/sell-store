@@ -253,36 +253,41 @@
   <!-- HERO -->
   <div class="u-hero-wrap">
     <div class="u-section u-hero">
-      <div class="u-hero-media">
-        <img
-          src="https://cdn.shopify.com/s/files/1/0673/8755/5923/files/Liberation_par_l_ecriture___Traumatismes_et_guerison_1.png?v=1763913159"
-          class="w-full max-w-sm mx-auto rounded-xl shadow-lg mb-8"
-          alt="Trauma Healing Essentials bundle cover"
-        />
-      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center py-12">
 
-      <div class="max-w-3xl">
-        <div class="u-hero-eyebrow">Digital bundle · Instant access</div>
-        <h1>Trauma Healing Essentials Bundle (3-Book PDF Set)</h1>
-        <p>Three bestselling trauma recovery guides that work together to restore safety, regulation, and connection with step-by-step practices.</p>
-
-        <div class="u-hero-bullets">
-          <span>Somatic and IFS-aligned tools for PTSD and C-PTSD healing.</span>
-          <span>Printable worksheets to track progress and regulate between sessions.</span>
-          <span>Therapist-trusted frameworks you can revisit anytime.</span>
+        <!-- LEFT COLUMN: Product Image -->
+        <div class="flex justify-center md:justify-start">
+          <img 
+            src="{{ 'Liberation_par_l_ecriture___Traumatismes_et_guerison_1.png' | file_url }}"
+            class="w-full max-w-xs rounded-xl shadow-lg mx-auto md:mx-0"
+            alt="Trauma Healing Essentials bundle cover"
+          />
         </div>
 
-        <div class="u-hero-cta-row">
-          <form class="u-cta-form" action="{{ routes.cart_add_url }}" method="post">
-            <input type="hidden" name="id" value="{{ checkout_product_variant_id }}">
-            <input type="hidden" name="quantity" value="1">
-            <input type="hidden" name="return_to" value="/checkout">
-            <button class="u-cta-btn u-cta-primary" type="submit">Download the bundle now</button>
-          </form>
-          <div style="font-size:.92rem;color:var(--muted);">Instant digital download · Lifetime access</div>
-        </div>
-      </div>
+        <!-- RIGHT COLUMN: Text + Buy Button -->
+        <div class="text-center md:text-left">
+          <div class="u-hero-eyebrow">Digital bundle · Instant access</div>
+          <h1>Trauma Healing Essentials Bundle (3-Book PDF Set)</h1>
+          <p>Three bestselling trauma recovery guides that work together to restore safety, regulation, and connection with step-by-step practices.</p>
 
+          <div class="u-hero-bullets">
+            <span>Somatic and IFS-aligned tools for PTSD and C-PTSD healing.</span>
+            <span>Printable worksheets to track progress and regulate between sessions.</span>
+            <span>Therapist-trusted frameworks you can revisit anytime.</span>
+          </div>
+
+          <div class="u-hero-cta-row">
+            <form class="u-cta-form" action="{{ routes.cart_add_url }}" method="post">
+              <input type="hidden" name="id" value="{{ checkout_product_variant_id }}">
+              <input type="hidden" name="quantity" value="1">
+              <input type="hidden" name="return_to" value="/checkout">
+              <button class="u-cta-btn u-cta-primary" type="submit">Download the bundle now</button>
+            </form>
+            <div style="font-size:.92rem;color:var(--muted);">Instant digital download · Lifetime access</div>
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
 
