@@ -830,7 +830,7 @@ a:focus {
   display: flex;
   align-items: center;
   justify-content: center;
-  max-width: 540px;
+  max-width: clamp(320px, 38vw, 460px);
   margin-inline: auto;
 }
 
@@ -840,7 +840,7 @@ a:focus {
 }
 
 .product__media-placeholder {
-  min-height: 420px;
+  min-height: clamp(260px, 38vw, 360px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -869,7 +869,7 @@ a:focus {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   gap: 1rem;
-  max-width: 540px;
+  max-width: clamp(320px, 38vw, 460px);
   margin-inline: auto;
 }
 
