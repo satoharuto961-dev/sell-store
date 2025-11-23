@@ -38,6 +38,9 @@
         {%- if product.media.size > 1 -%}
           <div class="product__thumbnail-grid" role="list">
             {%- for media in product.media -%}
+              {%- if forloop.first -%}
+                {%- continue -%}
+              {%- endif -%}
               {%- if featured_media and media.id == featured_media.id -%}
                 {%- continue -%}
               {%- endif -%}
