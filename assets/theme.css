@@ -830,6 +830,8 @@ a:focus {
   display: flex;
   align-items: center;
   justify-content: center;
+  max-width: 540px;
+  margin-inline: auto;
 }
 
 .product__gallery-stage picture {
@@ -867,6 +869,8 @@ a:focus {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   gap: 1rem;
+  max-width: 540px;
+  margin-inline: auto;
 }
 
 .product__thumbnail {
