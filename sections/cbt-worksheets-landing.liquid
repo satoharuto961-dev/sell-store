@@ -962,10 +962,23 @@
       }
     </script>
   {% endif %}
+
+  {% if section.blocks.size > 0 %}
+    <div class="app-blocks">
+      {% for block in section.blocks %}
+        {% render block %}
+      {% endfor %}
+    </div>
+  {% endif %}
 </div>
 {% schema %}
 {
   "name": "CBT Worksheets Landing",
-  "settings": []
+  "settings": [],
+  "blocks": [
+    {
+      "type": "@app"
+    }
+  ]
 }
 {% endschema %}
