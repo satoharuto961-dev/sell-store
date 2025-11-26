@@ -385,11 +385,24 @@
     </form>
   </div>
 
+  {% if section.blocks.size > 0 %}
+    <div class="app-blocks">
+      {% for block in section.blocks %}
+        {% render block %}
+      {% endfor %}
+    </div>
+  {% endif %}
+
 </div>
 
 {% schema %}
 {
   "name": "trauma-essentials",
-  "settings": []
+  "settings": [],
+  "blocks": [
+    {
+      "type": "@app"
+    }
+  ]
 }
 {% endschema %}
