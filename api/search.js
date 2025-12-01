@@ -31,13 +31,16 @@ module.exports = async function handler(req, res) {
     const limitNumber = Number.parseInt(limitRaw, 10);
     const limit = Number.isNaN(limitNumber) || limitNumber <= 0 ? 10 : Math.min(limitNumber, 50);
 
-    const results = [];
+    const { searchDiagnoses } = require('../lib/icd-core');
+    const results = searchDiagnoses(query, limit);
 
     sendSuccess(res, {
       query,
       limit,
       results,
-      message: 'Search endpoint is configured. Implement result sourcing as needed.'
+      message: results.length
+        ? 'Matching ICD coding scenarios returned.'
+        : 'No matching ICD coding scenarios found.'
     });
   } catch (error) {
     sendError(res, 500, 'Unexpected error while handling search request.', { message: error.message });
