@@ -36,17 +36,22 @@ module.exports = async function handler(req, res) {
       return;
     }
 
+    const { encodeDiagnosis } = require('../lib/icd-core');
+    const payload = encodeDiagnosis(text);
+
     let encoded;
     if (encoding === 'base64') {
-      encoded = Buffer.from(text, 'utf8').toString('base64');
+      encoded = Buffer.from(JSON.stringify(payload), 'utf8').toString('base64');
     } else {
-      encoded = encodeURIComponent(text);
+      encoded = encodeURIComponent(JSON.stringify(payload));
     }
 
     sendSuccess(res, {
       text,
       encoding,
-      encoded
+      encoded,
+      codes: payload.codes,
+      message: payload.message
     });
   } catch (error) {
     sendError(res, 500, 'Unexpected error while handling encode request.', { message: error.message });
