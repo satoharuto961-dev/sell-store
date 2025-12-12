@@ -221,6 +221,75 @@
       color: #0b1b2b;
       box-shadow: 0 14px 30px rgba(251, 191, 36, 0.4);
     }
+    .reviews-section {
+      margin: 3rem 0;
+      background: #fff;
+      border: 1px solid rgba(12, 43, 80, 0.12);
+      border-radius: 18px;
+      padding: 2rem 1.75rem;
+      box-shadow: 0 18px 38px rgba(12, 43, 80, 0.12);
+    }
+    .reviews-section header {
+      display: grid;
+      gap: 0.4rem;
+      margin-bottom: 1.5rem;
+    }
+    .reviews-section .section-subtitle {
+      color: #40556d;
+      font-size: 1rem;
+    }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.25rem;
+    }
+    .review-card {
+      background: linear-gradient(180deg, #ffffff, #f7fbff);
+      border: 1px solid rgba(12, 43, 80, 0.14);
+      border-radius: 16px;
+      padding: 1.25rem 1.35rem;
+      display: grid;
+      gap: 0.65rem;
+      box-shadow: 0 12px 28px rgba(12, 43, 80, 0.1);
+    }
+    .review-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+    .reviewer {
+      font-weight: 700;
+      color: #0b1b2b;
+    }
+    .review-rating {
+      color: #f59e0b;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+    }
+    .review-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #123a70;
+    }
+    .review-meta {
+      color: #40556d;
+      font-size: 0.95rem;
+    }
+    .review-body {
+      color: #0b1b2b;
+      line-height: 1.6;
+    }
+    .review-footnote {
+      color: #40556d;
+      font-size: 0.9rem;
+    }
+    .review-footer {
+      display: flex;
+      justify-content: space-between;
+      color: #536981;
+      font-size: 0.92rem;
+    }
     .purchase-status {
       font-size: 0.95rem;
       color: #0b1b2b;
@@ -329,6 +398,136 @@
         <h3>Stay organized</h3>
         <p>Keep your theory refreshers, prompts, and practice exercises in one digital file you can reference anywhere.</p>
       </div>
+    </div>
+  </section>
+
+  <section class="container reviews-section" aria-labelledby="reader-reviews">
+    <header>
+      <h2 id="reader-reviews">What readers are saying</h2>
+      <p class="section-subtitle">Real feedback from students, professionals, and lifelong learners who picked up this counseling text.</p>
+    </header>
+    <div class="reviews-grid">
+      <article class="review-card">
+        <div class="review-header">
+          <span class="reviewer">Austin White</span>
+          <span class="review-rating">★★★★★</span>
+        </div>
+        <div>
+          <p class="review-title">Informative, organized and witty textbook</p>
+          <p class="review-meta">December 3, 2019 • United States • Paperback • Verified Purchase</p>
+        </div>
+        <p class="review-body">This textbook was an integral part of my counseling education and will be for the foreseeable future. The authors are witty and engaging, which is unusual for a theories textbook. A great buy.</p>
+        <div class="review-footer">
+          <span>2 people found this helpful</span>
+          <span>Helpful · Report</span>
+        </div>
+      </article>
+      <article class="review-card">
+        <div class="review-header">
+          <span class="reviewer">Kimberly</span>
+          <span class="review-rating">★★★★★</span>
+        </div>
+        <div>
+          <p class="review-title">Required</p>
+          <p class="review-meta">April 12, 2024 • United States • Paperback • Verified Purchase</p>
+        </div>
+        <p class="review-body">Needed for classes, what else can I say.</p>
+        <div class="review-footer">
+          <span>1 person found this helpful</span>
+          <span>Helpful · Report</span>
+        </div>
+      </article>
+      <article class="review-card">
+        <div class="review-header">
+          <span class="reviewer">Dixie Blanton</span>
+          <span class="review-rating">★★★★★</span>
+        </div>
+        <div>
+          <p class="review-title">Great condition- good book</p>
+          <p class="review-meta">November 7, 2024 • United States • Paperback • Verified Purchase</p>
+        </div>
+        <p class="review-body">I used this product for school and it got here pretty fast and in great condition.</p>
+        <div class="review-footer">
+          <span>Helpful</span>
+          <span>Report</span>
+        </div>
+      </article>
+      <article class="review-card">
+        <div class="review-header">
+          <span class="reviewer">Will</span>
+          <span class="review-rating">★★★★★</span>
+        </div>
+        <div>
+          <p class="review-title">Yes</p>
+          <p class="review-meta">October 16, 2024 • United States • Paperback • Verified Purchase</p>
+        </div>
+        <p class="review-body">I was satisfied with the product.</p>
+        <p class="review-footnote">“Whether BIG or small, I report it all” — Instagram: @godsantz2023 &amp; @wowchurch2023</p>
+        <div class="review-footer">
+          <span>Helpful</span>
+          <span>Report</span>
+        </div>
+      </article>
+      <article class="review-card">
+        <div class="review-header">
+          <span class="reviewer">Amazon Customer</span>
+          <span class="review-rating">★★★★☆</span>
+        </div>
+        <div>
+          <p class="review-title">Good quality</p>
+          <p class="review-meta">June 14, 2024 • United States • Paperback • Verified Purchase</p>
+        </div>
+        <p class="review-body">The book was good when I got it. I used it for grad school and it has thorough information. Not my favorite textbook of this semester, but it was very thorough and beneficial.</p>
+        <div class="review-footer">
+          <span>2 people found this helpful</span>
+          <span>Helpful · Report</span>
+        </div>
+      </article>
+      <article class="review-card">
+        <div class="review-header">
+          <span class="reviewer">Elexus</span>
+          <span class="review-rating">★★★★★</span>
+        </div>
+        <div>
+          <p class="review-title">Would Recommend</p>
+          <p class="review-meta">December 16, 2019 • United States • Paperback • Verified Purchase</p>
+        </div>
+        <p class="review-body">I really enjoyed the book. It was easy to read and easy to follow, with jokes sprinkled throughout. I learned the theories more thoroughly after reading this book.</p>
+        <div class="review-footer">
+          <span>10 people found this helpful</span>
+          <span>Helpful · Report</span>
+        </div>
+      </article>
+      <article class="review-card">
+        <div class="review-header">
+          <span class="reviewer">Maggie T</span>
+          <span class="review-rating">★★★★★</span>
+        </div>
+        <div>
+          <p class="review-title">Good book on counseling theories</p>
+          <p class="review-meta">May 17, 2021 • United States • Paperback • Verified Purchase</p>
+        </div>
+        <p class="review-body">This is my textbook for Counseling Theories class. Very systematic. I bought it second hand, but it's like new. Delivery was quick, too.</p>
+        <div class="review-footer">
+          <span>3 people found this helpful</span>
+          <span>Helpful · Report</span>
+        </div>
+      </article>
+      <article class="review-card">
+        <div class="review-header">
+          <span class="reviewer">Neil Horton</span>
+          <span class="review-rating">★★★★★</span>
+        </div>
+        <div>
+          <p class="review-title">Amazing text!</p>
+          <p class="review-meta">December 4, 2019 • United States • Paperback • Verified Purchase</p>
+        </div>
+        <p class="review-body">I loved this text! Best theories text ever (my favorite of all my grad school texts). Funny and engaging!</p>
+        <div class="review-footer">
+          <span>2 people found this helpful</span>
+          <span>Helpful · Report</span>
+        </div>
+      </article>
     </div>
   </section>
 
