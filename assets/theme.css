@@ -1303,6 +1303,84 @@ a:focus {
   border: 1px solid rgba(31, 78, 121, 0.25);
 }
 
+.product-spotlight {
+  display: grid;
+  gap: 1.5rem;
+  padding: 1.75rem;
+  background: var(--color-surface);
+  border-radius: 24px;
+  border: 1px solid rgba(31, 78, 121, 0.25);
+  box-shadow: var(--shadow-soft);
+}
+
+.product-spotlight__header {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.product-spotlight__eyebrow {
+  margin: 0;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-muted);
+  font-weight: 700;
+}
+
+.product-spotlight h2 {
+  margin: 0;
+  font-size: clamp(1.5rem, 1vw + 1.25rem, 1.8rem);
+}
+
+.product-spotlight__grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.product-spotlight__card {
+  padding: 1.25rem;
+  border-radius: 16px;
+  background: var(--color-secondary);
+  border: 1px solid rgba(31, 78, 121, 0.22);
+  box-shadow: var(--shadow-soft);
+}
+
+.product-spotlight__card h3 {
+  margin: 0 0 0.45rem;
+  font-size: 1.1rem;
+}
+
+.product-spotlight__card p {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+.product-spotlight__assurances {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.5rem;
+  color: var(--color-muted);
+}
+
+.product-spotlight__assurances li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 0.75rem;
+  border-radius: 12px;
+  background: rgba(31, 78, 121, 0.08);
+  border: 1px solid rgba(31, 78, 121, 0.14);
+}
+
+.product-spotlight__assurances li::before {
+  content: "✔";
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
 .product__meta-label {
   display: block;
   font-size: 0.8rem;

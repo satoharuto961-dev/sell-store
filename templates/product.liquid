@@ -1,3 +1,5 @@
+{%- assign is_dsm5_tr = product.handle == 'diagnostic-and-statistical-manual-of-mental-disorders-text-revision-dsm-5-tr-5th-edition' -%}
+
 {%- if product == blank -%}
   <section class="product-unavailable">
     <div class="product-unavailable__content">
@@ -195,6 +197,35 @@
               </li>
             {%- endif -%}
           </ul>
+
+          {%- if is_dsm5_tr -%}
+            <section class="product-spotlight" aria-labelledby="dsm5-highlights">
+              <div class="product-spotlight__header">
+                <p class="product-spotlight__eyebrow">DSM-5-TR</p>
+                <h2 id="dsm5-highlights">Diagnostic and Statistical Manual highlights</h2>
+                <p>Give clinicians, students, and care teams the trusted APA text revision with up-to-date diagnostic guidance.</p>
+              </div>
+              <div class="product-spotlight__grid" role="list">
+                <article class="product-spotlight__card" role="listitem">
+                  <h3>Text revision updates</h3>
+                  <p>Includes the latest terminology updates, diagnostic criteria refinements, and cultural considerations published by the APA.</p>
+                </article>
+                <article class="product-spotlight__card" role="listitem">
+                  <h3>Designed for daily reference</h3>
+                  <p>Lay-flat friendly formatting, sturdy binding, and clear section markers help you get to the right criteria quickly.</p>
+                </article>
+                <article class="product-spotlight__card" role="listitem">
+                  <h3>Clinical readiness</h3>
+                  <p>Trusted by hospitals, outpatient practices, and training programs for aligning teams on the current diagnostic standards.</p>
+                </article>
+              </div>
+              <ul class="product-spotlight__assurances" role="list">
+                <li>Authentic APA Publishing release with current coding guidance.</li>
+                <li>Packaged securely to protect pages and spine during transit.</li>
+                <li>Ships promptly so you can reference DSM-5-TR in upcoming sessions.</li>
+              </ul>
+            </section>
+          {%- endif -%}
 
           <div class="product__accordion">
             <details open>
