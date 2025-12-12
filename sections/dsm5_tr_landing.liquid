@@ -230,21 +230,21 @@
             <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
               <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-7.25 7.25a1 1 0 01-1.414 0l-3.25-3.25a1 1 0 111.414-1.414L8.5 11.586l6.543-6.543a1 1 0 011.414 0z" clip-rule="evenodd" />
             </svg>
-            <div><strong>Ships fast</strong> so you can keep your practice or coursework moving.</div>
+            <div><strong>Instant digital download</strong> so you can keep your practice or coursework moving without waiting.</div>
           </li>
         </ul>
       </div>
       <div class="dsm-landing__cta">
         <div class="dsm-landing__price">
           <div>{{ available_variant.price | money }}</div>
-          <small>Print edition — {{ product.vendor | default: 'APA Publishing' }}</small>
+          <small>Digital download — {{ product.vendor | default: 'APA Publishing' }}</small>
         </div>
         <div class="dsm-landing__availability">
           <span class="dot" aria-hidden="true"></span>
           {% if is_available %}
-            In stock and ready to ship
+            Available for immediate download
           {% else %}
-            Currently unavailable
+            Temporarily unavailable — check back soon
           {% endif %}
         </div>
         <div class="dsm-landing__form">
@@ -256,7 +256,7 @@
           {% else %}
             <p class="dsm-landing__notice">This product is not yet available.</p>
           {% endif %}
-          <p class="dsm-landing__ship-note">Secure checkout powered by Shopify.</p>
+          <p class="dsm-landing__ship-note">Instant delivery—no shipping required. Secure checkout powered by Shopify.</p>
           <p class="dsm-landing__message" data-buy-now-message></p>
         </div>
       </div>
@@ -276,15 +276,15 @@
       <div class="dsm-landing__feature-grid">
         <div class="dsm-landing__feature-card">
           <h3>Updated diagnostic guidance</h3>
-          <p>Text revisions clarify criteria and symptom descriptions across chapters, improving accuracy during intake and assessment.</p>
+          <p>Text revisions clarify criteria and symptom descriptions across chapters, improving accuracy during intake and assessment in a digital-first reference.</p>
         </div>
         <div class="dsm-landing__feature-card">
           <h3>Codes at your fingertips</h3>
-          <p>ICD-10-CM codes appear alongside each disorder to streamline documentation, billing, and referrals.</p>
+          <p>ICD-10-CM codes appear alongside each disorder to streamline documentation, billing, and referrals in one searchable file.</p>
         </div>
         <div class="dsm-landing__feature-card">
           <h3>Trusted source</h3>
-          <p>Produced by the American Psychiatric Association and relied on by clinicians, educators, and researchers worldwide.</p>
+          <p>Produced by the American Psychiatric Association and relied on by clinicians, educators, and researchers worldwide—now available as a convenient download.</p>
         </div>
       </div>
     </div>
