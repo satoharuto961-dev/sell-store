@@ -1,4 +1,7 @@
-{%- assign is_dsm5_tr = product.handle == 'diagnostic-and-statistical-manual-of-mental-disorders-text-revision-dsm-5-tr-5th-edition' -%}
+{%- assign is_dsm5_tr =
+  product.handle == 'diagnostic-and-statistical-manual-of-mental-disorders-text-revision-dsm-5-tr-5th-edition'
+  or product.handle == 'dsm-5-tr-pocket-guide-for-child-and-adolescent-mental-health'
+-%}
 
 {%- if product == blank -%}
   <section class="product-unavailable">
@@ -248,9 +251,13 @@
   </section>
 
   {%- if product.available -%}
+    {%- assign sticky_eyebrow = 'Buy now' -%}
+    {%- if is_dsm5_tr -%}
+      {%- assign sticky_eyebrow = 'Instant digital download' -%}
+    {%- endif -%}
     <div class="sticky-buy-now" role="region" aria-label="Quick purchase">
       <div class="sticky-buy-now__details">
-        <p class="sticky-buy-now__eyebrow">Buy now</p>
+        <p class="sticky-buy-now__eyebrow">{{ sticky_eyebrow }}</p>
         <p class="sticky-buy-now__title">{{ product.title }}</p>
         <p class="sticky-buy-now__price" aria-live="polite">
           <span class="sticky-buy-now__price-current">{{ primary_variant.price | money }}</span>
