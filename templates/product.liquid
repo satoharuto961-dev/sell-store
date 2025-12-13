@@ -248,9 +248,13 @@
   </section>
 
   {%- if product.available -%}
+    {%- assign sticky_eyebrow = 'Buy now' -%}
+    {%- if product.handle == 'dsm-5-tr-pocket-guide-for-child-and-adolescent-mental-health' -%}
+      {%- assign sticky_eyebrow = 'Instant digital download' -%}
+    {%- endif -%}
     <div class="sticky-buy-now" role="region" aria-label="Quick purchase">
       <div class="sticky-buy-now__details">
-        <p class="sticky-buy-now__eyebrow">Buy now</p>
+        <p class="sticky-buy-now__eyebrow">{{ sticky_eyebrow }}</p>
         <p class="sticky-buy-now__title">{{ product.title }}</p>
         <p class="sticky-buy-now__price" aria-live="polite">
           <span class="sticky-buy-now__price-current">{{ primary_variant.price | money }}</span>
