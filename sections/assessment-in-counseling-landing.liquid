@@ -220,7 +220,7 @@
           {% if is_available %}
             {% form 'product', product, class: 'buy-now-form' %}
               <input type="hidden" name="id" value="{{ available_variant.id }}" />
-              <button type="submit" name="add" class="buy-now">Download Now</button>
+              <button type="submit" name="checkout" class="buy-now">Download Now</button>
             {% endform %}
           {% else %}
             <button type="button" class="buy-now" disabled>Sold Out</button>
@@ -263,7 +263,7 @@
       {% if is_available %}
         {% form 'product', product %}
           <input type="hidden" name="id" value="{{ available_variant.id }}" />
-          <button type="submit" name="add" class="buy-now">Add to Cart</button>
+          <button type="submit" name="checkout" class="buy-now">Checkout Now</button>
         {% endform %}
       {% else %}
         <button type="button" class="buy-now" disabled>Unavailable</button>
