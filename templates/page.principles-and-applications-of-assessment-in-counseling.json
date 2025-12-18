@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "main": {
+      "type": "principles-and-applications-of-assessment-in-counseling-landing",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
