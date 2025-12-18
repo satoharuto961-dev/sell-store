@@ -178,6 +178,63 @@
       padding-left: 1.1rem;
       margin: 0.5rem 0 0;
     }
+    .reviews-section {
+      padding: 2.5rem 0 1rem;
+      display: grid;
+      gap: 1.25rem;
+    }
+    .reviews-section header {
+      display: grid;
+      gap: 0.35rem;
+    }
+    .reviews-section h2 {
+      font-size: 1.75rem;
+      margin: 0;
+    }
+    .reviews-section .section-subtitle {
+      color: #2c3e55;
+      font-weight: 600;
+    }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+    .review-card {
+      background: #fff;
+      border: 1px solid rgba(12, 43, 80, 0.12);
+      border-radius: 14px;
+      padding: 1.1rem 1.2rem;
+      box-shadow: 0 12px 28px rgba(12, 43, 80, 0.08);
+      display: grid;
+      gap: 0.35rem;
+    }
+    .review-rating {
+      color: #e8a640;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      font-size: 1rem;
+    }
+    .reviewer {
+      font-weight: 750;
+      margin: 0;
+    }
+    .review-meta {
+      color: #4a6077;
+      font-size: 0.95rem;
+      margin: 0;
+    }
+    .review-body {
+      color: #0b1b2b;
+      font-weight: 600;
+      line-height: 1.6;
+      margin: 0;
+    }
+    .review-footnote {
+      color: #40556d;
+      font-size: 0.92rem;
+      margin: 0;
+    }
     .cta-banner {
       margin: 3rem 0;
       background: linear-gradient(135deg, #123a70, #0d2e58);
@@ -254,6 +311,78 @@
         </div>
       </div>
     </div>
+
+    <section class="reviews-section" aria-labelledby="assessment-reviews">
+      <header>
+        <h2 id="assessment-reviews">Recent 5-star reviews</h2>
+        <p class="section-subtitle">Feedback from counselors and students using the Principles and Applications of Assessment in Counseling text.</p>
+      </header>
+      <div class="reviews-grid" role="list">
+        <article class="review-card" role="listitem">
+          <div class="review-rating" role="img" aria-label="Rated 5 out of 5 stars">★★★★★</div>
+          <h3 class="reviewer">Rocco B. Rubino</h3>
+          <p class="review-body">Everything the counselor needs to know about assessment. Ethical, practical, and worth keeping on the shelf.</p>
+          <p class="review-meta">Reviewed in the United States on May 16, 2002 · Verified Purchase</p>
+          <p class="review-footnote">20 people found this helpful · Helpful · Report</p>
+        </article>
+        <article class="review-card" role="listitem">
+          <div class="review-rating" role="img" aria-label="Rated 5 out of 5 stars">★★★★★</div>
+          <h3 class="reviewer">kccayson</h3>
+          <p class="review-body">Used this during my assessment class and it made the material easier to read and more interesting.</p>
+          <p class="review-meta">Reviewed in the United States on September 26, 2016 · Format: Hardcover · Verified Purchase</p>
+          <p class="review-footnote">2 people found this helpful · Helpful · Report</p>
+        </article>
+        <article class="review-card" role="listitem">
+          <div class="review-rating" role="img" aria-label="Rated 5 out of 5 stars">★★★★★</div>
+          <h3 class="reviewer">Bakovska</h3>
+          <p class="review-body">The best reference for assessment—reordered it after grad school because it’s indispensable.</p>
+          <p class="review-meta">Reviewed in the United States on March 14, 2019 · Format: Hardcover · Verified Purchase</p>
+          <p class="review-footnote">Helpful · Report</p>
+        </article>
+        <article class="review-card" role="listitem">
+          <div class="review-rating" role="img" aria-label="Rated 5 out of 5 stars">★★★★★</div>
+          <h3 class="reviewer">R. G.</h3>
+          <p class="review-body">Right book for my class and priced better than the campus store.</p>
+          <p class="review-meta">Reviewed in the United States on May 4, 2019 · Format: Hardcover · Verified Purchase</p>
+          <p class="review-footnote">Helpful · Report</p>
+        </article>
+        <article class="review-card" role="listitem">
+          <div class="review-rating" role="img" aria-label="Rated 5 out of 5 stars">★★★★★</div>
+          <h3 class="reviewer">Valerie Mooney</h3>
+          <p class="review-body">Book looks brand new and arrived on time—met every expectation.</p>
+          <p class="review-meta">Reviewed in the United States on July 2, 2018 · Format: Hardcover · Verified Purchase</p>
+          <p class="review-footnote">Helpful · Report</p>
+        </article>
+        <article class="review-card" role="listitem">
+          <div class="review-rating" role="img" aria-label="Rated 5 out of 5 stars">★★★★★</div>
+          <h3 class="reviewer">Anna</h3>
+          <p class="review-body">Fast service and a great book—exactly what I needed.</p>
+          <p class="review-meta">Reviewed in the United States on December 22, 2021 · Format: Hardcover · Verified Purchase</p>
+          <p class="review-footnote">Helpful · Report</p>
+        </article>
+        <article class="review-card" role="listitem">
+          <div class="review-rating" role="img" aria-label="Rated 5 out of 5 stars">★★★★★</div>
+          <h3 class="reviewer">Arobertson9</h3>
+          <p class="review-body">Good book for class—simple and straightforward.</p>
+          <p class="review-meta">Reviewed in the United States on October 24, 2021 · Format: Hardcover · Verified Purchase</p>
+          <p class="review-footnote">Helpful · Report</p>
+        </article>
+        <article class="review-card" role="listitem">
+          <div class="review-rating" role="img" aria-label="Rated 5 out of 5 stars">★★★★★</div>
+          <h3 class="reviewer">Maxi</h3>
+          <p class="review-body">Arrived in great condition—no complaints.</p>
+          <p class="review-meta">Reviewed in the United States on January 29, 2020 · Verified Purchase</p>
+          <p class="review-footnote">Helpful · Report</p>
+        </article>
+        <article class="review-card" role="listitem">
+          <div class="review-rating" role="img" aria-label="Rated 5 out of 5 stars">★★★★★</div>
+          <h3 class="reviewer">Jesica</h3>
+          <p class="review-body">Great for class—exactly what I needed in an eTextbook.</p>
+          <p class="review-meta">Reviewed in the United States on February 25, 2020 · Format: eTextbook · Verified Purchase</p>
+          <p class="review-footnote">Helpful · Report</p>
+        </article>
+      </div>
+    </section>
 
     <div class="cta-banner">
       <div>
