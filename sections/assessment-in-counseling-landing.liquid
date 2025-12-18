@@ -1,4 +1,4 @@
-{% assign product = all_products['assessment-in-counseling-practice-and-applications'] %}
+{% assign product = all_products['principles-and-applications-of-assessment-in-counseling'] %}
 {% assign available_variant = product.first_available_variant %}
 {% assign is_available = false %}
 {% if product and product.available and available_variant and available_variant.available %}
@@ -8,7 +8,7 @@
 {% if product and product.price %}
   {% assign price_text = product.price | money %}
 {% endif %}
-{% assign hero_image = 'https://cdn.shopify.com/s/files/1/0989/7020/6389/files/71K475eXeTL._SY522.jpg?v=1765757862' %}
+{% assign hero_image = 'https://cdn.shopify.com/s/files/1/0989/7020/6389/files/51Q3onYF_GL._SY522.jpg?v=1766090308' %}
 {% if product and product.featured_image %}
   {% assign hero_image = product.featured_image | image_url: width: 900 %}
 {% endif %}
@@ -205,22 +205,22 @@
     <div class="page-hero">
       <div class="hero-media">
         <span class="hero-badge">Digital Download</span>
-        <img src="{{ hero_image }}" alt="Assessment in Counseling Practice and Applications cover" loading="lazy" />
+        <img src="{{ hero_image }}" alt="Principles and Applications of Assessment in Counseling cover" loading="lazy" />
       </div>
       <div class="hero-content">
-        <h1>Assessment in Counseling: Practice and Applications</h1>
-        <p class="subhead">Master practical assessment strategies with ready-to-use templates, case examples, and guidance grounded in real-world counseling scenarios.</p>
+        <h1>Principles and Applications of Assessment in Counseling</h1>
+        <p class="subhead">Build confident assessment skills with step-by-step guidance, ethical frameworks, and proven tools tailored for modern counseling practice.</p>
         <div class="pill-list">
           <span>PDF Download</span>
           <span>Instant Access</span>
-          <span>For Practitioners & Students</span>
+          <span>Evidence-Informed</span>
         </div>
         <div class="purchase-card">
           <div class="purchase-price">{{ price_text }} <span>One-time payment</span></div>
           {% if is_available %}
             {% form 'product', product, class: 'buy-now-form' %}
               <input type="hidden" name="id" value="{{ available_variant.id }}" />
-              <button type="submit" name="checkout" class="buy-now">Download Now</button>
+              <button type="submit" name="checkout" class="buy-now">Get the Digital Guide</button>
             {% endform %}
           {% else %}
             <button type="button" class="buy-now" disabled>Sold Out</button>
@@ -237,28 +237,28 @@
     <div class="feature-section">
       <div class="feature-grid">
         <div class="feature-card">
-          <h3>Complete Assessment Toolkit</h3>
-          <p>Structured intake forms, rating scales, and progress tracking templates help you capture the right data without slowing sessions down.</p>
+          <h3>Foundations Made Practical</h3>
+          <p>Translate core assessment principles into actionable steps with plain-language explanations and counselor-focused examples.</p>
         </div>
         <div class="feature-card">
-          <h3>Real-World Case Examples</h3>
-          <p>See how experienced clinicians apply assessments across anxiety, mood, and trauma presentations with step-by-step rationale.</p>
+          <h3>Ethical & Culturally Aware</h3>
+          <p>Checklists and prompts help you maintain informed consent, cultural responsiveness, and transparent communication with every client.</p>
         </div>
         <div class="feature-card">
-          <h3>Ethical & Culturally Responsive</h3>
-          <p>Guidance on informed consent, cultural humility, and communicating results so every client feels respected and understood.</p>
+          <h3>Templates You Can Use Today</h3>
+          <p>Intake forms, rating scales, and progress trackers are ready to print or use digitally so you can streamline documentation.</p>
         </div>
         <div class="feature-card">
-          <h3>Ready for Sessions Tomorrow</h3>
-          <p>Printable PDFs and digital-friendly formats make it easy to integrate the tools into telehealth or in-person counseling right away.</p>
+          <h3>Case Applications</h3>
+          <p>See how seasoned clinicians structure assessments across anxiety, trauma, and mood presentations with clear rationales.</p>
         </div>
       </div>
     </div>
 
     <div class="cta-banner">
       <div>
-        <strong>Upgrade your assessment confidence for just {{ price_text }}.</strong>
-        <p>Deliver clear, actionable insights to clients and supervisors with polished tools built for counseling practice.</p>
+        <strong>Strengthen your assessment practice for just {{ price_text }}.</strong>
+        <p>Provide clients and supervisors with confident, defensible assessment summaries backed by practical tools.</p>
       </div>
       {% if is_available %}
         {% form 'product', product %}
@@ -271,3 +271,15 @@
     </div>
   </div>
 </div>
+
+{% schema %}
+{
+  "name": "Assessment counseling landing",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Assessment counseling landing"
+    }
+  ]
+}
+{% endschema %}
