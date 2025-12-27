@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "main": {
+      "type": "emdr-therapy-landing",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
