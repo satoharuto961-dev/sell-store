@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "main": {
+      "type": "wherever-you-go-there-you-are-landing",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
