@@ -1697,6 +1697,7 @@ a:focus {
 
 .landing-hero__media img {
   width: 100%;
+  max-width: 360px;
   border-radius: 20px;
   box-shadow: var(--shadow-medium);
 }
