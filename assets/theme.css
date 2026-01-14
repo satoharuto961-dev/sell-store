@@ -1848,5 +1848,6 @@ a:focus {
 body.template-index {
   --color-background: #E3F0E8;
   /* Premium subtle green */
-  background-color: var(--color-background);
+  background-color: #E3F0E8 !important;
+  background: #E3F0E8 !important;
 }
