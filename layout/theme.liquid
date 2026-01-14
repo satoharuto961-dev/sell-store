@@ -23,6 +23,13 @@
     <link rel="icon" href="{{ 'favicon.svg' | asset_url }}" type="image/svg+xml">
     {{ content_for_header }}
     {{ 'theme.css' | asset_url | stylesheet_tag }}
+    <style>
+      /* CRITICAL: Force home page background color */
+      body.template-index {
+        background-color: #E3F0E8 !important;
+        background: #E3F0E8 !important;
+      }
+    </style>
   </head>
   <body class="template-{{ template | replace: '.', '-' }}{% if template.name %} template-name-{{ template.name | handleize }}{% endif %}{% if template.suffix %} template-suffix-{{ template.suffix | handleize }}{% endif %}">
     <!-- Google Tag Manager (noscript) -->
