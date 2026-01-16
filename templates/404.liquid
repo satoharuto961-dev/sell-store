@@ -1,37 +1,22 @@
-{%- assign req_path = request.path -%}
 {%- assign target_handle_short = 'the-cbt-flip-chart-an-evidence-based-psychoeducational-tool-for-anxiety' -%}
 {%- assign target_handle_long = 'the-cbt-flip-chart-an-evidence-based-psychoeducational-tool-for-anxiety-depression-stress-insomnia-ptsd-and-more' -%}
 
-{%- comment -%} Check if path contains the custom route segment AND the product slug {%- endcomment -%}
-{%- if req_path contains '/product-page/' and req_path contains 'the-cbt-flip-chart' -%}
-  {%- comment -%} Try short handle first {%- endcomment -%}
-  {%- assign product = all_products[target_handle_short] -%}
-  
-  {%- comment -%} If not found, try long handle {%- endcomment -%}
-  {%- if product == empty -%}
-     {%- assign product = all_products[target_handle_long] -%}
-  {%- endif -%}
+{%- comment -%} Attempt to fetch product data (server-side) {%- endcomment -%}
+{%- assign cbt_product = all_products[target_handle_short] -%}
+{%- if cbt_product == empty -%}
+  {%- assign cbt_product = all_products[target_handle_long] -%}
+{%- endif -%}
 
-  {%- if product != empty -%}
-    {%- render 'cbt-landing-page', product: product -%}
-  {%- else -%}
-    {%- comment -%}Fallback if product lookup fails completely{%- endcomment -%}
-    <section class="error-page">
-      <div class="error-card">
-        <h1>Product Not Found</h1>
-        <p>We detected the correct URL, but could not load the product data from Shopify. Please check if the product handle is correct.</p>
-        <p>Debug Path: {{ req_path }}</p>
-         <div class="error-actions">
-           <a href="/" class="button button-primary">Return home</a>
-         </div>
-      </div>
-    </section>
+{%- comment -%} Hidden container for the custom landing page {%- endcomment -%}
+<div id="cbt-landing-wrapper" style="display:none;">
+  {%- if cbt_product != empty -%}
+     {%- render 'cbt-landing-page', product: cbt_product -%}
   {%- endif -%}
-{%- else -%}
+</div>
+
+{%- comment -%} Standard 404 Content (Wrapped) {%- endcomment -%}
+<div id="standard-404-wrapper">
   <section class="error-page">
-    <div style="background: yellow; color: black; padding: 10px; text-align: center; font-weight: bold; border: 2px solid red;">
-       DEBUG: request.path is "{{ request.path }}"
-    </div>
     <div class="error-card">
       <span class="error-eyebrow">Page not found</span>
       <h1>Looks like the story you're after is missing.</h1>
@@ -50,4 +35,24 @@
       </ul>
     </div>
   </section>
-{%- endif -%}
+</div>
+
+<script>
+  (function() {
+    var checkPath = window.location.pathname;
+    // Check for the custom "product-page" segment AND the product slug
+    if (checkPath.indexOf('/product-page/') > -1 && checkPath.indexOf('the-cbt-flip-chart') > -1) {
+       // We are on the custom path!
+       var standard = document.getElementById('standard-404-wrapper');
+       var custom = document.getElementById('cbt-landing-wrapper');
+       
+       if (custom && custom.innerHTML.trim() !== "") {
+          if(standard) standard.style.display = 'none';
+          custom.style.display = 'block';
+          
+          // Optional: Update document title
+          document.title = "The CBT Flip Chart";
+       }
+    }
+  })();
+</script>
