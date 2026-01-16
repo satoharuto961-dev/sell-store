@@ -106,27 +106,61 @@
   width: 100%;
 }
 
-.cbt-carousel-container {
+/* Gallery Styles */
+.cbt-gallery-main {
+  width: 100%;
+  margin-bottom: 1rem;
+  border-radius: var(--cbt-radius);
+  overflow: hidden;
+  box-shadow: var(--cbt-shadow-lg);
+  background: white;
   display: flex;
-  gap: 1rem;
-  overflow-x: auto;
-  padding-bottom: 1rem;
-  scroll-snap-type: x mandatory;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Specific image fix: Ensure they have max width but maintain aspect ratio */
-.cbt-hero-image {
+.cbt-main-img {
   width: 100%;
   max-width: 500px;
   height: auto;
-  border-radius: var(--cbt-radius);
-  box-shadow: var(--cbt-shadow-lg);
   object-fit: contain;
-  /* changed from cover to contain to prevent cropping */
-  display: block;
-  scroll-snap-align: start;
+  transition: opacity 0.15s ease-in-out;
 }
 
+.cbt-gallery-thumbs {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.cbt-thumb {
+  width: 80px;
+  height: 80px;
+  border-radius: var(--cbt-radius);
+  border: 2px solid transparent;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.2s;
+  box-shadow: var(--cbt-shadow);
+}
+
+.cbt-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cbt-thumb:hover {
+  transform: translateY(-2px);
+}
+
+.cbt-thumb.active {
+  border-color: var(--cbt-accent);
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.3);
+}
+
+
+/* Price Buttons */
 .cbt-price {
   font-size: 1.5rem;
   font-weight: 700;
@@ -193,6 +227,7 @@
   font-weight: 600;
   font-size: 1rem;
   display: none;
+  color: var(--cbt-dark-text);
 }
 
 @media (min-width: 640px) {

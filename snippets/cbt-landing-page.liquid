@@ -6,10 +6,21 @@
     <!-- Hero Section -->
     <section class="cbt-section cbt-hero">
       <div class="cbt-hero-media cbt-animate">
-         <div class="cbt-carousel-container">
-            <img src="https://cdn.shopify.com/s/files/1/0796/4557/3349/files/61EzyrQ3q4L._SL1341.jpg?v=1768246422" alt="CBT Flip Chart Main Image" class="cbt-hero-image">
-            <img src="https://cdn.shopify.com/s/files/1/0796/4557/3349/files/a.png?v=1768522333" alt="CBT Flip Chart Image 1" class="cbt-hero-image">
-            <img src="https://cdn.shopify.com/s/files/1/0796/4557/3349/files/b.png?v=1768522333" alt="CBT Flip Chart Image 2" class="cbt-hero-image">
+         <!-- Main Gallery Display -->
+         <div class="cbt-gallery-main">
+            <img id="cbtMainImage" src="https://cdn.shopify.com/s/files/1/0796/4557/3349/files/61EzyrQ3q4L._SL1341.jpg?v=1768246422" alt="The CBT Flip Chart" class="cbt-main-img">
+         </div>
+         <!-- Thumbnails -->
+         <div class="cbt-gallery-thumbs">
+            <div class="cbt-thumb active" onclick="changeImage(this, 'https://cdn.shopify.com/s/files/1/0796/4557/3349/files/61EzyrQ3q4L._SL1341.jpg?v=1768246422')">
+               <img src="https://cdn.shopify.com/s/files/1/0796/4557/3349/files/61EzyrQ3q4L._SL1341.jpg?v=1768246422" alt="Thumbnail 1">
+            </div>
+            <div class="cbt-thumb" onclick="changeImage(this, 'https://cdn.shopify.com/s/files/1/0796/4557/3349/files/a.png?v=1768522333')">
+               <img src="https://cdn.shopify.com/s/files/1/0796/4557/3349/files/a.png?v=1768522333" alt="Thumbnail 2">
+            </div>
+            <div class="cbt-thumb" onclick="changeImage(this, 'https://cdn.shopify.com/s/files/1/0796/4557/3349/files/b.png?v=1768522333')">
+               <img src="https://cdn.shopify.com/s/files/1/0796/4557/3349/files/b.png?v=1768522333" alt="Thumbnail 3">
+            </div>
          </div>
       </div>
       
@@ -86,9 +97,7 @@
     <section class="cbt-section">
       <h2 class="cbt-heading-2">What Customers Are Saying</h2>
       <div class="cbt-customer-reviews-grid">
-        <!-- Reviews content same as before, simplified for brevity in this thought but will include all -->
-        
-        <div class="cbt-review-card">
+         <div class="cbt-review-card">
            <div class="cbt-review-header">
               <span class="cbt-review-author">Darin/Lena Braunecker</span>
               <span class="cbt-review-date">April 11, 2025</span>
@@ -97,7 +106,7 @@
            <h4 class="cbt-heading-3" style="font-size: 1.1rem; margin-bottom: 0.5rem;">Good tool to aid in therapy</h4>
            <p>It’s a great visual reference - I work with the geriatric population and usually have handouts or a visual representation to go along with explaining an intervention or theory. One side is glossy color and the Bach side is a gray scale so you can see what they are seeing. Behavioral Activation was also covered and mindfulness</p>
         </div>
-        <!-- ... (Include all other reviews here) ... -->
+
         <div class="cbt-review-card">
            <div class="cbt-review-header">
               <span class="cbt-review-author">Angela D. Hull</span>
@@ -291,7 +300,7 @@
        </div>
        {% form 'product', product %}
           <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-          <input type="hidden" name="return_to" value="/checkout" />
+           <input type="hidden" name="return_to" value="/checkout" />
           <button type="submit" name="add" class="cbt-btn-sticky">Buy Now</button>
        {% endform %}
     </div>
@@ -299,7 +308,21 @@
 </div>
 
 <script>
-  // Simple script to show sticky bar on scroll
+  function changeImage(thumb, src) {
+     // Update Main Image
+     const mainImg = document.getElementById('cbtMainImage');
+     mainImg.style.opacity = '0.5';
+     setTimeout(() => {
+        mainImg.src = src;
+        mainImg.style.opacity = '1';
+     }, 150);
+
+     // Update Active Thumb
+     document.querySelectorAll('.cbt-thumb').forEach(t => t.classList.remove('active'));
+     thumb.classList.add('active');
+  }
+
+  // Sticky Bar Logic
   document.addEventListener('DOMContentLoaded', function() {
     const stickyBar = document.querySelector('.cbt-sticky-bar');
     const heroBtn = document.querySelector('.cbt-hero .cbt-add-to-cart-btn');
