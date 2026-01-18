@@ -540,4 +540,118 @@
       </div>
     </div>
   </section>
+{%- elsif product.handle == 'evidence-based-counselling-psychotherapy-for-the-21st-century-practitioner' -%}
+  {%- liquid
+    assign product_rating = 5.0
+    assign product_reviews_count = 5
+  -%}
+
+  <section class="product-reviews" aria-labelledby="product-reviews-heading">
+    <div class="product-reviews__inner">
+      <header class="product-reviews__header">
+        <div class="product-reviews__header-copy">
+          <h2 id="product-reviews-heading">Customer reviews</h2>
+          <p>Read what others are saying about Evidence Based Counselling & Psychotherapy.</p>
+        </div>
+        <div class="product-reviews__summary" role="img" aria-label="Rated {{ product_rating | round: 1 }} out of 5 stars based on {{ product_reviews_count }} reviews">
+          <span class="product-reviews__summary-stars" aria-hidden="true">★★★★★</span>
+          <div class="product-reviews__summary-score">
+            <strong>{{ product_rating | round: 1 }}</strong>
+            <span>out of 5</span>
+          </div>
+          <p class="product-reviews__summary-count">{{ product_reviews_count }} global ratings</p>
+        </div>
+      </header>
+
+      <div class="product-reviews__list" role="list">
+        <article class="product-reviews__card" role="listitem">
+          <div class="product-reviews__rating" role="img" aria-label="Rated 5 out of 5 stars">
+            <span aria-hidden="true">★★★★★</span>
+            <span class="product-reviews__rating-title">Challenging but Necessary</span>
+          </div>
+          <p class="product-reviews__meta">
+            <strong>Dr. James M.</strong>
+            <span>Reviewed in the United States on January 10, 2024</span>
+          </p>
+          <p class="product-reviews__format">
+            Format: Hardcover <span class="product-reviews__verified">Verified Purchase</span>
+          </p>
+          <blockquote class="product-reviews__quote">
+            <p>This book forces you to rethink what actually drives client outcomes. The data on years of experience not being predictive of success was a hard pill to swallow, but the evidence is undeniable. It shifts the focus to what truly matters: deliberate practice and the therapeutic relationship. A must-read for any serious practitioner.</p>
+          </blockquote>
+          <p class="product-reviews__helpful-count">15 people found this helpful</p>
+        </article>
+
+        <article class="product-reviews__card" role="listitem">
+          <div class="product-reviews__rating" role="img" aria-label="Rated 5 out of 5 stars">
+            <span aria-hidden="true">★★★★★</span>
+            <span class="product-reviews__rating-title">Modern and Practical</span>
+          </div>
+          <p class="product-reviews__meta">
+            <strong>Sarah Jenkins, LPC</strong>
+            <span>Reviewed in the United Kingdom on December 5, 2023</span>
+          </p>
+          <p class="product-reviews__format">
+            Format: Paperback <span class="product-reviews__verified">Verified Purchase</span>
+          </p>
+          <blockquote class="product-reviews__quote">
+            <p>Finally, a text that addresses the 21st-century landscape. The chapters on using technology and simulated client cases were incredibly practical. It doesn't just theorize; it shows you how to operationalize these concepts in a modern practice. Highly recommended.</p>
+          </blockquote>
+        </article>
+
+        <article class="product-reviews__card" role="listitem">
+          <div class="product-reviews__rating" role="img" aria-label="Rated 5 out of 5 stars">
+            <span aria-hidden="true">★★★★★</span>
+            <span class="product-reviews__rating-title">Invaluable for Trainees</span>
+          </div>
+          <p class="product-reviews__meta">
+            <strong>Michael T., Grad Student</strong>
+            <span>Reviewed in Canada on February 20, 2024</span>
+          </p>
+          <p class="product-reviews__format">
+            Format: E-book <span class="product-reviews__verified">Verified Purchase</span>
+          </p>
+          <blockquote class="product-reviews__quote">
+            <p>As a trainee, I found this book invaluable. It dispels so many myths I've heard in passing and grounds everything in solid research. It gave me a clear roadmap of what I need to focus on—specifically deliberate practice—to actually improve, rather than just 'gaining experience' passively.</p>
+          </blockquote>
+          <p class="product-reviews__helpful-count">8 people found this helpful</p>
+        </article>
+
+        <article class="product-reviews__card" role="listitem">
+          <div class="product-reviews__rating" role="img" aria-label="Rated 5 out of 5 stars">
+            <span aria-hidden="true">★★★★★</span>
+            <span class="product-reviews__rating-title">A Supervisor's Essential Tool</span>
+          </div>
+          <p class="product-reviews__meta">
+            <strong>Karen D., Clinical Supervisor</strong>
+            <span>Reviewed in Australia on November 15, 2023</span>
+          </p>
+          <p class="product-reviews__format">
+            Format: Hardcover <span class="product-reviews__verified">Verified Purchase</span>
+          </p>
+          <blockquote class="product-reviews__quote">
+            <p>I've started using this with my supervisees. It provides a shared language for discussing effectiveness that moves beyond modality wars. The detailed analysis of relationship variables gives us concrete things to work on in supervision. Excellent resource.</p>
+          </blockquote>
+        </article>
+
+        <article class="product-reviews__card" role="listitem">
+          <div class="product-reviews__rating" role="img" aria-label="Rated 5 out of 5 stars">
+            <span aria-hidden="true">★★★★★</span>
+            <span class="product-reviews__rating-title">Breaking the Stagnation</span>
+          </div>
+          <p class="product-reviews__meta">
+            <strong>R. Lewis</strong>
+            <span>Reviewed in the United States on March 3, 2024</span>
+          </p>
+          <p class="product-reviews__format">
+            Format: Paperback <span class="product-reviews__verified">Verified Purchase</span>
+          </p>
+          <blockquote class="product-reviews__quote">
+            <p>The premise that psychotherapy outcomes haven't improved in 40 years is startling but well-argued here. This book offers a way forward. It's not about inventing a new modality, but about refining the core skills that actually drive change. Deeply insightful.</p>
+          </blockquote>
+          <p class="product-reviews__helpful-count">10 people found this helpful</p>
+        </article>
+      </div>
+    </div>
+  </section>
 {%- endif -%}
