@@ -2,6 +2,8 @@
   {% render 'cbt-landing-page', product: product %}
 {%- elsif product.handle == 'emotion-in-posttraumatic-stress-disorder-etiology-assessment-neurobiology-and-treatment' -%}
   {% render 'emotion-ptsd-landing-page', product: product %}
+{%- elsif product.handle == 'therapeutic-action-an-earnest-plea-for-irony' -%}
+  {% render 'therapeutic-action-landing-page', product: product %}
 {%- else -%}
   {%- assign is_dsm5_tr =
     product.handle == 'diagnostic-and-statistical-manual-of-mental-disorders-text-revision-dsm-5-tr-5th-edition'

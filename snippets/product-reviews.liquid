@@ -654,4 +654,80 @@
       </div>
     </div>
   </section>
+{%- elsif product.handle == 'therapeutic-action-an-earnest-plea-for-irony' -%}
+  {%- liquid
+    assign product_rating = 4.7
+    assign product_reviews_count = 3
+  -%}
+
+  <section class="product-reviews" aria-labelledby="product-reviews-heading">
+    <div class="product-reviews__inner">
+      <header class="product-reviews__header">
+        <div class="product-reviews__header-copy">
+          <h2 id="product-reviews-heading">Customer reviews</h2>
+          <p>Read what others are saying about Therapeutic Action.</p>
+        </div>
+        <div class="product-reviews__summary" role="img" aria-label="Rated {{ product_rating | round: 1 }} out of 5 stars based on {{ product_reviews_count }} reviews">
+          <span class="product-reviews__summary-stars" aria-hidden="true">★★★★★</span>
+          <div class="product-reviews__summary-score">
+            <strong>{{ product_rating | round: 1 }}</strong>
+            <span>out of 5</span>
+          </div>
+          <p class="product-reviews__summary-count">{{ product_reviews_count }} global ratings</p>
+        </div>
+      </header>
+
+      <div class="product-reviews__list" role="list">
+        <article class="product-reviews__card" role="listitem">
+          <div class="product-reviews__rating" role="img" aria-label="Rated 5 out of 5 stars">
+            <span aria-hidden="true">★★★★★</span>
+            <span class="product-reviews__rating-title">Psychoanalysis/philosophy</span>
+          </div>
+          <p class="product-reviews__meta">
+            <strong>J. Smith</strong>
+            <span>Reviewed in the United States on February 8, 2018</span>
+          </p>
+          <p class="product-reviews__format">
+            Format: Paperback <span class="product-reviews__verified">Verified Purchase</span>
+          </p>
+          <blockquote class="product-reviews__quote">
+            <p>Lear has a philosophical take on Psychoanalysis. Another perspective is always welcome.</p>
+          </blockquote>
+        </article>
+
+        <article class="product-reviews__card" role="listitem">
+          <div class="product-reviews__rating" role="img" aria-label="Rated 5 out of 5 stars">
+            <span aria-hidden="true">★★★★★</span>
+            <span class="product-reviews__rating-title">Therapeutic Action</span>
+          </div>
+          <p class="product-reviews__meta">
+            <strong>Richard Feinberg</strong>
+            <span>Reviewed in the United States on August 1, 2009</span>
+          </p>
+          <p class="product-reviews__format">
+            Format: Paperback
+          </p>
+          <blockquote class="product-reviews__quote">
+            <p>This book arrived on time and in excellent condition. It should be required reading for anyone with some background in philosophy and psychoanalysis. Very rich and enriching.</p>
+          </blockquote>
+          <p class="product-reviews__helpful-count">1 person found this helpful</p>
+        </article>
+
+        <article class="product-reviews__card" role="listitem">
+          <div class="product-reviews__rating" role="img" aria-label="Rated 4 out of 5 stars">
+            <span aria-hidden="true">★★★★☆</span>
+            <span class="product-reviews__rating-title">First draft of a great book</span>
+          </div>
+          <p class="product-reviews__meta">
+            <strong>Mark Pentecost</strong>
+            <span>Reviewed in the United States on November 21, 2005</span>
+          </p>
+          <blockquote class="product-reviews__quote">
+            <p>Lear's book is a continuation of Freud's "metapsychology," offering new ways to conceptualize some of what happens in psychoanalysis. His starting point is one which would seem obvious but is in fact rare in psychoanalytic writings... he offers some brilliant insights, especially about subjectivity vs. "objectivity" and about transference. But Lear's book is an "easy read" because the writing is loose and casual... While his style is a refreshing change from the professional, impersonal prose of most analytic monographs, he also seems to address his peers as though they were laypersons.</p>
+          </blockquote>
+          <p class="product-reviews__helpful-count">11 people found this helpful</p>
+        </article>
+      </div>
+    </div>
+  </section>
 {%- endif -%}
