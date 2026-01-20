@@ -4,6 +4,8 @@
   {% render 'emotion-ptsd-landing-page', product: product %}
 {%- elsif product.handle == 'therapeutic-action-an-earnest-plea-for-irony' -%}
   {% render 'therapeutic-action-landing-page', product: product %}
+{%- elsif product.handle == 'gender-power-and-global-social-justice-the-healing-power-of-psychotherapy' -%}
+  {% render 'gender-power-landing-page', product: product %}
 {%- else -%}
   {%- assign is_dsm5_tr =
     product.handle == 'diagnostic-and-statistical-manual-of-mental-disorders-text-revision-dsm-5-tr-5th-edition'
