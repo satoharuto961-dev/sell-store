@@ -1,0 +1,21 @@
+{% comment %}
+  Root element for the React Book Bundle App.
+  This snippet loads the JS and CSS assets required for the app.
+{% endcomment %}
+
+<!-- Root container for React -->
+<div id="root" class="book-bundle-container"></div>
+
+<!-- Load compiled CSS -->
+{{ 'book-bundle.css' | asset_url | stylesheet_tag }}
+
+<!-- Load compiled JS (defer to ensure DOM is ready) -->
+<script src="{{ 'book-bundle.js' | asset_url }}" defer="defer"></script>
+
+<style>
+  /* Ensure the container takes full width if needed, or resets theme constraints */
+  .book-bundle-container {
+    width: 100%;
+    min-height: 100vh;
+  }
+</style>
