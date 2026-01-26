@@ -6,7 +6,10 @@ function Header() {
             </h1>
             <p className="text-xl md:text-2xl text-gray-500 dark:text-gray-400 font-light max-w-2xl mx-auto">
                 Curated top picks from the community. <br className="hidden md:block" />
-                <strong className="text-indigo-600 dark:text-indigo-400 font-bold">Pick 7 for $39</strong>
+                <span className="inline-flex items-center gap-2">
+                    <span className="line-through text-gray-400 decoration-red-500 decoration-2">Value $140</span>
+                    <strong className="text-indigo-600 dark:text-indigo-400 font-bold bg-indigo-50 dark:bg-indigo-900/30 px-3 py-1 rounded-lg">Pick 7 for $39</strong>
+                </span>
             </p>
         </header>
     );
