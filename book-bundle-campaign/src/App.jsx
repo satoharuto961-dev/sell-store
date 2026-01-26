@@ -30,11 +30,58 @@ function App() {
     }
   };
 
-  const handleCheckout = () => {
-    // In a real app, this would send data to backend
-    const selectedData = books.filter(b => selectedBooks.includes(b.id));
-    console.log("Checkout with:", selectedData);
-    alert(`Proceeding to checkout with ${selectedBooks.length} books!`);
+  // TODO: REPLACE THIS WITH YOUR REAL PRODUCT VARIANT ID FOR THE 7-BOOK BUNDLE
+  // You can find this in your Shopify Admin URL for the product variant.
+  // Example: .../variants/44665544332211 -> ID is 44665544332211
+  const BUNDLE_VARIANT_ID = 47817482010899; // Placeholder - CHANGE ME
+
+  const handleCheckout = async () => {
+    if (selectedBooks.length !== 7) {
+      setToastMessage("Please select exactly 7 books.");
+      return;
+    }
+
+    try {
+      // 1. Prepare properties (selected books list)
+      const properties = selectedBooks.reduce((acc, bookId, index) => {
+        const book = books.find(b => b.id === bookId);
+        acc[`Book ${index + 1}`] = book ? book.title : bookId;
+        return acc;
+      }, {});
+
+      // 2. Add to Cart via Shopify AJAX API
+      const response = await fetch(window.Shopify.routes.root + 'cart/add.js', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          items: [{
+            id: BUNDLE_VARIANT_ID,
+            quantity: 1,
+            properties: properties
+          }]
+        })
+      });
+
+      if (response.ok) {
+        // 3. Redirect to Checkout
+        window.location.href = '/checkout';
+      } else {
+        const errorData = await response.json();
+        console.error("Cart Error:", errorData);
+        setToastMessage("Error adding to cart. Check console.");
+        alert("Error: Could not add bundle to cart. potentially missing Variant ID configuration.");
+      }
+    } catch (error) {
+      console.error("Checkout Error:", error);
+      // Fallback for development/testing outside Shopify
+      if (!window.Shopify) {
+        alert(`[DEV MODE] Would checkout with books: \n${selectedBooks.join('\n')}`);
+      } else {
+        setToastMessage("Network error. Please try again.");
+      }
+    }
   };
 
   const handleReset = () => {
