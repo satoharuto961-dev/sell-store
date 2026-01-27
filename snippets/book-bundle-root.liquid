@@ -35,4 +35,31 @@
     width: 100%;
     min-height: 100vh;
   }
+
+  /* HIDE SHOPIFY THEME ELEMENTS
+     We want the React app to control the full experience (Header & Footer).
+     These selectors target common Shopify theme structures.
+  */
+  #shopify-section-header,
+  #shopify-section-footer,
+  .site-header,
+  .site-footer,
+  header[role="banner"],
+  footer[role="contentinfo"],
+  .announcement-bar,
+  #announcement-bar {
+    display: none !important;
+  }
+  
+  /* Reset page width constraints generally found in themes */
+  .page-width, .container {
+    padding: 0 !important;
+    max-width: none !important;
+    margin: 0 !important;
+    width: 100% !important;
+  }
+  
+  .main-content {
+    padding-top: 0 !important;
+  }
 </style>
