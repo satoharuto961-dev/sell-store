@@ -3,6 +3,7 @@ import Header from './components/Header';
 import Testimonials from './components/Testimonials';
 import BookGrid from './components/BookGrid';
 import StickyBar from './components/StickyBar';
+import Footer from './components/Footer';
 import BookDetailModal from './components/BookDetailModal';
 import { books } from './data/books';
 
@@ -110,6 +111,8 @@ function App() {
           onDetail={setSelectedDetailBook}
         />
       </main>
+
+      <Footer />
 
       <StickyBar
         count={selectedBooks.length}
