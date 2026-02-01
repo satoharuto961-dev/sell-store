@@ -5,6 +5,10 @@
   <div class="page-header">
     <h1 class="page-title">{{ page.title | escape }}</h1>
   </div>
+  
+  {% if page.handle == 'what-books-did-you-start-or-finish-reading' %}
+    {% include 'reddit-books-thread' %}
+  {% endif %}
   <div class="page-content rte">
     {{ page.content }}
   </div>
