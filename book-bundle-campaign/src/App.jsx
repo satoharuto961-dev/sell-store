@@ -8,14 +8,18 @@ import { books } from './data/books';
 
 function App() {
   // Use real Shopify data if available, otherwise use mock data
-  const [bookData, setBookData] = useState(() => {
+  const [bookData] = useState(() => {
     if (window.shopifyBookData && window.shopifyBookData.length > 0) {
       return window.shopifyBookData;
     }
     return books;
   });
 
-  const [selectedBooks, setSelectedBooks] = useState([]);
+  // Identify Main Product (CBT Flip Chart) and Selectable Books
+  const mainProduct = bookData.find(b => b.title.toLowerCase().includes("cbt flip chart") || b.title.toLowerCase().includes("evidence-based psychoeducational")) || bookData[0];
+  const selectableBooks = bookData.filter(b => b.id !== mainProduct.id);
+
+  const [selectedBooks, setSelectedBooks] = useState([mainProduct.id]);
   const [selectedDetailBook, setSelectedDetailBook] = useState(null);
   const [toastMessage, setToastMessage] = useState(null);
 
@@ -28,6 +32,12 @@ function App() {
   }, [toastMessage]);
 
   const handleToggleBook = (book) => {
+    // Prevent unselecting the main product
+    if (book.id === mainProduct.id) {
+      setToastMessage("This main product is included in your bundle!");
+      return;
+    }
+
     if (selectedBooks.includes(book.id)) {
       setSelectedBooks(prev => prev.filter(id => id !== book.id));
     } else {
@@ -101,17 +111,60 @@ function App() {
   };
 
   const handleReset = () => {
-    setSelectedBooks([]);
+    // Reset to only the main product
+    setSelectedBooks([mainProduct.id]);
   };
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-zinc-950 text-gray-900 dark:text-gray-100 font-sans selection:bg-indigo-500 selection:text-white pb-20">
       <Header />
 
-
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        {/* Main Product Hero Section */}
+        <div className="mb-12 bg-white dark:bg-zinc-900 rounded-2xl shadow-xl overflow-hidden border border-indigo-100 dark:border-indigo-900/50 flex flex-col md:flex-row transform md:-translate-y-6">
+          <div className="md:w-1/3 relative aspect-[2/3] md:aspect-auto">
+            <img
+              src={mainProduct.coverUrl || mainProduct.cover}
+              alt={mainProduct.title}
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute top-4 left-4 bg-indigo-600 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider shadow-lg">
+              Included Main Product
+            </div>
+          </div>
+          <div className="p-6 md:p-8 md:w-2/3 flex flex-col justify-center">
+            <div className="flex items-center gap-2 mb-2 text-indigo-600 dark:text-indigo-400 font-semibold text-sm uppercase tracking-wide">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+              </svg>
+              Automatically Included
+            </div>
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4 leading-tight">{mainProduct.title}</h2>
+            <div className="prose dark:prose-invert text-gray-600 dark:text-gray-300 mb-6 line-clamp-4 text-sm md:text-base">
+              {mainProduct.description}
+            </div>
+            <div className="flex flex-wrap items-center gap-4 mt-auto">
+              <div className="bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 font-bold px-4 py-3 rounded-lg flex items-center gap-2 border border-green-100 dark:border-green-800/50">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                </svg>
+                1 Item Selected
+              </div>
+              <p className="text-sm text-gray-500 font-medium">Please select 6 more books below to complete your bundle.</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Separator */}
+        <div className="flex items-center gap-4 py-8 mb-4">
+          <div className="h-px bg-gray-200 dark:bg-gray-800 flex-1"></div>
+          <span className="text-gray-400 font-medium uppercase tracking-widest text-sm">Select 6 More Books</span>
+          <div className="h-px bg-gray-200 dark:bg-gray-800 flex-1"></div>
+        </div>
+
         <BookGrid
-          books={bookData}
+          books={selectableBooks}
           selectedIds={selectedBooks}
           onToggle={handleToggleBook}
           onDetail={setSelectedDetailBook}
