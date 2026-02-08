@@ -3,6 +3,7 @@
   Matches paths like /product-page/the-cbt-flip-chart...
 {%- endcomment -%}
 {%- if request.path contains '/product-page/' and request.path contains 'the-cbt-flip-chart' -%}
+  {%- layout none -%}
   {%- comment -%}
     Directly render the Book Bundle App for this specific URL to avoid redirect delay.
     This acts as a server-side rewrite for the 404 page.
