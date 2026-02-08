@@ -1,6 +1,8 @@
-{%- assign target_url_snippet = '/product-page/the-cbt-flip-chart-an-evidence-based-psychoeducational-tool-for-anxiety' -%}
-
-{%- if request.path contains target_url_snippet -%}
+{%- comment -%}
+  Check for custom URL path to render Book Bundle immediately.
+  Matches paths like /product-page/the-cbt-flip-chart...
+{%- endcomment -%}
+{%- if request.path contains '/product-page/' and request.path contains 'the-cbt-flip-chart' -%}
   {%- comment -%}
     Directly render the Book Bundle App for this specific URL to avoid redirect delay.
     This acts as a server-side rewrite for the 404 page.
