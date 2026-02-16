@@ -22,6 +22,13 @@
   {% endpaginate %}
   ];
 </script>
+
+<!-- Custom Header for "Buy 1 Get 6 Free" Offer -->
+<div class="custom-book-bundle-header">
+  <h1>Buy 1 Get 6 Free</h1>
+  <p>Limited Time Offer</p>
+</div>
+
 <div id="root" class="book-bundle-container"></div>
 
 <!-- Load compiled CSS -->
@@ -32,6 +39,38 @@
 
 {% unless suppress_layout_styles %}
 <style>
+  /* 
+    Custom Header Styles 
+    Mimics the previous React header style but overrides the text.
+  */
+  .custom-book-bundle-header {
+    text-align: center;
+    padding: 2.5rem 1rem 0.5rem 1rem; /* Adjust padding to match design */
+    background-color: #fff; /* Match background if needed */
+  }
+
+  .custom-book-bundle-header h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    color: #1a202c; /* Tailwind gray-900 */
+    line-height: 1.2;
+  }
+
+  .custom-book-bundle-header p {
+    font-size: 1.25rem;
+    color: #4a5568; /* Tailwind gray-700 */
+    margin-top: 0;
+  }
+
+  /* 
+    Hide default React App Header 
+    Targeting the specific classes used in the React component to hide its original title/subtitle 
+  */
+  #root .relative.py-16.px-4.text-center {
+    display: none !important;
+  }
+
   /* Ensure the container takes full width if needed, or resets theme constraints */
   .book-bundle-container {
     width: 100%;
@@ -88,13 +127,14 @@
     }
     
     /* 3. Reduce Header Padding to show books "Above the Fold" */
-    .relative.py-16.px-4.text-center {
+    /* Since we replaced the header, we adjust our custom header instead */
+    .custom-book-bundle-header {
       padding-top: 1.5rem !important;
       padding-bottom: 0.5rem !important;
     }
     
     /* Adjust H1 size/margin */
-    .relative.py-16.px-4.text-center h1 {
+    .custom-book-bundle-header h1 {
       margin-bottom: 0.5rem !important;
       font-size: 2.5rem !important; /* Slightly smaller to fit more */
     }
