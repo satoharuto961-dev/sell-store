@@ -15,8 +15,8 @@ function App() {
     return books;
   });
 
-  // Identify Main Product (CBT Flip Chart) and Selectable Books
-  const mainProduct = bookData.find(b => b.title.toLowerCase().includes("cbt flip chart") || b.title.toLowerCase().includes("evidence-based psychoeducational")) || bookData[0];
+  // Identify Main Product (Pattern Focused Therapy) and Selectable Books
+  const mainProduct = bookData.find(b => b.title.toLowerCase().includes("pattern focused therapy")) || bookData[0];
   const selectableBooks = bookData.filter(b => b.id !== mainProduct.id);
 
   const [selectedBooks, setSelectedBooks] = useState([mainProduct.id]);

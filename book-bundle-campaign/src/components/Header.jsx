@@ -30,7 +30,7 @@ function Header() {
 
             <div className="max-w-4xl mx-auto">
                 <h1 className="text-2xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 dark:text-white tracking-tight mb-4 leading-tight">
-                    The CBT Flip Chart: An Evidence-Based Psychoeducational Tool for Anxiety, Depression, Stress, Insomnia, PTSD, and More
+                    Pattern Focused Therapy: Highly Effective CBT Practice in Mental Health and Integrated Care Settings; First Edition
                 </h1>
 
                 <div className="bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 border border-indigo-100 dark:border-indigo-800 rounded-2xl p-6 mt-8 shadow-sm relative overflow-hidden">
