@@ -10,10 +10,10 @@ function App() {
   // Use real Shopify data if available, otherwise use mock data
   const [bookData] = useState(() => {
     if (window.shopifyBookData && window.shopifyBookData.length > 0) {
-      // Sort data by created date descending
+      // Sort data by created date descending using explicit unix timestamp
       return [...window.shopifyBookData].sort((a, b) => {
-        const dateA = a.createdAt ? new Date(a.createdAt).getTime() : 0;
-        const dateB = b.createdAt ? new Date(b.createdAt).getTime() : 0;
+        const dateA = parseInt(a.createdAtTime, 10) || 0;
+        const dateB = parseInt(b.createdAtTime, 10) || 0;
         return dateB - dateA;
       });
     }
