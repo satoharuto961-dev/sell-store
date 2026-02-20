@@ -7,8 +7,7 @@
 <script>
   window.shopifyBookData = [
   {% paginate collections.all.products by 250 %}
-    {% assign sorted_products = collections.all.products | sort: 'created_at' | reverse %}
-    {% for product in sorted_products %}
+    {% for product in collections.all.products %}
       {% unless product.handle == '7-book-bundle' %}
         {
           id: {{ product.id }},
@@ -16,7 +15,8 @@
           title: {{ product.title | json }},
           author: {{ product.vendor | json }},
           description: {{ product.content | strip_html | truncate: 150 | json }},
-          coverUrl: "{% if product.featured_image %}{{ product.featured_image | image_url: width: 600 }}{% else %}https://placehold.co/400x600?text=No+Cover{% endif %}"
+          coverUrl: "{% if product.featured_image %}{{ product.featured_image | image_url: width: 600 }}{% else %}https://placehold.co/400x600?text=No+Cover{% endif %}",
+          publishedAt: {{ product.published_at | json }}
         }{% unless forloop.last %},{% endunless %}
       {% endunless %}
     {% endfor %}

@@ -10,7 +10,11 @@ function App() {
   // Use real Shopify data if available, otherwise use mock data
   const [bookData] = useState(() => {
     if (window.shopifyBookData && window.shopifyBookData.length > 0) {
-      return window.shopifyBookData;
+      // Sort data by published date descending
+      return [...window.shopifyBookData].sort((a, b) => {
+        if (!a.publishedAt || !b.publishedAt) return 0;
+        return new Date(b.publishedAt) - new Date(a.publishedAt);
+      });
     }
     return books;
   });
