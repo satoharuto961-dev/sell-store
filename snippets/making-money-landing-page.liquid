@@ -1,0 +1,288 @@
+{% assign bundle_handles = "zero-to-one,psycho-cybernetics-updated-and-expanded-the-psycho-cybernetics-series,principles-for-dealing-with-the-changing-world-order-why-nations-succeed-and-fail,the-48-laws-of-power,influence-the-psychology-of-persuasion-revised-edition" | split: "," %}
+
+{% assign checkout_url = "/cart/" %}
+{% assign bundle_price = 0 %}
+{% assign total_compare_price = 0 %}
+
+{% for handle in bundle_handles %}
+  {% assign current_product = all_products[handle] %}
+  {% if current_product != empty %}
+    {% assign variant = current_product.first_available_variant %}
+    {% assign checkout_url = checkout_url | append: variant.id | append: ":1," %}
+    {% assign bundle_price = bundle_price | plus: variant.price %}
+    {% assign total_compare_price = total_compare_price | plus: variant.compare_at_price %}
+  {% endif %}
+{% endfor %}
+
+{% assign checkout_url = checkout_url | append: "?checkout=true" %}
+
+<style>
+  /* Base Styles */
+  .mm-landing-page {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #111827;
+    line-height: 1.5;
+    background-color: #f9fafb;
+    padding-bottom: 80px;
+  }
+  
+  .mm-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  /* Header */
+  .mm-header {
+    text-align: center;
+    padding: 3rem 1rem 2rem;
+  }
+  
+  .mm-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    color: #111827;
+    line-height: 1.2;
+  }
+  
+  .mm-subtitle {
+    font-size: 1.25rem;
+    color: #4b5563;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .mm-highlight {
+    color: #10b981; /* Emerald 500 */
+    font-weight: 700;
+  }
+
+  /* Book Display Grid */
+  .mm-books-display {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding: 2rem 0;
+    margin-bottom: 2rem;
+  }
+  
+  .mm-book-wrapper {
+    width: 140px;
+    position: relative;
+    transition: transform 0.3s ease;
+  }
+  
+  .mm-book-wrapper:hover {
+    transform: translateY(-10px);
+    z-index: 10;
+  }
+  
+  .mm-book-cover {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: -10px 10px 20px rgba(0,0,0,0.15), inset 2px 0 5px rgba(255,255,255,0.4);
+    position: relative;
+  }
+
+  /* Pricing & CTA */
+  .mm-pricing-card {
+    background: white;
+    border-radius: 16px;
+    padding: 2.5rem;
+    max-width: 600px;
+    margin: 0 auto 3rem;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    border: 1px solid #f3f4f6;
+  }
+  
+  .mm-price-block {
+    margin-bottom: 1.5rem;
+  }
+  
+  .mm-price-current {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #111827;
+  }
+  
+  .mm-price-original {
+    font-size: 1.25rem;
+    color: #9ca3af;
+    text-decoration: line-through;
+    margin-left: 0.5rem;
+  }
+  
+  .mm-savings {
+    display: inline-block;
+    background: #d1fae5;
+    color: #065f46;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.875rem;
+    font-weight: 700;
+    margin-top: 0.5rem;
+  }
+  
+  .mm-btn {
+    display: inline-block;
+    width: 100%;
+    background: linear-gradient(to right, #4f46e5, #7c3aed);
+    color: white;
+    font-size: 1.25rem;
+    font-weight: 700;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: none;
+    cursor: pointer;
+box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3);
+  }
+  
+  .mm-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 25px -5px rgba(79, 70, 229, 0.4);
+    color: white;
+  }
+
+  /* Sticky Footer */
+  .mm-sticky-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    padding: 1rem;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+    z-index: 50;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+  }
+  
+  .mm-sticky-bar.visible {
+    transform: translateY(0);
+  }
+  
+  .mm-sticky-title {
+    font-weight: 700;
+    display: none;
+  }
+  
+  .mm-sticky-price {
+    font-weight: 800;
+    font-size: 1.25rem;
+  }
+
+  .mm-trust-icons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+    color: #6b7280;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+  
+  .mm-trust-icon {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .mm-book-wrapper {
+      width: 180px;
+    }
+    .mm-sticky-title {
+      display: block;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .mm-title { font-size: 2rem; }
+    .mm-book-wrapper { width: 110px; }
+    .mm-books-display { gap: 0.5rem; padding: 1rem 0; }
+  }
+</style>
+
+<div class="mm-landing-page">
+  <div class="mm-container">
+    
+    <header class="mm-header">
+      <h1 class="mm-title">The "Making Money" Library</h1>
+      <p class="mm-subtitle">5 definitive books to upgrade your mindset, build leverage, and master the psychology of wealth.</p>
+    </header>
+
+    <div class="mm-books-display">
+      {% for handle in bundle_handles %}
+        {% assign current_product = all_products[handle] %}
+        {% if current_product != empty %}
+          <div class="mm-book-wrapper">
+            <img src="{{ current_product.featured_image | img_url: '400x' }}" alt="{{ current_product.title }}" class="mm-book-cover">
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <div class="mm-pricing-card" id="main-cta">
+      <div class="mm-price-block">
+        <span class="mm-price-current">{{ bundle_price | money }}</span>
+        {% if total_compare_price > bundle_price %}
+           <span class="mm-price-original">{{ total_compare_price | money }}</span>
+           <div class="mm-savings">Save {{ total_compare_price | minus: bundle_price | money }} when you buy together</div>
+        {% endif %}
+      </div>
+      
+      <a href="{{ checkout_url }}" class="mm-btn">
+        Get the 5-Book Bundle
+      </a>
+      
+      <div class="mm-trust-icons">
+        <div class="mm-trust-icon">
+          <svg style="width:1.25rem;height:1.25rem;color:#10b981;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+          Secure Checkout
+        </div>
+        <div class="mm-trust-icon">
+          <svg style="width:1.25rem;height:1.25rem;color:#3b82f6;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+          Instant Delivery
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="mm-sticky-bar" id="sticky-bar">
+    <span class="mm-sticky-title">The "Making Money" Library</span>
+    <span class="mm-sticky-price">{{ bundle_price | money }}</span>
+    <a href="{{ checkout_url }}" class="mm-btn" style="width: auto; padding: 0.75rem 1.5rem; font-size: 1rem;">
+      Buy Bundle Now
+    </a>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const stickyBar = document.getElementById('sticky-bar');
+    const mainCta = document.getElementById('main-cta');
+    
+    window.addEventListener('scroll', function() {
+      if (mainCta) {
+        const btnPosition = mainCta.getBoundingClientRect().bottom;
+        if (btnPosition < 0) {
+           stickyBar.classList.add('visible');
+        } else {
+           stickyBar.classList.remove('visible');
+        }
+      }
+    });
+  });
+</script>
