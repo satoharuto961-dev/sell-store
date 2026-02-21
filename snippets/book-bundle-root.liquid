@@ -28,8 +28,9 @@
 
 <!-- Custom Header for "Buy 1 Get 6 Free" Offer -->
 <div class="custom-book-bundle-header">
-  <h1>7 Bestselling Books for Less Than the Price of One</h1>
-  <p>Only $19.99 — That’s less than $3 per book.<br>One smart decision today. A lifetime of upgraded thinking.</p>
+  <h1>7 Bestselling Books <span class="cbbh-green">for Less Than the Price of One</span></h1>
+  <p><span class="cbbh-orange">Only $19.99</span> — <span class="cbbh-green">That’s less than $3 per book.</span><br>One smart decision today. <span class="cbbh-indigo">A lifetime of upgraded thinking.</span></p>
+  <p class="cbbh-cta">Select any <span class="cbbh-orange">7 books</span> to build your bundle.</p>
 </div>
 
 <div id="root" class="book-bundle-container"></div>
@@ -56,14 +57,27 @@
     font-size: 3rem;
     font-weight: 800;
     margin-bottom: 0.5rem;
-    color: #1a202c; /* Tailwind gray-900 */
+    color: #1a202c;
     line-height: 1.2;
   }
 
   .custom-book-bundle-header p {
     font-size: 1.25rem;
-    color: #4a5568; /* Tailwind gray-700 */
-    margin-top: 0;
+    color: #4a5568;
+    margin-top: 0.25rem;
+  }
+
+  /* Conversion color classes */
+  .cbbh-green  { color: #16a34a; font-weight: 700; }
+  .cbbh-orange { color: #f59e0b; font-weight: 800; }
+  .cbbh-indigo { color: #4f46e5; font-weight: 600; }
+
+  .cbbh-cta {
+    margin-top: 0.75rem !important;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #374151;
+    letter-spacing: 0.01em;
   }
 
   /* 
