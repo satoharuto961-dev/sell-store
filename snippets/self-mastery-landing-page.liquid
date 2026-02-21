@@ -1,0 +1,566 @@
+{% assign bundle_handles = "master-your-emotions-develop-emotional-intelligence-and-discover-the-essential-rules-of-when-and-how-to-control-your-feelings,taking-charge-of-adult-adhd-proven-strategies-to-succeed-at-work-at-home-and-in-relationships,mans-search-for-meaning,cognitive-behavioural-therapy-workbook-for-dummies,the-making-of-a-therapist-a-practical-guide-for-the-inner-journey-norton-series-on-interpersonal-neurobiology" | split: "," %}
+
+{% comment %} 
+  Override bundle_price to exactly $19.99 (1999 in cents) 
+  But keep calculating the total_compare_price to show accurate savings
+{% endcomment %}
+{% assign bundle_price = 1999 %}
+{% assign total_compare_price = 0 %}
+
+{% for handle in bundle_handles %}
+  {% assign current_product = all_products[handle] %}
+  {% if current_product != empty %}
+    {% assign variant = current_product.first_available_variant %}
+    {% assign total_compare_price = total_compare_price | plus: variant.compare_at_price %}
+  {% endif %}
+{% endfor %}
+
+<style>
+  /* Base Styles */
+  .sm-landing-page {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #111827;
+    line-height: 1.6;
+    background-color: #f9fafb;
+    padding-bottom: 100px;
+  }
+  
+  .sm-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  
+  .sm-section {
+    padding: 4rem 0;
+  }
+
+  .sm-highlight-text {
+    color: #059669; /* Emphasize a calm, therapeutic green */
+  }
+
+  /* Typography */
+  h1, h2, h3 { line-height: 1.2; font-weight: 800; color: #111827; }
+  h2 { font-size: 2.25rem; margin-bottom: 2rem; text-align: center; }
+  h3 { font-size: 1.5rem; margin-bottom: 1rem; }
+  p { font-size: 1.125rem; color: #4b5563; margin-bottom: 1.5rem; }
+
+  /* Hero Section */
+  .sm-hero {
+    text-align: center;
+    padding: 5rem 1rem 3rem;
+    background: linear-gradient(135deg, #f0fdf4 0%, #ffffff 100%);
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .sm-hero-title {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+  }
+  
+  .sm-hero-subtitle {
+    font-size: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    color: #4b5563;
+  }
+  
+  .sm-books-display {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+  }
+  
+  .sm-book-wrapper {
+    width: 150px;
+    position: relative;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .sm-book-wrapper:hover {
+    transform: translateY(-15px) scale(1.05);
+    z-index: 10;
+  }
+  
+  .sm-book-cover {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    box-shadow: -12px 12px 24px rgba(0,0,0,0.2), inset 2px 0 5px rgba(255,255,255,0.3);
+  }
+
+  /* Button Styles */
+  .sm-btn-container {
+    text-align: center;
+    margin: 2rem 0;
+  }
+
+  .sm-btn {
+    display: inline-block;
+    background: linear-gradient(to right, #059669, #10b981);
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 800;
+    padding: 1.25rem 3rem;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 10px 25px -5px rgba(5, 150, 105, 0.4);
+    width: 100%;
+    max-width: 500px;
+  }
+  
+  .sm-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 30px -10px rgba(5, 150, 105, 0.6);
+    color: white;
+  }
+
+  .sm-btn-subtext {
+    display: block;
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-top: 1rem;
+    font-weight: 600;
+  }
+
+  /* The Problem/Solution Block */
+  .sm-thesis {
+    background: white;
+    border-radius: 24px;
+    padding: 4rem 3rem;
+    margin-top: -3rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.05);
+    position: relative;
+    z-index: 20;
+  }
+
+  .sm-thesis p {
+    font-size: 1.25rem;
+  }
+
+  /* Book Breakdown Grid */
+  .sm-breakdown-card {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 3rem;
+    background: white;
+    padding: 3rem;
+    border-radius: 24px;
+    margin-bottom: 2rem;
+    align-items: center;
+    border: 1px solid #f3f4f6;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .sm-breakdown-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.05);
+  }
+
+  .sm-breakdown-img {
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto;
+    display: block;
+    border-radius: 6px;
+    box-shadow: -8px 8px 16px rgba(0,0,0,0.15);
+  }
+
+  .sm-book-tag {
+    display: inline-block;
+    padding: 0.25rem 1rem;
+    background: #d1fae5;
+    color: #065f46;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .sm-checklist {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0 0 0;
+  }
+
+  .sm-checklist li {
+    position: relative;
+    padding-left: 2rem;
+    margin-bottom: 0.75rem;
+    font-size: 1.125rem;
+    color: #4b5563;
+  }
+
+  .sm-checklist li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #059669;
+    font-weight: 900;
+  }
+
+  /* Pricing Section */
+  .sm-pricing-hero {
+    background: #111827;
+    color: white;
+    border-radius: 24px;
+    padding: 4rem 2rem;
+    text-align: center;
+    margin: 4rem 0;
+  }
+
+  .sm-pricing-hero h2 { color: white; }
+  .sm-pricing-hero p { color: #9ca3af; }
+
+  .sm-price-block { margin: 2rem 0; }
+  .sm-price-current { font-size: 4rem; font-weight: 900; color: white; line-height: 1; }
+  .sm-price-original { font-size: 1.5rem; color: #6b7280; text-decoration: line-through; margin-left: 1rem; }
+  
+  .sm-savings-badge {
+    display: inline-flex;
+    align-items: center;
+    background: #059669;
+    color: white;
+    padding: 0.5rem 1.25rem;
+    border-radius: 999px;
+    font-size: 1rem;
+    font-weight: 800;
+    margin-top: 1.5rem;
+  }
+
+  /* Social Proof */
+  .sm-reviews {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .sm-review-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    border: 1px solid #e5e7eb;
+  }
+
+  .sm-stars { color: #fbbf24; font-size: 1.25rem; margin-bottom: 1rem; }
+  .sm-review-text { font-style: italic; font-size: 1.125rem; margin-bottom: 1.5rem; }
+  .sm-review-author { font-weight: 700; color: #111827; }
+
+  /* Trust Icons */
+  .sm-trust-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+  
+  .sm-trust-icon {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #9ca3af;
+    font-weight: 600;
+    font-size: 0.875rem;
+  }
+
+  /* Sticky Footer */
+  .sm-sticky-form { margin: 0; }
+  .sm-sticky-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    padding: 1rem;
+    box-shadow: 0 -10px 30px rgba(0,0,0,0.1);
+    z-index: 50;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    border-top: 1px solid #e5e7eb;
+  }
+  
+  .sm-sticky-bar.visible { transform: translateY(0); }
+  .sm-sticky-title { font-weight: 800; font-size: 1.125rem; display: none; }
+  .sm-sticky-price { font-weight: 900; font-size: 1.5rem; color: #059669; }
+
+  @media (min-width: 1024px) {
+    .sm-sticky-title { display: block; }
+  }
+
+  @media (max-width: 768px) {
+    .sm-hero-title { font-size: 2.5rem; }
+    .sm-hero-subtitle { font-size: 1.25rem; }
+    .sm-thesis { padding: 2rem 1.5rem; margin-top: -2rem; }
+    .sm-breakdown-card { grid-template-columns: 1fr; gap: 2rem; text-align: center; padding: 2rem 1.5rem; }
+    .sm-checklist li { text-align: left; }
+    .sm-books-display { gap: 0.5rem; }
+    .sm-book-wrapper { width: 110px; }
+  }
+</style>
+
+<div class="sm-landing-page">
+  
+  <!-- HERO HEADLINE -->
+  <header class="sm-hero">
+    <div class="sm-container">
+      <h1 class="sm-hero-title">The "Mental Mastery" Library</h1>
+      <p class="sm-hero-subtitle">5 definitive books to conquer your mind, build unbreakable focus, and master emotional intelligence.</p>
+      
+      <div class="sm-books-display">
+        {% for handle in bundle_handles %}
+          {% assign current_product = all_products[handle] %}
+          {% if current_product != empty %}
+            <div class="sm-book-wrapper">
+              <img src="{{ current_product.featured_image | img_url: '400x' }}" alt="{{ current_product.title }}" class="sm-book-cover">
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+      
+      <div class="sm-btn-container">
+        <a href="#checkout-section" class="sm-btn" style="display:inline-block; max-width:400px; padding:1.25rem 2rem;">Claim The Bundle →</a>
+        <span class="sm-btn-subtext">Save over 30% instantly vs buying individually.</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- THE THESIS -->
+  <div class="sm-container">
+    <div class="sm-thesis">
+      <h2>Why These 5 Books?</h2>
+      <p>Your mind is the only asset that truly matters. It's built on a foundation of <strong>emotional control, deep focus, and finding meaning even in chaos.</strong></p>
+      <p>There are thousands of self-help books published every year, but true growth comes from understanding the raw psychology of the human brain. We curated this exact stack of 5 books to give you the ultimate toolkit: from rewiring your negative thoughts with CBT, to taking charge of scattered focus, to building an unbreakable sense of purpose.</p>
+    </div>
+  </div>
+
+  <!-- BOOK BREAKDOWNS -->
+  <section class="sm-section">
+    <div class="sm-container">
+      <h2>What's Inside The Arsenal</h2>
+      
+      <!-- Book 1 -->
+      <div class="sm-breakdown-card">
+        <img src="{{ all_products['master-your-emotions-develop-emotional-intelligence-and-discover-the-essential-rules-of-when-and-how-to-control-your-feelings'].featured_image | img_url: '400x' }}" alt="Master Your Emotions" class="sm-breakdown-img">
+        <div>
+          <span class="sm-book-tag">Emotional Intelligence</span>
+          <h3>Master Your Emotions</h3>
+          <p>A practical guide to overcoming negativity and better managing your feelings.</p>
+          <ul class="sm-checklist">
+            <li>Overcome negative thought loops.</li>
+            <li>Understand how your emotions really work.</li>
+            <li>Build resilience against daily stressors.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Book 2 -->
+      <div class="sm-breakdown-card">
+        <img src="{{ all_products['taking-charge-of-adult-adhd-proven-strategies-to-succeed-at-work-at-home-and-in-relationships'].featured_image | img_url: '400x' }}" alt="Taking Charge of Adult ADHD" class="sm-breakdown-img">
+        <div>
+          <span class="sm-book-tag">Focus & Productivity</span>
+          <h3>Taking Charge of Adult ADHD</h3>
+          <p>The definitive, science-based guide to managing executive function and reclaiming your attention.</p>
+          <ul class="sm-checklist">
+            <li>Strategies to overcome procrastination.</li>
+            <li>Rebuild focus in a hyper-distracted world.</li>
+            <li>Thrive at work and in personal relationships.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Book 3 -->
+      <div class="sm-breakdown-card">
+        <img src="{{ all_products['mans-search-for-meaning'].featured_image | img_url: '400x' }}" alt="Man's Search for Meaning" class="sm-breakdown-img">
+        <div>
+          <span class="sm-book-tag">Purpose & Resilience</span>
+          <h3>Man's Search for Meaning</h3>
+          <p>One of the most influential books in psychiatric history on finding meaning in the most difficult circumstances.</p>
+          <ul class="sm-checklist">
+            <li>Build unshakeable mental strength.</li>
+            <li>Find your core life purpose.</li>
+            <li>Transform suffering into personal triumph.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Book 4 -->
+      <div class="sm-breakdown-card">
+        <img src="{{ all_products['cognitive-behavioural-therapy-workbook-for-dummies'].featured_image | img_url: '400x' }}" alt="CBT Workbook For Dummies" class="sm-breakdown-img">
+        <div>
+          <span class="sm-book-tag">Actionable Frameworks</span>
+          <h3>Cognitive Behavioural Therapy Workbook For Dummies</h3>
+          <p>A hands-on, practical workbook to implement Cognitive Behavioural Therapy in your daily life.</p>
+          <ul class="sm-checklist">
+            <li>Break destructive behavioral patterns.</li>
+            <li>Rewire anxiety and depressive thoughts.</li>
+            <li>Take immediate action with exercises.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Book 5 -->
+      <div class="sm-breakdown-card">
+        <img src="{{ all_products['the-making-of-a-therapist-a-practical-guide-for-the-inner-journey-norton-series-on-interpersonal-neurobiology'].featured_image | img_url: '400x' }}" alt="The Making of a Therapist" class="sm-breakdown-img">
+        <div>
+          <span class="sm-book-tag">Deep Psychology</span>
+          <h3>The Making of a Therapist</h3>
+          <p>Profound insights into the human mind, empathy, and interpersonal neurobiology.</p>
+          <ul class="sm-checklist">
+            <li>Decode complex human interactions.</li>
+            <li>Develop deep empathy for yourself and others.</li>
+            <li>Understand the inner journey of healing.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SOCIAL PROOF -->
+  <section class="sm-section" style="background: white; border-top: 1px solid #e5e7eb; border-bottom: 1px solid #e5e7eb;">
+    <div class="sm-container">
+      <h2>Success Leaves Clues</h2>
+      <div class="sm-reviews">
+        <div class="sm-review-card">
+          <div class="sm-stars">★★★★★</div>
+          <p class="sm-review-text">"Man's Search for Meaning and the CBT Workbook gave me the exact tools I needed to break out of a multi-year rut. This bundle is essentially therapy in a box."</p>
+          <p class="sm-review-author">— Michael R., Entrepreneur</p>
+        </div>
+        <div class="sm-review-card">
+          <div class="sm-stars">★★★★★</div>
+          <p class="sm-review-text">"Taking Charge of Adult ADHD changed how I work. Pairing it with Master Your Emotions gave me a completely new level of self-control."</p>
+          <p class="sm-review-author">— Emily S., Designer</p>
+        </div>
+        <div class="sm-review-card">
+          <div class="sm-stars">★★★★★</div>
+          <p class="sm-review-text">"If you want to actually understand how your brain works instead of just reading surface-level motivation, these 5 books are it."</p>
+          <p class="sm-review-author">— David T., Coach</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE OFFER (CHECKOUT) -->
+  <section class="sm-section" id="checkout-section">
+    <div class="sm-container">
+      <div class="sm-pricing-hero">
+        <h2>Your Arsenal Awaits</h2>
+        <p>Get all 5 essential books today.</p>
+        
+        <div class="sm-price-block">
+          <span class="sm-price-current">{{ bundle_price | money }}</span>
+          {% if total_compare_price > bundle_price %}
+             <span class="sm-price-original">{{ total_compare_price | money }}</span>
+             <br/>
+             <div class="sm-savings-badge">
+               You Save {{ total_compare_price | minus: bundle_price | money }} By Bundling Today
+             </div>
+          {% endif %}
+        </div>
+        
+        <div class="sm-btn-container" style="max-width: 500px; margin: 0 auto;">
+          {% form 'cart', cart %}
+            {% for handle in bundle_handles %}
+              {% assign current_product = all_products[handle] %}
+              {% if current_product != empty %}
+                {% assign variant = current_product.first_available_variant %}
+                <input type="hidden" name="updates[{{ variant.id }}]" value="1" />
+              {% endif %}
+            {% endfor %}
+            <input type="hidden" name="checkout" value="Checkout" />
+            <button type="submit" class="sm-btn">
+              Proceed to Secure Checkout
+            </button>
+          {% endform %}
+        </div>
+        
+        <p style="color: #9ca3af; font-size: 0.875rem; margin-top: 1.5rem;">
+          Includes 30-Day Money-Back Guarantee.
+        </p>
+
+        <div class="sm-trust-icons">
+          <div class="sm-trust-icon" style="color:#9ca3af;">
+            <svg style="width:1.25rem;height:1.25rem;color:#10b981;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+            Encrypted Checkout
+          </div>
+          <div class="sm-trust-icon" style="color:#9ca3af;">
+            <svg style="width:1.25rem;height:1.25rem;color:#fbbf24;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+            Instant Processing
+          </div>
+          <div class="sm-trust-icon" style="color:#9ca3af;">
+            <svg style="width:1.25rem;height:1.25rem;color:#3b82f6;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+            30-Day Guarantee
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- STICKY BOTTOM BAR -->
+  <div class="sm-sticky-bar" id="sticky-bar">
+    <span class="sm-sticky-title">The "Mental Mastery" Library</span>
+    <span class="sm-sticky-price">{{ bundle_price | money }}</span>
+    {% form 'cart', cart, class: 'sm-sticky-form' %}
+      {% for handle in bundle_handles %}
+        {% assign current_product = all_products[handle] %}
+        {% if current_product != empty %}
+          {% assign variant = current_product.first_available_variant %}
+          <input type="hidden" name="updates[{{ variant.id }}]" value="1" />
+        {% endif %}
+      {% endfor %}
+      <input type="hidden" name="checkout" value="Checkout" />
+      <button type="submit" class="sm-btn" style="width: auto; padding: 0.75rem 2rem; font-size: 1.125rem;">
+        Buy Bundle Now
+      </button>
+    {% endform %}
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const stickyBar = document.getElementById('sticky-bar');
+    const checkoutSection = document.getElementById('checkout-section');
+    
+    // Smooth scroll for hero button
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // Sticky bar observer
+    window.addEventListener('scroll', function() {
+      if (checkoutSection) {
+        // Show sticky bar when scrolling past the hero, but hide it when reaching the actual checkout section
+        const checkoutPosition = checkoutSection.getBoundingClientRect().top;
+        const scrollPosition = window.scrollY;
+        
+        if (scrollPosition > 500 && checkoutPosition > window.innerHeight) {
+           stickyBar.classList.add('visible');
+        } else {
+           stickyBar.classList.remove('visible');
+        }
+      }
+    });
+  });
+</script>
