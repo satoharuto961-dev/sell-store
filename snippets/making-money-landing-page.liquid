@@ -8,11 +8,15 @@
   {% assign current_product = all_products[handle] %}
   {% if current_product != empty %}
     {% assign variant = current_product.first_available_variant %}
-    {% assign checkout_url = checkout_url | append: variant.id | append: ":1," %}
+    {% assign checkout_url = checkout_url | append: variant.id | append: ":" | append: 1 | append: "," %}
     {% assign bundle_price = bundle_price | plus: variant.price %}
     {% assign total_compare_price = total_compare_price | plus: variant.compare_at_price %}
   {% endif %}
 {% endfor %}
+
+{% comment %} Remove the trailing comma {% endcomment %}
+{% assign url_size = checkout_url | size | minus: 1 %}
+{% assign checkout_url = checkout_url | slice: 0, url_size %}
 
 {% assign checkout_url = checkout_url | append: "?checkout=true" %}
 
