@@ -20,139 +20,263 @@
   .mm-landing-page {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     color: #111827;
-    line-height: 1.5;
+    line-height: 1.6;
     background-color: #f9fafb;
-    padding-bottom: 80px;
+    padding-bottom: 100px;
   }
   
   .mm-container {
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 0 auto;
-    padding: 0 1rem;
+    padding: 0 1.5rem;
+  }
+  
+  .mm-section {
+    padding: 4rem 0;
   }
 
-  /* Header */
-  .mm-header {
+  .mm-highlight-text {
+    color: #4f46e5;
+  }
+
+  /* Typography */
+  h1, h2, h3 { line-height: 1.2; font-weight: 800; color: #111827; }
+  h2 { font-size: 2.25rem; margin-bottom: 2rem; text-align: center; }
+  h3 { font-size: 1.5rem; margin-bottom: 1rem; }
+  p { font-size: 1.125rem; color: #4b5563; margin-bottom: 1.5rem; }
+
+  /* Hero Section */
+  .mm-hero {
     text-align: center;
-    padding: 3rem 1rem 2rem;
+    padding: 5rem 1rem 3rem;
+    background: linear-gradient(135deg, #f3f4f6 0%, #ffffff 100%);
+    border-bottom: 1px solid #e5e7eb;
   }
   
-  .mm-title {
-    font-size: 2.5rem;
-    font-weight: 800;
-    margin-bottom: 1rem;
-    color: #111827;
-    line-height: 1.2;
+  .mm-hero-title {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
   }
   
-  .mm-subtitle {
-    font-size: 1.25rem;
-    color: #4b5563;
+  .mm-hero-subtitle {
+    font-size: 1.5rem;
     max-width: 800px;
-    margin: 0 auto;
+    margin: 0 auto 3rem;
+    color: #4b5563;
   }
   
-  .mm-highlight {
-    color: #10b981; /* Emerald 500 */
-    font-weight: 700;
-  }
-
-  /* Book Display Grid */
   .mm-books-display {
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    gap: 1rem;
+    gap: 1.5rem;
     flex-wrap: wrap;
-    padding: 2rem 0;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
   }
   
   .mm-book-wrapper {
-    width: 140px;
+    width: 150px;
     position: relative;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
   
   .mm-book-wrapper:hover {
-    transform: translateY(-10px);
+    transform: translateY(-15px) scale(1.05);
     z-index: 10;
   }
   
   .mm-book-cover {
     width: 100%;
     height: auto;
-    border-radius: 4px;
-    box-shadow: -10px 10px 20px rgba(0,0,0,0.15), inset 2px 0 5px rgba(255,255,255,0.4);
-    position: relative;
+    border-radius: 6px;
+    box-shadow: -12px 12px 24px rgba(0,0,0,0.2), inset 2px 0 5px rgba(255,255,255,0.3);
   }
 
-  /* Pricing & CTA */
-  .mm-pricing-card {
-    background: white;
-    border-radius: 16px;
-    padding: 2.5rem;
-    max-width: 600px;
-    margin: 0 auto 3rem;
+  /* Button Styles */
+  .mm-btn-container {
     text-align: center;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-    border: 1px solid #f3f4f6;
+    margin: 2rem 0;
   }
-  
-  .mm-price-block {
-    margin-bottom: 1.5rem;
-  }
-  
-  .mm-price-current {
-    font-size: 3rem;
-    font-weight: 800;
-    color: #111827;
-  }
-  
-  .mm-price-original {
-    font-size: 1.25rem;
-    color: #9ca3af;
-    text-decoration: line-through;
-    margin-left: 0.5rem;
-  }
-  
-  .mm-savings {
-    display: inline-block;
-    background: #d1fae5;
-    color: #065f46;
-    padding: 0.25rem 0.75rem;
-    border-radius: 999px;
-    font-size: 0.875rem;
-    font-weight: 700;
-    margin-top: 0.5rem;
-  }
-  
+
   .mm-btn {
     display: inline-block;
-    width: 100%;
     background: linear-gradient(to right, #4f46e5, #7c3aed);
     color: white;
-    font-size: 1.25rem;
-    font-weight: 700;
-    padding: 1rem 2rem;
-    border-radius: 12px;
+    font-size: 1.5rem;
+    font-weight: 800;
+    padding: 1.25rem 3rem;
+    border-radius: 100px;
     text-decoration: none;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: all 0.2s ease;
     border: none;
     cursor: pointer;
-box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3);
+    box-shadow: 0 10px 25px -5px rgba(79, 70, 229, 0.4);
+    width: 100%;
+    max-width: 500px;
   }
   
   .mm-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 20px 25px -5px rgba(79, 70, 229, 0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 20px 30px -10px rgba(79, 70, 229, 0.6);
     color: white;
   }
 
-  .mm-sticky-form {
-    margin: 0;
+  .mm-btn-subtext {
+    display: block;
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-top: 1rem;
+    font-weight: 600;
+  }
+
+  /* The Problem/Solution Block */
+  .mm-thesis {
+    background: white;
+    border-radius: 24px;
+    padding: 4rem 3rem;
+    margin-top: -3rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.05);
+    position: relative;
+    z-index: 20;
+  }
+
+  .mm-thesis p {
+    font-size: 1.25rem;
+  }
+
+  /* Book Breakdown Grid */
+  .mm-breakdown-card {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 3rem;
+    background: white;
+    padding: 3rem;
+    border-radius: 24px;
+    margin-bottom: 2rem;
+    align-items: center;
+    border: 1px solid #f3f4f6;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .mm-breakdown-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.05);
+  }
+
+  .mm-breakdown-img {
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto;
+    display: block;
+    border-radius: 6px;
+    box-shadow: -8px 8px 16px rgba(0,0,0,0.15);
+  }
+
+  .mm-book-tag {
+    display: inline-block;
+    padding: 0.25rem 1rem;
+    background: #e0e7ff;
+    color: #4338ca;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .mm-checklist {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0 0 0;
+  }
+
+  .mm-checklist li {
+    position: relative;
+    padding-left: 2rem;
+    margin-bottom: 0.75rem;
+    font-size: 1.125rem;
+    color: #4b5563;
+  }
+
+  .mm-checklist li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #10b981;
+    font-weight: 900;
+  }
+
+  /* Pricing Section */
+  .mm-pricing-hero {
+    background: #111827;
+    color: white;
+    border-radius: 24px;
+    padding: 4rem 2rem;
+    text-align: center;
+    margin: 4rem 0;
+  }
+
+  .mm-pricing-hero h2 { color: white; }
+  .mm-pricing-hero p { color: #9ca3af; }
+
+  .mm-price-block { margin: 2rem 0; }
+  .mm-price-current { font-size: 4rem; font-weight: 900; color: white; line-height: 1; }
+  .mm-price-original { font-size: 1.5rem; color: #6b7280; text-decoration: line-through; margin-left: 1rem; }
+  
+  .mm-savings-badge {
+    display: inline-flex;
+    align-items: center;
+    background: #059669;
+    color: white;
+    padding: 0.5rem 1.25rem;
+    border-radius: 999px;
+    font-size: 1rem;
+    font-weight: 800;
+    margin-top: 1.5rem;
+  }
+
+  /* Social Proof */
+  .mm-reviews {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .mm-review-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    border: 1px solid #e5e7eb;
+  }
+
+  .mm-stars { color: #fbbf24; font-size: 1.25rem; margin-bottom: 1rem; }
+  .mm-review-text { font-style: italic; font-size: 1.125rem; margin-bottom: 1.5rem; }
+  .mm-review-author { font-weight: 700; color: #111827; }
+
+  /* Trust Icons */
+  .mm-trust-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
   }
   
+  .mm-trust-icon {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #9ca3af;
+    font-weight: 600;
+    font-size: 0.875rem;
+  }
+
+  /* Sticky Footer */
+  .mm-sticky-form { margin: 0; }
   .mm-sticky-bar {
     position: fixed;
     bottom: 0;
@@ -160,118 +284,236 @@ box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3);
     right: 0;
     background: white;
     padding: 1rem;
-    box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 -10px 30px rgba(0,0,0,0.1);
     z-index: 50;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 1.5rem;
+    gap: 2rem;
     transform: translateY(100%);
     transition: transform 0.3s ease;
+    border-top: 1px solid #e5e7eb;
   }
   
-  .mm-sticky-bar.visible {
-    transform: translateY(0);
-  }
-  
-  .mm-sticky-title {
-    font-weight: 700;
-    display: none;
-  }
-  
-  .mm-sticky-price {
-    font-weight: 800;
-    font-size: 1.25rem;
+  .mm-sticky-bar.visible { transform: translateY(0); }
+  .mm-sticky-title { font-weight: 800; font-size: 1.125rem; display: none; }
+  .mm-sticky-price { font-weight: 900; font-size: 1.5rem; color: #4f46e5; }
+
+  @media (min-width: 1024px) {
+    .mm-sticky-title { display: block; }
   }
 
-  .mm-trust-icons {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    margin-top: 1.5rem;
-    color: #6b7280;
-    font-size: 0.875rem;
-    font-weight: 600;
-  }
-  
-  .mm-trust-icon {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  @media (min-width: 768px) {
-    .mm-book-wrapper {
-      width: 180px;
-    }
-    .mm-sticky-title {
-      display: block;
-    }
-  }
-
-  @media (max-width: 640px) {
-    .mm-title { font-size: 2rem; }
+  @media (max-width: 768px) {
+    .mm-hero-title { font-size: 2.5rem; }
+    .mm-hero-subtitle { font-size: 1.25rem; }
+    .mm-thesis { padding: 2rem 1.5rem; margin-top: -2rem; }
+    .mm-breakdown-card { grid-template-columns: 1fr; gap: 2rem; text-align: center; padding: 2rem 1.5rem; }
+    .mm-checklist li { text-align: left; }
+    .mm-books-display { gap: 0.5rem; }
     .mm-book-wrapper { width: 110px; }
-    .mm-books-display { gap: 0.5rem; padding: 1rem 0; }
   }
 </style>
 
 <div class="mm-landing-page">
-  <div class="mm-container">
-    
-    <header class="mm-header">
-      <h1 class="mm-title">The "Making Money" Library</h1>
-      <p class="mm-subtitle">5 definitive books to upgrade your mindset, build leverage, and master the psychology of wealth.</p>
-    </header>
-
-    <div class="mm-books-display">
-      {% for handle in bundle_handles %}
-        {% assign current_product = all_products[handle] %}
-        {% if current_product != empty %}
-          <div class="mm-book-wrapper">
-            <img src="{{ current_product.featured_image | img_url: '400x' }}" alt="{{ current_product.title }}" class="mm-book-cover">
-          </div>
-        {% endif %}
-      {% endfor %}
-    </div>
-
-    <div class="mm-pricing-card" id="main-cta">
-      <div class="mm-price-block">
-        <span class="mm-price-current">{{ bundle_price | money }}</span>
-        {% if total_compare_price > bundle_price %}
-           <span class="mm-price-original">{{ total_compare_price | money }}</span>
-           <div class="mm-savings">Save {{ total_compare_price | minus: bundle_price | money }} when you buy together</div>
-        {% endif %}
-      </div>
+  
+  <!-- HERO HEADLINE -->
+  <header class="mm-hero">
+    <div class="mm-container">
+      <h1 class="mm-hero-title">The "Making Money" Library</h1>
+      <p class="mm-hero-subtitle">5 definitive books to upgrade your mindset, build leverage, and master the psychology of wealth and persuasion.</p>
       
-      {% form 'cart', cart %}
+      <div class="mm-books-display">
         {% for handle in bundle_handles %}
           {% assign current_product = all_products[handle] %}
           {% if current_product != empty %}
-            {% assign variant = current_product.first_available_variant %}
-            <input type="hidden" name="updates[{{ variant.id }}]" value="1" />
+            <div class="mm-book-wrapper">
+              <img src="{{ current_product.featured_image | img_url: '400x' }}" alt="{{ current_product.title }}" class="mm-book-cover">
+            </div>
           {% endif %}
         {% endfor %}
-        <input type="hidden" name="checkout" value="Checkout" />
-        <button type="submit" class="mm-btn">
-          Get the 5-Book Bundle
-        </button>
-      {% endform %}
+      </div>
       
-      <div class="mm-trust-icons">
-        <div class="mm-trust-icon">
-          <svg style="width:1.25rem;height:1.25rem;color:#10b981;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
-          Secure Checkout
+      <div class="mm-btn-container">
+        <a href="#checkout-section" class="mm-btn" style="display:inline-block; max-width:400px; padding:1.25rem 2rem;">Claim The Bundle →</a>
+        <span class="mm-btn-subtext">Save over 30% instantly vs buying individually.</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- THE THESIS -->
+  <div class="mm-container">
+    <div class="mm-thesis">
+      <h2>Why These 5 Books?</h2>
+      <p>Wealth isn't built by chasing tactics. It's built on a foundation of <strong>mental frameworks, leverage, and understanding human nature.</strong></p>
+      <p>There are thousands of business books published every year, but true innovators read the classics that dictate human behavior and macroeconomic realities. We curated this exact stack of 5 books to give you the ultimate unfair advantage: from rewiring your self-image, to understanding the hidden levers of power and persuasion, to building systemic wealth.</p>
+    </div>
+  </div>
+
+  <!-- BOOK BREAKDOWNS -->
+  <section class="mm-section">
+    <div class="mm-container">
+      <h2>What's Inside The Arsenal</h2>
+      
+      <!-- Book 1: Zero to One -->
+      <div class="mm-breakdown-card">
+        <img src="{{ all_products['zero-to-one'].featured_image | img_url: '400x' }}" alt="Zero to One" class="mm-breakdown-img">
+        <div>
+          <span class="mm-book-tag">Building Leverage</span>
+          <h3>Zero to One</h3>
+          <p><strong>By Peter Thiel.</strong> Instead of competing in crowded markets, learn how to build monopolies and create completely new markets from scratch.</p>
+          <ul class="mm-checklist">
+            <li>Escape the trap of brutal competition.</li>
+            <li>Identify unique secrets that others miss.</li>
+            <li>Build the foundations for exponential growth.</li>
+          </ul>
         </div>
-        <div class="mm-trust-icon">
-          <svg style="width:1.25rem;height:1.25rem;color:#3b82f6;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
-          Instant Delivery
+      </div>
+
+      <!-- Book 2: Psycho-Cybernetics -->
+      <div class="mm-breakdown-card">
+        <img src="{{ all_products['psycho-cybernetics-updated-and-expanded-the-psycho-cybernetics-series'].featured_image | img_url: '400x' }}" alt="Psycho-Cybernetics" class="mm-breakdown-img">
+        <div>
+          <span class="mm-book-tag">Mindset Mastery</span>
+          <h3>Psycho-Cybernetics</h3>
+          <p><strong>By Maxwell Maltz.</strong> The classic manual on how to rewire your brain for success. You can never outperform your own self-image.</p>
+          <ul class="mm-checklist">
+            <li>Reprogram self-limiting beliefs.</li>
+            <li>Use your subconscious as a "success mechanism".</li>
+            <li>Build unshakable confidence in high-pressure situations.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Book 3: Ray Dalio Principles -->
+      <div class="mm-breakdown-card">
+        <img src="{{ all_products['principles-for-dealing-with-the-changing-world-order-why-nations-succeed-and-fail'].featured_image | img_url: '400x' }}" alt="Principles for Dealing with the Changing World Order" class="mm-breakdown-img">
+        <div>
+          <span class="mm-book-tag">Macro Strategy</span>
+          <h3>The Changing World Order</h3>
+          <p><strong>By Ray Dalio.</strong> A billionaire investor's masterclass on economic cycles. Understand the historical patterns that dictate wealth transfer today.</p>
+          <ul class="mm-checklist">
+            <li>Anticipate economic shifts before they happen.</li>
+            <li>Protect your assets during periods of high inflation.</li>
+            <li>Understand the lifecycle of empires and currencies.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Book 4: 48 Laws of Power -->
+      <div class="mm-breakdown-card">
+        <img src="{{ all_products['the-48-laws-of-power'].featured_image | img_url: '400x' }}" alt="The 48 Laws of Power" class="mm-breakdown-img">
+        <div>
+          <span class="mm-book-tag">Human Nature</span>
+          <h3>The 48 Laws of Power</h3>
+          <p><strong>By Robert Greene.</strong> The definitive guide to corporate warfare and influence. Learn the hidden rules of power dynamics used by elite leaders.</p>
+          <ul class="mm-checklist">
+            <li>Defend yourself against manipulation.</li>
+            <li>Command attention and respect in any room.</li>
+            <li>Master the subtle art of strategic timing.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Book 5: Influence -->
+      <div class="mm-breakdown-card">
+        <img src="{{ all_products['influence-the-psychology-of-persuasion-revised-edition'].featured_image | img_url: '400x' }}" alt="Influence" class="mm-breakdown-img">
+        <div>
+          <span class="mm-book-tag">Persuasion</span>
+          <h3>Influence</h3>
+          <p><strong>By Robert Cialdini.</strong> The most important book ever written on the psychology of sales and compliance. If you sell anything, you need this.</p>
+          <ul class="mm-checklist">
+            <li>The 6 universal principles of persuasion.</li>
+            <li>How to naturally trigger "yes" responses.</li>
+            <li>Build automatic trust and authority.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SOCIAL PROOF -->
+  <section class="mm-section" style="background: white; border-top: 1px solid #e5e7eb; border-bottom: 1px solid #e5e7eb;">
+    <div class="mm-container">
+      <h2>Success Leaves Clues</h2>
+      <div class="mm-reviews">
+        <div class="mm-review-card">
+          <div class="mm-stars">★★★★★</div>
+          <p class="mm-review-text">"Zero to One and Influence completely changed how I structure my product offers. This bundle is essentially a required MBA in 5 books."</p>
+          <p class="mm-review-author">— Marcus T., Founder</p>
+        </div>
+        <div class="mm-review-card">
+          <div class="mm-stars">★★★★★</div>
+          <p class="mm-review-text">"Psycho-Cybernetics helped me break through an invisible income ceiling I was stuck at for years. Essential reading."</p>
+          <p class="mm-review-author">— Sarah J., Consultant</p>
+        </div>
+        <div class="mm-review-card">
+          <div class="mm-stars">★★★★★</div>
+          <p class="mm-review-text">"Having Dalio's macro views next to Greene's tactical power laws gives you an unfair advantage in business negotiations."</p>
+          <p class="mm-review-author">— David R., Investor</p>
         </div>
       </div>
     </div>
+  </section>
 
-  </div>
+  <!-- THE OFFER (CHECKOUT) -->
+  <section class="mm-section" id="checkout-section">
+    <div class="mm-container">
+      <div class="mm-pricing-hero">
+        <h2>Your Arsenal Awaits</h2>
+        <p>Get all 5 hardcover/paperback essentials delivered to your door.</p>
+        
+        <div class="mm-price-block">
+          <span class="mm-price-current">{{ bundle_price | money }}</span>
+          {% if total_compare_price > bundle_price %}
+             <span class="mm-price-original">{{ total_compare_price | money }}</span>
+             <br/>
+             <div class="mm-savings-badge">
+               You Save {{ total_compare_price | minus: bundle_price | money }} By Bundling Today
+             </div>
+          {% endif %}
+        </div>
+        
+        <div class="mm-btn-container" style="max-width: 500px; margin: 0 auto;">
+          {% form 'cart', cart %}
+            {% for handle in bundle_handles %}
+              {% assign current_product = all_products[handle] %}
+              {% if current_product != empty %}
+                {% assign variant = current_product.first_available_variant %}
+                <input type="hidden" name="updates[{{ variant.id }}]" value="1" />
+              {% endif %}
+            {% endfor %}
+            <input type="hidden" name="checkout" value="Checkout" />
+            <button type="submit" class="mm-btn">
+              Proceed to Secure Checkout
+            </button>
+          {% endform %}
+        </div>
+        
+        <p style="color: #9ca3af; font-size: 0.875rem; margin-top: 1.5rem;">
+          Ships within 24 hours. Includes 30-Day Money-Back Guarantee.
+        </p>
 
+        <div class="mm-trust-icons">
+          <div class="mm-trust-icon" style="color:#9ca3af;">
+            <svg style="width:1.25rem;height:1.25rem;color:#10b981;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+            Encrypted Checkout
+          </div>
+          <div class="mm-trust-icon" style="color:#9ca3af;">
+            <svg style="width:1.25rem;height:1.25rem;color:#fbbf24;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" /></svg>
+            Fast Shipping
+          </div>
+          <div class="mm-trust-icon" style="color:#9ca3af;">
+            <svg style="width:1.25rem;height:1.25rem;color:#3b82f6;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+            30-Day Guarantee
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- STICKY BOTTOM BAR -->
   <div class="mm-sticky-bar" id="sticky-bar">
     <span class="mm-sticky-title">The "Making Money" Library</span>
     <span class="mm-sticky-price">{{ bundle_price | money }}</span>
@@ -284,7 +526,7 @@ box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3);
         {% endif %}
       {% endfor %}
       <input type="hidden" name="checkout" value="Checkout" />
-      <button type="submit" class="mm-btn" style="width: auto; padding: 0.75rem 1.5rem; font-size: 1rem;">
+      <button type="submit" class="mm-btn" style="width: auto; padding: 0.75rem 2rem; font-size: 1.125rem;">
         Buy Bundle Now
       </button>
     {% endform %}
@@ -294,12 +536,26 @@ box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3);
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     const stickyBar = document.getElementById('sticky-bar');
-    const mainCta = document.getElementById('main-cta');
+    const checkoutSection = document.getElementById('checkout-section');
     
+    // Smooth scroll for hero button
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // Sticky bar observer
     window.addEventListener('scroll', function() {
-      if (mainCta) {
-        const btnPosition = mainCta.getBoundingClientRect().bottom;
-        if (btnPosition < 0) {
+      if (checkoutSection) {
+        // Show sticky bar when scrolling past the hero, but hide it when reaching the actual checkout section
+        const checkoutPosition = checkoutSection.getBoundingClientRect().top;
+        const scrollPosition = window.scrollY;
+        
+        if (scrollPosition > 500 && checkoutPosition > window.innerHeight) {
            stickyBar.classList.add('visible');
         } else {
            stickyBar.classList.remove('visible');
