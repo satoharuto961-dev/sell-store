@@ -1,19 +1,22 @@
 :root {
   color-scheme: light;
   --font-base: "Inter", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  --color-background: #F1F5F9;
-  --color-surface: #F1F5F9;
-  --color-text: #1F4E79;
-  --color-muted: rgba(31, 78, 121, 0.8);
-  --color-primary: #1F4E79;
-  --color-primary-hover: rgba(31, 78, 121, 0.9);
-  --color-primary-light: rgba(31, 78, 121, 0.12);
-  --color-secondary: #F1F5F9;
-  --color-accent: #1F4E79;
-  --color-accent-dark: #1F4E79;
-  --color-accent-light: rgba(31, 78, 121, 0.7);
-  --color-accent-green: #1F4E79;
-  --color-border: rgba(31, 78, 121, 0.25);
+  --color-background: #ffffff;
+  --color-surface: #f9fafb;
+  --color-text: #111827;
+  --color-muted: #6b7280;
+  
+  /* Premium Dark Theme variables for global Header/Footer */
+  --color-primary: #111827; /* Dark Gray / Black */
+  --color-primary-hover: #1f2937;
+  --color-primary-light: rgba(17, 24, 39, 0.12);
+  
+  --color-secondary: #ffffff;
+  --color-accent: #4f46e5; /* Indigo */
+  --color-accent-dark: #3730a3;
+  --color-accent-light: rgba(79, 70, 229, 0.7);
+  --color-accent-green: #10b981;
+  --color-border: #e5e7eb;
   --shadow-soft: 0 20px 40px rgba(31, 78, 121, 0.18);
   --shadow-medium: 0 18px 32px rgba(31, 78, 121, 0.16);
 }

@@ -3,14 +3,17 @@
 {% comment %} 
   We will use a form POST to /cart/update to add all items at once and go to checkout 
 {% endcomment %}
-{% assign bundle_price = 0 %}
+{% comment %} 
+  Override bundle_price to exactly $19.99 (1999 in cents) 
+  But keep calculating the total_compare_price to show accurate savings
+{% endcomment %}
+{% assign bundle_price = 1999 %}
 {% assign total_compare_price = 0 %}
 
 {% for handle in bundle_handles %}
   {% assign current_product = all_products[handle] %}
   {% if current_product != empty %}
     {% assign variant = current_product.first_available_variant %}
-    {% assign bundle_price = bundle_price | plus: variant.price %}
     {% assign total_compare_price = total_compare_price | plus: variant.compare_at_price %}
   {% endif %}
 {% endfor %}
