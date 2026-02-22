@@ -1,0 +1,563 @@
+{% assign bundle_handles = "the-count-of-monte-cristo,war-and-peace,east-of-eden-penguin-twentieth-century-classics,to-kill-a-mockingbird,the-picture-of-dorian-gray-the-original-1891-classic-readers-library-classics" | split: "," %}
+
+{% comment %} 
+  Override bundle_price to exactly $19.99 (1999 in cents) 
+  But keep calculating the total_compare_price to show accurate savings
+{% endcomment %}
+{% assign bundle_price = 1999 %}
+{% assign total_compare_price = 0 %}
+
+{% for handle in bundle_handles %}
+  {% assign current_product = all_products[handle] %}
+  {% if current_product != empty %}
+    {% assign variant = current_product.first_available_variant %}
+    {% assign total_compare_price = total_compare_price | plus: variant.compare_at_price %}
+  {% endif %}
+{% endfor %}
+
+<style>
+  /* Base Styles */
+  .cl-landing-page {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #111827;
+    line-height: 1.6;
+    background-color: #f3f4f6; /* slightly cooler gray for the classics */
+    padding-bottom: 100px;
+  }
+  
+  .cl-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  
+  .cl-section {
+    padding: 4rem 0;
+  }
+
+  /* Typography */
+  h1, h2, h3 { line-height: 1.2; font-weight: 800; color: #111827; }
+  h2 { font-size: 2.25rem; margin-bottom: 2rem; text-align: center; }
+  h3 { font-size: 1.5rem; margin-bottom: 1rem; }
+  p { font-size: 1.125rem; color: #4b5563; margin-bottom: 1.5rem; }
+
+  /* Hero Section */
+  .cl-hero {
+    text-align: center;
+    padding: 5rem 1rem 3rem;
+    background: linear-gradient(135deg, #fef3c7 0%, #ffffff 100%); /* Sophisticated parchment/gold gradient */
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .cl-hero-title {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+    font-family: Georgia, serif; /* Serif font for classic literature feel */
+  }
+  
+  .cl-hero-subtitle {
+    font-size: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    color: #4b5563;
+  }
+  
+  .cl-books-display {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+  }
+  
+  .cl-book-wrapper {
+    width: 150px;
+    position: relative;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .cl-book-wrapper:hover {
+    transform: translateY(-15px) scale(1.05);
+    z-index: 10;
+  }
+  
+  .cl-book-cover {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    box-shadow: -12px 12px 24px rgba(0,0,0,0.2), inset 2px 0 5px rgba(255,255,255,0.3);
+  }
+
+  /* Button Styles */
+  .cl-btn-container {
+    text-align: center;
+    margin: 2rem 0;
+  }
+
+  .cl-btn {
+    display: inline-block;
+    background: linear-gradient(to right, #b45309, #d97706); /* Sophisticated leather/amber */
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 800;
+    padding: 1.25rem 3rem;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 10px 25px -5px rgba(180, 83, 9, 0.4);
+    width: 100%;
+    max-width: 500px;
+  }
+  
+  .cl-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 30px -10px rgba(180, 83, 9, 0.6);
+    color: white;
+  }
+
+  .cl-btn-subtext {
+    display: block;
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-top: 1rem;
+    font-weight: 600;
+  }
+
+  /* The Problem/Solution Block */
+  .cl-thesis {
+    background: white;
+    border-radius: 24px;
+    padding: 4rem 3rem;
+    margin-top: -3rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.05);
+    position: relative;
+    z-index: 20;
+  }
+
+  .cl-thesis p {
+    font-size: 1.25rem;
+  }
+
+  /* Book Breakdown Grid */
+  .cl-breakdown-card {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 3rem;
+    background: white;
+    padding: 3rem;
+    border-radius: 24px;
+    margin-bottom: 2rem;
+    align-items: center;
+    border: 1px solid #f3f4f6;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .cl-breakdown-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.05);
+  }
+
+  .cl-breakdown-img {
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto;
+    display: block;
+    border-radius: 6px;
+    box-shadow: -8px 8px 16px rgba(0,0,0,0.15);
+  }
+
+  .cl-book-tag {
+    display: inline-block;
+    padding: 0.25rem 1rem;
+    background: #fef3c7;
+    color: #92400e;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .cl-checklist {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0 0 0;
+  }
+
+  .cl-checklist li {
+    position: relative;
+    padding-left: 2rem;
+    margin-bottom: 0.75rem;
+    font-size: 1.125rem;
+    color: #4b5563;
+  }
+
+  .cl-checklist li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #b45309;
+    font-weight: 900;
+  }
+
+  /* Pricing Section */
+  .cl-pricing-hero {
+    background: #111827;
+    color: white;
+    border-radius: 24px;
+    padding: 4rem 2rem;
+    text-align: center;
+    margin: 4rem 0;
+  }
+
+  .cl-pricing-hero h2 { color: white; }
+  .cl-pricing-hero p { color: #9ca3af; }
+
+  .cl-price-block { margin: 2rem 0; }
+  .cl-price-current { font-size: 4rem; font-weight: 900; color: white; line-height: 1; }
+  .cl-price-original { font-size: 1.5rem; color: #6b7280; text-decoration: line-through; margin-left: 1rem; }
+  
+  .cl-savings-badge {
+    display: inline-flex;
+    align-items: center;
+    background: #b45309;
+    color: white;
+    padding: 0.5rem 1.25rem;
+    border-radius: 999px;
+    font-size: 1rem;
+    font-weight: 800;
+    margin-top: 1.5rem;
+  }
+
+  /* Social Proof */
+  .cl-reviews {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .cl-review-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    border: 1px solid #e5e7eb;
+  }
+
+  .cl-stars { color: #fbbf24; font-size: 1.25rem; margin-bottom: 1rem; }
+  .cl-review-text { font-style: italic; font-size: 1.125rem; margin-bottom: 1.5rem; }
+  .cl-review-author { font-weight: 700; color: #111827; }
+
+  /* Trust Icons */
+  .cl-trust-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+  
+  .cl-trust-icon {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #9ca3af;
+    font-weight: 600;
+    font-size: 0.875rem;
+  }
+
+  /* Sticky Footer */
+  .cl-sticky-form { margin: 0; }
+  .cl-sticky-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    padding: 1rem;
+    box-shadow: 0 -10px 30px rgba(0,0,0,0.1);
+    z-index: 50;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    border-top: 1px solid #e5e7eb;
+  }
+  
+  .cl-sticky-bar.visible { transform: translateY(0); }
+  .cl-sticky-title { font-weight: 800; font-size: 1.125rem; font-family: Georgia, serif; display: none; }
+  .cl-sticky-price { font-weight: 900; font-size: 1.5rem; color: #b45309; }
+
+  @media (min-width: 1024px) {
+    .cl-sticky-title { display: block; }
+  }
+
+  @media (max-width: 768px) {
+    .cl-hero-title { font-size: 2.5rem; }
+    .cl-hero-subtitle { font-size: 1.25rem; }
+    .cl-thesis { padding: 2rem 1.5rem; margin-top: -2rem; }
+    .cl-breakdown-card { grid-template-columns: 1fr; gap: 2rem; text-align: center; padding: 2rem 1.5rem; }
+    .cl-checklist li { text-align: left; }
+    .cl-books-display { gap: 0.5rem; }
+    .cl-book-wrapper { width: 110px; }
+  }
+</style>
+
+<div class="cl-landing-page">
+  
+  <!-- HERO HEADLINE -->
+  <header class="cl-hero">
+    <div class="cl-container">
+      <h1 class="cl-hero-title">The Classic Masterpieces Library</h1>
+      <p class="cl-hero-subtitle">5 legendary narratives that defined literature, exposed human nature, and stood the test of time.</p>
+      
+      <div class="cl-books-display">
+        {% for handle in bundle_handles %}
+          {% assign current_product = all_products[handle] %}
+          {% if current_product != empty %}
+            <div class="cl-book-wrapper">
+              <img src="{{ current_product.featured_image | img_url: '400x' }}" alt="{{ current_product.title }}" class="cl-book-cover">
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+      
+      <div class="cl-btn-container">
+        <a href="#checkout-section" class="cl-btn" style="display:inline-block; max-width:400px; padding:1.25rem 2rem;">Claim The Bundle →</a>
+        <span class="cl-btn-subtext">Save over 30% instantly vs buying individually.</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- THE THESIS -->
+  <div class="cl-container">
+    <div class="cl-thesis">
+      <h2>Why These 5 Masterpieces?</h2>
+      <p>Modern fiction is fleeting, but true literature is eternal. The greatest stories are built on a foundation of <strong>human psychology, systemic justice, and epic storytelling.</strong></p>
+      <p>There are millions of books published every decade, but only a handful survive to become timeless. We curated this exact stack of 5 masterpieces to give you a library of the greatest stories ever written: from the ultimate tale of calculated revenge, to sweeping wartime epics, to haunting psychological thrillers. This isn't just reading—it's an education in the human condition.</p>
+    </div>
+  </div>
+
+  <!-- BOOK BREAKDOWNS -->
+  <section class="cl-section">
+    <div class="cl-container">
+      <h2>What's Inside The Library</h2>
+      
+      <!-- Book 1 -->
+      <div class="cl-breakdown-card">
+        <img src="{{ all_products['the-count-of-monte-cristo'].featured_image | img_url: '400x' }}" alt="The Count of Monte Cristo" class="cl-breakdown-img">
+        <div>
+          <span class="cl-book-tag">The Epic of Revenge</span>
+          <h3>The Count of Monte Cristo</h3>
+          <p>By Alexandre Dumas. The ultimate, sprawling adventure of betrayal, patience, and absolute retribution.</p>
+          <ul class="cl-checklist">
+            <li>Experience the most satisfying revenge plot ever penned.</li>
+            <li>A masterclass in strategic patience.</li>
+            <li>Explore the moral boundaries of justice and mercy.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Book 2 -->
+      <div class="cl-breakdown-card">
+        <img src="{{ all_products['war-and-peace'].featured_image | img_url: '400x' }}" alt="War and Peace" class="cl-breakdown-img">
+        <div>
+          <span class="cl-book-tag">The Human Condition</span>
+          <h3>War and Peace</h3>
+          <p>By Leo Tolstoy. A sweeping historical masterpiece that captures the entirety of Russian society and the philosophy of history itself.</p>
+          <ul class="cl-checklist">
+            <li>Understand the macro-forces of history and society.</li>
+            <li>Dive into incredibly complex, evolving character psychology.</li>
+            <li>The book widely considered the greatest novel ever written.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Book 3 -->
+      <div class="cl-breakdown-card">
+        <img src="{{ all_products['east-of-eden-penguin-twentieth-century-classics'].featured_image | img_url: '400x' }}" alt="East of Eden" class="cl-breakdown-img">
+        <div>
+          <span class="cl-book-tag">Good vs. Evil</span>
+          <h3>East of Eden</h3>
+          <p>By John Steinbeck. An epic, multi-generational saga exploring identity, the intricacies of the human soul, and the freedom to choose.</p>
+          <ul class="cl-checklist">
+            <li>The concept of "Timshel" — thou mayest conquer sin.</li>
+            <li>A breathtaking allegory of love and jealousy.</li>
+            <li>Steinbeck's self-proclaimed magnum opus.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Book 4 -->
+      <div class="cl-breakdown-card">
+        <img src="{{ all_products['to-kill-a-mockingbird'].featured_image | img_url: '400x' }}" alt="To Kill a Mockingbird" class="cl-breakdown-img">
+        <div>
+          <span class="cl-book-tag">Justice & Morality</span>
+          <h3>To Kill a Mockingbird</h3>
+          <p>By Harper Lee. The quintessential American classic that defined a generation's understanding of systemic injustice and moral courage.</p>
+          <ul class="cl-checklist">
+            <li>A profound look at empathy and holding onto innocence.</li>
+            <li>The legendary character of Atticus Finch.</li>
+            <li>Essential reading for modern ethical understanding.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Book 5 -->
+      <div class="cl-breakdown-card">
+        <img src="{{ all_products['the-picture-of-dorian-gray-the-original-1891-classic-readers-library-classics'].featured_image | img_url: '400x' }}" alt="The Picture of Dorian Gray" class="cl-breakdown-img">
+        <div>
+          <span class="cl-book-tag">Psychological Thriller</span>
+          <h3>The Picture of Dorian Gray</h3>
+          <p>By Oscar Wilde. A haunting, philosophical descent into vanity, hedonism, and the corruption of the soul.</p>
+          <ul class="cl-checklist">
+            <li>Oscar Wilde's legendary wit and philosophical prose.</li>
+            <li>A dark exploration of aestheticism vs morality.</li>
+            <li>A fascinating psychological study of corruption.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SOCIAL PROOF -->
+  <section class="cl-section" style="background: white; border-top: 1px solid #e5e7eb; border-bottom: 1px solid #e5e7eb;">
+    <div class="cl-container">
+      <h2>Success Leaves Clues</h2>
+      <div class="cl-reviews">
+        <div class="cl-review-card">
+          <div class="cl-stars">★★★★★</div>
+          <p class="cl-review-text">"You can read a hundred modern thrillers, but nothing will ever touch the sheer satisfaction of the revenge plot in The Count of Monte Cristo. Masterpiece."</p>
+          <p class="cl-review-author">— Jonathan H., Reader</p>
+        </div>
+        <div class="cl-review-card">
+          <div class="cl-stars">★★★★★</div>
+          <p class="cl-review-text">"Conquering War & Peace and East of Eden completely changed how I view literature. This bundle puts the greatest accomplishments in human writing in one box."</p>
+          <p class="cl-review-author">— Sarah K., Professor</p>
+        </div>
+        <div class="cl-review-card">
+          <div class="cl-stars">★★★★★</div>
+          <p class="cl-review-text">"Dorian Gray and Mockingbird both taught me more about human psychology and morality than any non-fiction book ever has. Brilliant curation."</p>
+          <p class="cl-review-author">— Anthony M., Writer</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE OFFER (CHECKOUT) -->
+  <section class="cl-section" id="checkout-section">
+    <div class="cl-container">
+      <div class="cl-pricing-hero">
+        <h2>Your Library Awaits</h2>
+        <p>Get all 5 essential books today.</p>
+        
+        <div class="cl-price-block">
+          <span class="cl-price-current">{{ bundle_price | money }}</span>
+          {% if total_compare_price > bundle_price %}
+             <span class="cl-price-original">{{ total_compare_price | money }}</span>
+             <br/>
+             <div class="cl-savings-badge">
+               You Save {{ total_compare_price | minus: bundle_price | money }} By Bundling Today
+             </div>
+          {% endif %}
+        </div>
+        
+        <div class="cl-btn-container" style="max-width: 500px; margin: 0 auto;">
+          {% form 'cart', cart %}
+            {% for handle in bundle_handles %}
+              {% assign current_product = all_products[handle] %}
+              {% if current_product != empty %}
+                {% assign variant = current_product.first_available_variant %}
+                <input type="hidden" name="updates[{{ variant.id }}]" value="1" />
+              {% endif %}
+            {% endfor %}
+            <input type="hidden" name="checkout" value="Checkout" />
+            <button type="submit" class="cl-btn">
+              Proceed to Secure Checkout
+            </button>
+          {% endform %}
+        </div>
+        
+        <p style="color: #9ca3af; font-size: 0.875rem; margin-top: 1.5rem;">
+          Includes 30-Day Money-Back Guarantee.
+        </p>
+
+        <div class="cl-trust-icons">
+          <div class="cl-trust-icon" style="color:#9ca3af;">
+            <svg style="width:1.25rem;height:1.25rem;color:#10b981;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+            Encrypted Checkout
+          </div>
+          <div class="cl-trust-icon" style="color:#9ca3af;">
+            <svg style="width:1.25rem;height:1.25rem;color:#fbbf24;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+            Instant Processing
+          </div>
+          <div class="cl-trust-icon" style="color:#9ca3af;">
+            <svg style="width:1.25rem;height:1.25rem;color:#3b82f6;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+            30-Day Guarantee
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- STICKY BOTTOM BAR -->
+  <div class="cl-sticky-bar" id="sticky-bar">
+    <span class="cl-sticky-title">The Classic Masterpieces Library</span>
+    <span class="cl-sticky-price">{{ bundle_price | money }}</span>
+    {% form 'cart', cart, class: 'cl-sticky-form' %}
+      {% for handle in bundle_handles %}
+        {% assign current_product = all_products[handle] %}
+        {% if current_product != empty %}
+          {% assign variant = current_product.first_available_variant %}
+          <input type="hidden" name="updates[{{ variant.id }}]" value="1" />
+        {% endif %}
+      {% endfor %}
+      <input type="hidden" name="checkout" value="Checkout" />
+      <button type="submit" class="cl-btn" style="width: auto; padding: 0.75rem 2rem; font-size: 1.125rem;">
+        Buy Bundle Now
+      </button>
+    {% endform %}
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const stickyBar = document.getElementById('sticky-bar');
+    const checkoutSection = document.getElementById('checkout-section');
+    
+    // Smooth scroll for hero button
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // Sticky bar observer
+    window.addEventListener('scroll', function() {
+      if (checkoutSection) {
+        // Show sticky bar when scrolling past the hero, but hide it when reaching the actual checkout section
+        const checkoutPosition = checkoutSection.getBoundingClientRect().top;
+        const scrollPosition = window.scrollY;
+        
+        if (scrollPosition > 500 && checkoutPosition > window.innerHeight) {
+           stickyBar.classList.add('visible');
+        } else {
+           stickyBar.classList.remove('visible');
+        }
+      }
+    });
+  });
+</script>
