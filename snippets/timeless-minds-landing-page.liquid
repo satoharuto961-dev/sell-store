@@ -1,0 +1,489 @@
+{% assign bundle_handles = "the-fountainhead,the-iliad,middlemarch,love-in-the-time-of-cholera-oprahs-book-club,gut-feelings-the-intelligence-of-the-unconscious" | split: "," %}
+
+{% assign bundle_price = 1999 %}
+{% assign total_compare_price = 0 %}
+{% for handle in bundle_handles %}
+  {% assign current_product = all_products[handle] %}
+  {% if current_product != empty %}
+    {% assign variant = current_product.first_available_variant %}
+    {% assign total_compare_price = total_compare_price | plus: variant.compare_at_price %}
+  {% endif %}
+{% endfor %}
+
+<style>
+  /* =============================================
+     TIMELESS MINDS — Deep Violet / Purple Wisdom
+     ============================================= */
+  .tm-landing-page {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #ede9fe;
+    line-height: 1.6;
+    background-color: #0d0a1a;
+    padding-bottom: 100px;
+  }
+  .tm-container { max-width: 1000px; margin: 0 auto; padding: 0 1.5rem; }
+  .tm-section { padding: 4rem 0; }
+
+  h1, h2, h3 { line-height: 1.2; font-weight: 900; color: #faf5ff; }
+  h2 { font-size: 2.25rem; margin-bottom: 2rem; text-align: center; }
+  h3 { font-size: 1.5rem; margin-bottom: 0.75rem; }
+  p { font-size: 1.125rem; color: #a78bfa; margin-bottom: 1.5rem; }
+
+  /* ---- Hero ---- */
+  .tm-hero {
+    text-align: center;
+    padding: 5rem 1rem 4rem;
+    background: radial-gradient(ellipse at top, #2e1065 0%, #0d0a1a 70%);
+    border-bottom: 1px solid #3b0764;
+    position: relative; overflow: hidden;
+  }
+  .tm-hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 30% 60%, rgba(139,92,246,0.08) 0%, transparent 60%),
+                radial-gradient(circle at 70% 20%, rgba(167,139,250,0.06) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .tm-eyebrow {
+    display: inline-block;
+    background: #4c1d95;
+    color: #c4b5fd;
+    padding: 0.375rem 1.25rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    border: 1px solid #6d28d9;
+  }
+  .tm-hero-title {
+    font-size: 3.75rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.03em;
+    color: #faf5ff;
+    position: relative; z-index: 1;
+  }
+  .tm-hero-title span { color: #a78bfa; }
+  .tm-hero-subtitle {
+    font-size: 1.375rem;
+    max-width: 760px;
+    margin: 0 auto 3.5rem;
+    color: #8b5cf6;
+    position: relative; z-index: 1;
+  }
+  .tm-books-display {
+    display: flex; justify-content: center; align-items: flex-end;
+    gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem;
+    position: relative; z-index: 1;
+  }
+  .tm-book-wrapper {
+    width: 140px;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    filter: drop-shadow(0 20px 30px rgba(139,92,246,0.25));
+  }
+  .tm-book-wrapper:hover {
+    transform: translateY(-20px) scale(1.06) rotate(1deg);
+    filter: drop-shadow(0 30px 40px rgba(139,92,246,0.45));
+  }
+  .tm-book-cover {
+    width: 100%; height: auto; border-radius: 5px;
+    box-shadow: -10px 15px 25px rgba(0,0,0,0.7), inset 2px 0 4px rgba(255,255,255,0.12);
+  }
+
+  /* ---- Button ---- */
+  .tm-btn-container { text-align: center; margin: 2rem 0; }
+  .tm-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #7c3aed, #5b21b6);
+    color: white; font-size: 1.375rem; font-weight: 800;
+    padding: 1.25rem 3rem; border-radius: 100px;
+    text-decoration: none; transition: all 0.2s ease;
+    border: none; cursor: pointer;
+    box-shadow: 0 10px 30px -5px rgba(124,58,237,0.5);
+  }
+  .tm-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 40px -10px rgba(124,58,237,0.7);
+    color: white;
+    background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+  }
+  .tm-btn-subtext {
+    display: block; font-size: 0.875rem;
+    color: #4c1d95; margin-top: 1rem; font-weight: 600;
+  }
+
+  /* ---- Thesis ---- */
+  .tm-thesis {
+    background: #130d2b;
+    border-radius: 24px; padding: 4rem 3rem;
+    margin-top: -3rem; position: relative; z-index: 20;
+    border: 1px solid #3b0764;
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,0.8);
+  }
+  .tm-thesis p { font-size: 1.2rem; color: #c4b5fd; }
+  .tm-thesis strong { color: #faf5ff; }
+
+  /* ---- Book Cards ---- */
+  .tm-breakdown-card {
+    display: grid; grid-template-columns: 180px 1fr;
+    gap: 3rem; background: #130d2b;
+    padding: 3rem; border-radius: 20px; margin-bottom: 1.5rem;
+    align-items: center; border: 1px solid #1e1040;
+    transition: all 0.3s ease;
+  }
+  .tm-breakdown-card:hover {
+    transform: translateY(-4px);
+    border-color: #4c1d95;
+    box-shadow: 0 20px 40px -10px rgba(124,58,237,0.2);
+  }
+  .tm-breakdown-img {
+    width: 100%; max-width: 180px; display: block;
+    border-radius: 5px; box-shadow: -10px 10px 20px rgba(0,0,0,0.6);
+    margin: 0 auto;
+  }
+  .tm-book-tag {
+    display: inline-block; padding: 0.25rem 1rem;
+    background: #2e1065; color: #c4b5fd;
+    border-radius: 999px; font-weight: 700;
+    font-size: 0.8rem; margin-bottom: 1rem;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    border: 1px solid #4c1d95;
+  }
+  .tm-checklist { list-style: none; padding: 0; margin: 1.5rem 0 0; }
+  .tm-checklist li {
+    position: relative; padding-left: 1.75rem;
+    margin-bottom: 0.625rem; font-size: 1.05rem; color: #a78bfa;
+  }
+  .tm-checklist li::before {
+    content: "›"; position: absolute; left: 0;
+    color: #a78bfa; font-weight: 900; font-size: 1.3rem; line-height: 1.1;
+  }
+
+  /* ---- Social Proof ---- */
+  .tm-reviews {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem; margin-top: 2.5rem;
+  }
+  .tm-review-card {
+    background: #130d2b; padding: 2rem; border-radius: 16px;
+    border: 1px solid #1e1040;
+  }
+  .tm-stars { color: #a78bfa; font-size: 1.25rem; margin-bottom: 0.75rem; }
+  .tm-review-text { font-style: italic; font-size: 1.05rem; margin-bottom: 1.25rem; color: #ddd6fe; line-height: 1.65; }
+  .tm-review-author { font-weight: 700; color: #faf5ff; font-size: 0.9rem; }
+
+  /* ---- Pricing ---- */
+  .tm-pricing-hero {
+    background: linear-gradient(135deg, #130d2b, #0d0a1a);
+    border: 1px solid #3b0764; border-radius: 24px;
+    padding: 4rem 2rem; text-align: center; margin: 4rem 0;
+    box-shadow: 0 0 60px rgba(124,58,237,0.12);
+  }
+  .tm-pricing-hero h2 { color: white; }
+  .tm-pricing-hero p { color: #6d28d9; }
+  .tm-price-block { margin: 2rem 0; }
+  .tm-price-current { font-size: 4.5rem; font-weight: 900; color: white; line-height: 1; }
+  .tm-price-original { font-size: 1.375rem; color: #4c1d95; text-decoration: line-through; margin-left: 0.75rem; }
+  .tm-savings-badge {
+    display: inline-flex; align-items: center;
+    background: #4c1d95; color: #ddd6fe;
+    padding: 0.5rem 1.5rem; border-radius: 999px;
+    font-size: 1rem; font-weight: 800; margin-top: 1.5rem;
+    border: 1px solid #6d28d9;
+  }
+
+  /* ---- Trust Icons ---- */
+  .tm-trust-icons {
+    display: flex; justify-content: center; align-items: center;
+    gap: 2rem; margin-top: 2rem; flex-wrap: wrap;
+  }
+  .tm-trust-icon {
+    display: flex; align-items: center; gap: 0.4rem;
+    color: #4c1d95; font-weight: 600; font-size: 0.85rem;
+  }
+
+  /* ---- Sticky Bar ---- */
+  .tm-sticky-form { margin: 0; }
+  .tm-sticky-bar {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    background: #130d2b; padding: 0.875rem 1rem;
+    box-shadow: 0 -8px 30px rgba(124,58,237,0.2); z-index: 50;
+    display: flex; justify-content: center; align-items: center;
+    gap: 1.5rem; transform: translateY(100%);
+    transition: transform 0.3s ease; border-top: 1px solid #3b0764;
+  }
+  .tm-sticky-bar.visible { transform: translateY(0); }
+  .tm-sticky-title { font-weight: 800; font-size: 1rem; display: none; color: #faf5ff; }
+  .tm-sticky-price { font-weight: 900; font-size: 1.5rem; color: #a78bfa; }
+
+  @media (min-width: 1024px) { .tm-sticky-title { display: block; } }
+  @media (max-width: 768px) {
+    .tm-hero-title { font-size: 2.5rem; }
+    .tm-hero-subtitle { font-size: 1.125rem; }
+    .tm-thesis { padding: 2rem 1.5rem; margin-top: -2rem; }
+    .tm-breakdown-card { grid-template-columns: 1fr; gap: 1.5rem; text-align: center; padding: 2rem 1.5rem; }
+    .tm-checklist li { text-align: left; }
+    .tm-books-display { gap: 0.5rem; }
+    .tm-book-wrapper { width: 100px; }
+  }
+</style>
+
+<div class="tm-landing-page">
+
+  <!-- HERO -->
+  <header class="tm-hero">
+    <div class="tm-container">
+      <div class="tm-eyebrow">The Intellectual's Essential Library</div>
+      <h1 class="tm-hero-title">Read What <span>Great Minds</span> Read</h1>
+      <p class="tm-hero-subtitle">5 landmark works spanning 3,000 years of philosophy, fiction, and cognitive science — curated for the genuinely curious mind.</p>
+
+      <div class="tm-books-display">
+        {% for handle in bundle_handles %}
+          {% assign current_product = all_products[handle] %}
+          {% if current_product != empty %}
+            <div class="tm-book-wrapper">
+              <img src="{{ current_product.featured_image | img_url: '400x' }}" alt="{{ current_product.title }}" class="tm-book-cover">
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+
+      <div class="tm-btn-container">
+        <a href="#checkout-section" class="tm-btn" style="display:inline-block; max-width:420px; padding:1.25rem 2.5rem;">
+          Claim The Collection →
+        </a>
+        <span class="tm-btn-subtext">Save over 30% instantly vs buying individually.</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- THESIS -->
+  <div class="tm-container">
+    <div class="tm-thesis">
+      <h2>Why Cross-Disciplinary Reading?</h2>
+      <p>The most interesting people you'll ever meet don't read within a single genre. They move fluidly between <strong>ancient epic poetry, 19th-century realism, Latin American magic realism, Objectivist philosophy, and modern cognitive science.</strong></p>
+      <p>True intellectual breadth comes from exploring how different disciplines illuminate the same truths about human nature, ambition, love, and decision-making. This bundle was designed as a complete intellectual workout — every book will challenge and expand how you think.</p>
+    </div>
+  </div>
+
+  <!-- BOOK BREAKDOWNS -->
+  <section class="tm-section">
+    <div class="tm-container">
+      <h2>Inside The Collection</h2>
+
+      <!-- Book 1: The Fountainhead -->
+      {% assign p = all_products['the-fountainhead'] %}
+      {% if p != empty %}
+      <div class="tm-breakdown-card">
+        <img src="{{ p.featured_image | img_url: '400x' }}" alt="{{ p.title }}" class="tm-breakdown-img">
+        <div>
+          <span class="tm-book-tag">Philosophy of Individualism</span>
+          <h3>The Fountainhead</h3>
+          <p>Ayn Rand's masterwork on creative vision, intellectual integrity, and the individual's refusal to compromise for collective approval.</p>
+          <ul class="tm-checklist">
+            <li>The definitive novel on living by your own values under pressure.</li>
+            <li>Howard Roark: the most compelling fictional portrait of uncompromising genius.</li>
+            <li>Changed how millions think about creativity and ambition.</li>
+          </ul>
+        </div>
+      </div>
+      {% endif %}
+
+      <!-- Book 2: The Iliad -->
+      {% assign p = all_products['the-iliad'] %}
+      {% if p != empty %}
+      <div class="tm-breakdown-card">
+        <img src="{{ p.featured_image | img_url: '400x' }}" alt="{{ p.title }}" class="tm-breakdown-img">
+        <div>
+          <span class="tm-book-tag">Ancient Epic</span>
+          <h3>The Iliad</h3>
+          <p>Homer's 3,000-year-old foundational epic of war, honor, fate, and the terrible costs of pride — as urgent and electric now as ever.</p>
+          <ul class="tm-checklist">
+            <li>The origin of the Western literary tradition.</li>
+            <li>Achilles, Hector, and the most profound meditation on glory and mortality.</li>
+            <li>Essential context for understanding all literature that followed.</li>
+          </ul>
+        </div>
+      </div>
+      {% endif %}
+
+      <!-- Book 3: Middlemarch -->
+      {% assign p = all_products['middlemarch'] %}
+      {% if p != empty %}
+      <div class="tm-breakdown-card">
+        <img src="{{ p.featured_image | img_url: '400x' }}" alt="{{ p.title }}" class="tm-breakdown-img">
+        <div>
+          <span class="tm-book-tag">The Greatest English Novel</span>
+          <h3>Middlemarch</h3>
+          <p>George Eliot's extraordinarily rich portrait of human relationships, ambition, and the quiet heroism of ordinary lives — widely considered the finest English-language novel ever written.</p>
+          <ul class="tm-checklist">
+            <li>Virginia Woolf called it "one of the few English novels written for grown-up people."</li>
+            <li>Eliot's psychological insight into character is unmatched in literary history.</li>
+            <li>A novel that rewards rereading at every stage of life.</li>
+          </ul>
+        </div>
+      </div>
+      {% endif %}
+
+      <!-- Book 4: Love in the Time of Cholera -->
+      {% assign p = all_products['love-in-the-time-of-cholera-oprahs-book-club'] %}
+      {% if p != empty %}
+      <div class="tm-breakdown-card">
+        <img src="{{ p.featured_image | img_url: '400x' }}" alt="{{ p.title }}" class="tm-breakdown-img">
+        <div>
+          <span class="tm-book-tag">Nobel Prize Magic Realism</span>
+          <h3>Love in the Time of Cholera</h3>
+          <p>Gabriel García Márquez's Nobel Prize-winning exploration of obsessive love, old age, and the strange power of waiting — over a lifetime.</p>
+          <ul class="tm-checklist">
+            <li>Márquez at the absolute peak of his powers.</li>
+            <li>The most beautiful and heartbreaking love story in 20th-century fiction.</li>
+            <li>A meditation on time, devotion, and what we sacrifice for love.</li>
+          </ul>
+        </div>
+      </div>
+      {% endif %}
+
+      <!-- Book 5: Gut Feelings -->
+      {% assign p = all_products['gut-feelings-the-intelligence-of-the-unconscious'] %}
+      {% if p != empty %}
+      <div class="tm-breakdown-card">
+        <img src="{{ p.featured_image | img_url: '400x' }}" alt="{{ p.title }}" class="tm-breakdown-img">
+        <div>
+          <span class="tm-book-tag">Cognitive Science</span>
+          <h3>Gut Feelings</h3>
+          <p>Gerd Gigerenzer's groundbreaking argument that unconscious heuristics and intuition often outperform slow, deliberate rational analysis.</p>
+          <ul class="tm-checklist">
+            <li>Why trusting your gut is frequently smarter than you think.</li>
+            <li>Real-world evidence from medicine, business, and sport.</li>
+            <li>Bridges the gap between ancient wisdom and modern cognitive science.</li>
+          </ul>
+        </div>
+      </div>
+      {% endif %}
+
+    </div>
+  </section>
+
+  <!-- SOCIAL PROOF -->
+  <section class="tm-section" style="background: #0d0a1a; border-top: 1px solid #130d2b;">
+    <div class="tm-container">
+      <h2>What Readers Are Saying</h2>
+      <div class="tm-reviews">
+        <div class="tm-review-card">
+          <div class="tm-stars">★★★★★</div>
+          <p class="tm-review-text">"The Fountainhead and The Iliad back-to-back changed the way I see ambition and fate. This is the most intellectually ambitious bundle I've come across."</p>
+          <p class="tm-review-author">— Daniel R., Philosophy Lecturer</p>
+        </div>
+        <div class="tm-review-card">
+          <div class="tm-stars">★★★★★</div>
+          <p class="tm-review-text">"Middlemarch is genuinely one of the greatest things I've ever read. And Gigerenzer's take on intuition fundamentally changed how I make decisions professionally."</p>
+          <p class="tm-review-author">— Nadia M., Executive Coach</p>
+        </div>
+        <div class="tm-review-card">
+          <div class="tm-stars">★★★★★</div>
+          <p class="tm-review-text">"Love in the Time of Cholera is on another level. Pairing it with The Iliad and Gut Feelings in one collection was inspired curation — these five books constitute a complete education."</p>
+          <p class="tm-review-author">— Carlos V., Literary Critic</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHECKOUT -->
+  <section class="tm-section" id="checkout-section">
+    <div class="tm-container">
+      <div class="tm-pricing-hero">
+        <h2>Expand Your Mind</h2>
+        <p>All 5 landmark works in one collection.</p>
+
+        <div class="tm-price-block">
+          <span class="tm-price-current">{{ bundle_price | money }}</span>
+          {% if total_compare_price > bundle_price %}
+            <span class="tm-price-original">{{ total_compare_price | money }}</span>
+            <br/>
+            <div class="tm-savings-badge">
+              You Save {{ total_compare_price | minus: bundle_price | money }} By Bundling Today
+            </div>
+          {% endif %}
+        </div>
+
+        <div class="tm-btn-container" style="max-width:500px; margin:2rem auto 0;">
+          {% form 'cart', cart %}
+            {% for handle in bundle_handles %}
+              {% assign current_product = all_products[handle] %}
+              {% if current_product != empty %}
+                {% assign variant = current_product.first_available_variant %}
+                <input type="hidden" name="updates[{{ variant.id }}]" value="1" />
+              {% endif %}
+            {% endfor %}
+            <input type="hidden" name="checkout" value="Checkout" />
+            <button type="submit" class="tm-btn" style="width:100%; max-width:480px;">
+              Proceed to Secure Checkout
+            </button>
+          {% endform %}
+        </div>
+
+        <p style="color:#2e1065; font-size:0.875rem; margin-top:1.5rem; margin-bottom:0;">
+          30-Day Money-Back Guarantee. Encrypted Checkout.
+        </p>
+
+        <div class="tm-trust-icons">
+          <div class="tm-trust-icon">
+            <svg style="width:1.125rem;height:1.125rem;color:#7c3aed;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+            Encrypted Checkout
+          </div>
+          <div class="tm-trust-icon">
+            <svg style="width:1.125rem;height:1.125rem;color:#7c3aed;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+            Instant Processing
+          </div>
+          <div class="tm-trust-icon">
+            <svg style="width:1.125rem;height:1.125rem;color:#7c3aed;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+            30-Day Guarantee
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STICKY BAR -->
+  <div class="tm-sticky-bar" id="tm-sticky-bar">
+    <span class="tm-sticky-title">The Timeless Minds Collection</span>
+    <span class="tm-sticky-price">{{ bundle_price | money }}</span>
+    {% form 'cart', cart, class: 'tm-sticky-form' %}
+      {% for handle in bundle_handles %}
+        {% assign current_product = all_products[handle] %}
+        {% if current_product != empty %}
+          {% assign variant = current_product.first_available_variant %}
+          <input type="hidden" name="updates[{{ variant.id }}]" value="1" />
+        {% endif %}
+      {% endfor %}
+      <input type="hidden" name="checkout" value="Checkout" />
+      <button type="submit" class="tm-btn" style="width:auto; padding:0.75rem 1.75rem; font-size:1rem;">
+        Buy Now
+      </button>
+    {% endform %}
+  </div>
+</div>
+
+<script>
+  (function() {
+    var stickyBar = document.getElementById('tm-sticky-bar');
+    var checkoutSection = document.getElementById('checkout-section');
+    document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        var t = document.querySelector(a.getAttribute('href'));
+        if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+      });
+    });
+    window.addEventListener('scroll', function() {
+      if (stickyBar && checkoutSection) {
+        var top = checkoutSection.getBoundingClientRect().top;
+        if (window.scrollY > 500 && top > window.innerHeight) {
+          stickyBar.classList.add('visible');
+        } else {
+          stickyBar.classList.remove('visible');
+        }
+      }
+    });
+  })();
+</script>
