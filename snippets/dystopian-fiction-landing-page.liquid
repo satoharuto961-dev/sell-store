@@ -1,0 +1,602 @@
+{% assign bundle_handles = "the-handmaid-s-tale,fahrenheit-451,never-let-me-go-vintage-international,a-thousand-splendid-suns,the-plague-a-new-translation-by-laura-marris" | split: "," %}
+
+{% comment %} 
+  Override bundle_price to exactly $19.99 (1999 in cents) 
+  But keep calculating the total_compare_price to show accurate savings
+{% endcomment %}
+{% assign bundle_price = 1999 %}
+{% assign total_compare_price = 0 %}
+
+{% for handle in bundle_handles %}
+  {% assign current_product = all_products[handle] %}
+  {% if current_product != empty %}
+    {% assign variant = current_product.first_available_variant %}
+    {% assign total_compare_price = total_compare_price | plus: variant.compare_at_price %}
+  {% endif %}
+{% endfor %}
+
+<style>
+  /* ============================================
+     DYSTOPIAN FICTION BUNDLE — Bold Crimson Dark
+     ============================================ */
+  .df-landing-page {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #f1f5f9;
+    line-height: 1.6;
+    background-color: #09090b; /* Pure black */
+    padding-bottom: 100px;
+  }
+  
+  .df-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  
+  .df-section { padding: 4rem 0; }
+
+  h1, h2, h3 { line-height: 1.2; font-weight: 900; color: #fafafa; }
+  h2 { font-size: 2.25rem; margin-bottom: 2rem; text-align: center; }
+  h3 { font-size: 1.5rem; margin-bottom: 1rem; }
+  p { font-size: 1.125rem; color: #a1a1aa; margin-bottom: 1.5rem; }
+
+  /* ---- Hero ---- */
+  .df-hero {
+    text-align: center;
+    padding: 5rem 1rem 4rem;
+    background: radial-gradient(ellipse at top, #3f0d0d 0%, #09090b 70%);
+    border-bottom: 1px solid #3f0d0d;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .df-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(220, 38, 38, 0.03) 2px,
+      rgba(220, 38, 38, 0.03) 4px
+    );
+    pointer-events: none;
+  }
+
+  .df-eyebrow {
+    display: inline-block;
+    background: #7f1d1d;
+    color: #fca5a5;
+    padding: 0.375rem 1.25rem;
+    border-radius: 999px;
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+  }
+  
+  .df-hero-title {
+    font-size: 3.75rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.03em;
+    color: #fafafa;
+    position: relative;
+    z-index: 1;
+  }
+
+  .df-hero-title span {
+    color: #ef4444; /* Crimson accent */
+  }
+  
+  .df-hero-subtitle {
+    font-size: 1.375rem;
+    max-width: 750px;
+    margin: 0 auto 3.5rem;
+    color: #a1a1aa;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .df-books-display {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .df-book-wrapper {
+    width: 140px;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    filter: drop-shadow(0 20px 30px rgba(220,38,38,0.2));
+  }
+  
+  .df-book-wrapper:hover {
+    transform: translateY(-20px) scale(1.06) rotate(-1deg);
+    filter: drop-shadow(0 30px 40px rgba(220,38,38,0.35));
+  }
+  
+  .df-book-cover {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: -10px 15px 25px rgba(0,0,0,0.8), inset 2px 0 4px rgba(255,255,255,0.15);
+  }
+
+  /* ---- CTA Button ---- */
+  .df-btn-container { text-align: center; margin: 2rem 0; }
+
+  .df-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #dc2626, #991b1b);
+    color: white;
+    font-size: 1.375rem;
+    font-weight: 800;
+    padding: 1.25rem 3rem;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 10px 30px -5px rgba(220, 38, 38, 0.5);
+    letter-spacing: 0.01em;
+  }
+  
+  .df-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 40px -10px rgba(220, 38, 38, 0.7);
+    color: white;
+    background: linear-gradient(135deg, #ef4444, #b91c1c);
+  }
+
+  .df-btn-subtext {
+    display: block;
+    font-size: 0.875rem;
+    color: #52525b;
+    margin-top: 1rem;
+    font-weight: 600;
+  }
+
+  /* ---- Thesis ---- */
+  .df-thesis {
+    background: #18181b;
+    border-radius: 24px;
+    padding: 4rem 3rem;
+    margin-top: -3rem;
+    position: relative;
+    z-index: 20;
+    border: 1px solid #3f3f46;
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,0.8);
+  }
+
+  .df-thesis p { font-size: 1.2rem; color: #d4d4d8; }
+  .df-thesis strong { color: #fafafa; }
+
+  /* ---- Book Cards ---- */
+  .df-breakdown-card {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 3rem;
+    background: #18181b;
+    padding: 3rem;
+    border-radius: 20px;
+    margin-bottom: 1.5rem;
+    align-items: center;
+    border: 1px solid #27272a;
+    transition: all 0.3s ease;
+  }
+
+  .df-breakdown-card:hover {
+    transform: translateY(-4px);
+    border-color: #3f0d0d;
+    box-shadow: 0 20px 40px -10px rgba(220, 38, 38, 0.15);
+  }
+
+  .df-breakdown-img {
+    width: 100%;
+    max-width: 180px;
+    display: block;
+    border-radius: 5px;
+    box-shadow: -10px 10px 20px rgba(0,0,0,0.6);
+    margin: 0 auto;
+  }
+
+  .df-book-tag {
+    display: inline-block;
+    padding: 0.25rem 1rem;
+    background: #3f0d0d;
+    color: #fca5a5;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .df-checklist { list-style: none; padding: 0; margin: 1.5rem 0 0; }
+  .df-checklist li {
+    position: relative;
+    padding-left: 1.75rem;
+    margin-bottom: 0.625rem;
+    font-size: 1.05rem;
+    color: #a1a1aa;
+  }
+  .df-checklist li::before {
+    content: "›";
+    position: absolute;
+    left: 0;
+    color: #ef4444;
+    font-weight: 900;
+    font-size: 1.25rem;
+    line-height: 1.1;
+  }
+
+  /* ---- Social Proof ---- */
+  .df-reviews {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .df-review-card {
+    background: #18181b;
+    padding: 2rem;
+    border-radius: 16px;
+    border: 1px solid #27272a;
+  }
+  .df-stars { color: #ef4444; font-size: 1.25rem; margin-bottom: 0.75rem; }
+  .df-review-text { font-style: italic; font-size: 1.05rem; margin-bottom: 1.25rem; color: #d4d4d8; line-height: 1.65; }
+  .df-review-author { font-weight: 700; color: #fafafa; font-size: 0.9rem; }
+
+  /* ---- Pricing ---- */
+  .df-pricing-hero {
+    background: linear-gradient(135deg, #18181b, #09090b);
+    border: 1px solid #3f0d0d;
+    border-radius: 24px;
+    padding: 4rem 2rem;
+    text-align: center;
+    margin: 4rem 0;
+    box-shadow: 0 0 60px rgba(220,38,38,0.1);
+  }
+
+  .df-pricing-hero h2 { color: white; }
+  .df-pricing-hero p { color: #71717a; }
+  .df-price-block { margin: 2rem 0; }
+  .df-price-current { font-size: 4.5rem; font-weight: 900; color: white; line-height: 1; }
+  .df-price-original { font-size: 1.375rem; color: #52525b; text-decoration: line-through; margin-left: 0.75rem; }
+  
+  .df-savings-badge {
+    display: inline-flex;
+    align-items: center;
+    background: #7f1d1d;
+    color: #fca5a5;
+    padding: 0.5rem 1.5rem;
+    border-radius: 999px;
+    font-size: 1rem;
+    font-weight: 800;
+    margin-top: 1.5rem;
+    border: 1px solid #991b1b;
+  }
+
+  /* ---- Trust Icons ---- */
+  .df-trust-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+  .df-trust-icon {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: #52525b;
+    font-weight: 600;
+    font-size: 0.85rem;
+  }
+
+  /* ---- Sticky Bar ---- */
+  .df-sticky-form { margin: 0; }
+  .df-sticky-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: #18181b;
+    padding: 0.875rem 1rem;
+    box-shadow: 0 -8px 30px rgba(220,38,38,0.15);
+    z-index: 50;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    border-top: 1px solid #3f0d0d;
+  }
+  .df-sticky-bar.visible { transform: translateY(0); }
+  .df-sticky-title { font-weight: 800; font-size: 1rem; display: none; color: #fafafa; }
+  .df-sticky-price { font-weight: 900; font-size: 1.5rem; color: #ef4444; }
+
+  @media (min-width: 1024px) { .df-sticky-title { display: block; } }
+
+  @media (max-width: 768px) {
+    .df-hero-title { font-size: 2.5rem; }
+    .df-hero-subtitle { font-size: 1.125rem; }
+    .df-thesis { padding: 2rem 1.5rem; margin-top: -2rem; }
+    .df-breakdown-card { grid-template-columns: 1fr; gap: 1.5rem; text-align: center; padding: 2rem 1.5rem; }
+    .df-checklist li { text-align: left; }
+    .df-books-display { gap: 0.5rem; }
+    .df-book-wrapper { width: 100px; }
+  }
+</style>
+
+<div class="df-landing-page">
+  
+  <!-- HERO -->
+  <header class="df-hero">
+    <div class="df-container">
+      <div class="df-eyebrow">The Essential Reading List</div>
+      <h1 class="df-hero-title">Stories That <span>Changed</span> The World</h1>
+      <p class="df-hero-subtitle">5 unflinching novels that will challenge how you think, feel, and see society — forever.</p>
+      
+      <div class="df-books-display">
+        {% for handle in bundle_handles %}
+          {% assign current_product = all_products[handle] %}
+          {% if current_product != empty %}
+            <div class="df-book-wrapper">
+              <img src="{{ current_product.featured_image | img_url: '400x' }}" alt="{{ current_product.title }}" class="df-book-cover">
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+      
+      <div class="df-btn-container">
+        <a href="#checkout-section" class="df-btn" style="display:inline-block; max-width:420px; padding:1.25rem 2.5rem;">
+          Claim The Bundle →
+        </a>
+        <span class="df-btn-subtext">Save over 30% instantly vs buying individually.</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- THE THESIS -->
+  <div class="df-container">
+    <div class="df-thesis">
+      <h2>Why These 5 Novels?</h2>
+      <p>Most people read for entertainment. A rare few read to <strong>understand the world they actually live in.</strong></p>
+      <p>The greatest dystopian and literary fiction doesn't just tell a story — it holds a mirror up to society, politics, grief, and the messy, complicated truth of being human. These 5 novels were chosen because each one is a milestone: a before-and-after moment in how you understand power, love, resistance, and mortality. They will stay with you for years.</p>
+    </div>
+  </div>
+
+  <!-- BOOK BREAKDOWNS -->
+  <section class="df-section">
+    <div class="df-container">
+      <h2>What's Inside The Collection</h2>
+      
+      <!-- Book 1: The Handmaid's Tale -->
+      {% assign p = all_products['the-handmaid-s-tale'] %}
+      {% if p != empty %}
+      <div class="df-breakdown-card">
+        <img src="{{ p.featured_image | img_url: '400x' }}" alt="{{ p.title }}" class="df-breakdown-img">
+        <div>
+          <span class="df-book-tag">Feminist Dystopia</span>
+          <h3>The Handmaid's Tale</h3>
+          <p>Margaret Atwood's landmark masterpiece: a totalitarian theocracy where women are reduced to their biological function — and one woman's quiet, ferocious resistance.</p>
+          <ul class="df-checklist">
+            <li>The ultimate novel on power, control, and bodily autonomy.</li>
+            <li>Atwood's prose is both measured and devastating.</li>
+            <li>More urgently relevant today than when it was written.</li>
+          </ul>
+        </div>
+      </div>
+      {% endif %}
+
+      <!-- Book 2: Fahrenheit 451 -->
+      {% assign p = all_products['fahrenheit-451'] %}
+      {% if p != empty %}
+      <div class="df-breakdown-card">
+        <img src="{{ p.featured_image | img_url: '400x' }}" alt="{{ p.title }}" class="df-breakdown-img">
+        <div>
+          <span class="df-book-tag">Anti-Censorship Classic</span>
+          <h3>Fahrenheit 451</h3>
+          <p>Ray Bradbury's searing vision of a future where books are burned and critical thought is illegal — and one fireman who begins to question everything.</p>
+          <ul class="df-checklist">
+            <li>A visceral argument for why literature itself matters.</li>
+            <li>Short, explosive, and impossible to put down.</li>
+            <li>Essential reading in an age of information overload.</li>
+          </ul>
+        </div>
+      </div>
+      {% endif %}
+
+      <!-- Book 3: Never Let Me Go -->
+      {% assign p = all_products['never-let-me-go-vintage-international'] %}
+      {% if p != empty %}
+      <div class="df-breakdown-card">
+        <img src="{{ p.featured_image | img_url: '400x' }}" alt="{{ p.title }}" class="df-breakdown-img">
+        <div>
+          <span class="df-book-tag">Quiet & Devastating</span>
+          <h3>Never Let Me Go</h3>
+          <p>Kazuo Ishiguro (Nobel Laureate) delivers the most quietly devastating novel of the 21st century — a love story, a tragedy, and a meditation on mortality.</p>
+          <ul class="df-checklist">
+            <li>Ishiguro's restrained prose makes every line unbearably poignant.</li>
+            <li>A profound meditation on memory, fate, and what we owe each other.</li>
+            <li>Ranked among the greatest English-language novels ever written.</li>
+          </ul>
+        </div>
+      </div>
+      {% endif %}
+
+      <!-- Book 4: A Thousand Splendid Suns -->
+      {% assign p = all_products['a-thousand-splendid-suns'] %}
+      {% if p != empty %}
+      <div class="df-breakdown-card">
+        <img src="{{ p.featured_image | img_url: '400x' }}" alt="{{ p.title }}" class="df-breakdown-img">
+        <div>
+          <span class="df-book-tag">War & Resilience</span>
+          <h3>A Thousand Splendid Suns</h3>
+          <p>Khaled Hosseini weaves two women's lives across three decades of Afghan history — a story of suffering, unlikely friendship, and extraordinary courage.</p>
+          <ul class="df-checklist">
+            <li>As powerful and heartbreaking as The Kite Runner, but even more epic.</li>
+            <li>An unforgettable portrait of resilience under oppression.</li>
+            <li>The novel that will make you see the world differently.</li>
+          </ul>
+        </div>
+      </div>
+      {% endif %}
+
+      <!-- Book 5: The Plague -->
+      {% assign p = all_products['the-plague-a-new-translation-by-laura-marris'] %}
+      {% if p != empty %}
+      <div class="df-breakdown-card">
+        <img src="{{ p.featured_image | img_url: '400x' }}" alt="{{ p.title }}" class="df-breakdown-img">
+        <div>
+          <span class="df-book-tag">Existential Masterpiece</span>
+          <h3>The Plague</h3>
+          <p>Albert Camus's philosophical masterwork: a city sealed off by epidemic forces its citizens to confront solidarity, absurdity, and what it means to be human under pressure.</p>
+          <ul class="df-checklist">
+            <li>Camus at his most accessible and most profound.</li>
+            <li>Post-pandemic, this novel reads like a prophecy.</li>
+            <li>This brilliant new translation by Laura Marris breathes fresh life into the text.</li>
+          </ul>
+        </div>
+      </div>
+      {% endif %}
+
+    </div>
+  </section>
+
+  <!-- SOCIAL PROOF -->
+  <section class="df-section" style="background: #09090b; border-top: 1px solid #18181b;">
+    <div class="df-container">
+      <h2>What Readers Are Saying</h2>
+      <div class="df-reviews">
+        <div class="df-review-card">
+          <div class="df-stars">★★★★★</div>
+          <p class="df-review-text">"I've read hundreds of novels. The Handmaid's Tale and Never Let Me Go are the only two that genuinely changed how I see the world. This bundle is essential."</p>
+          <p class="df-review-author">— Rachel O., English Teacher</p>
+        </div>
+        <div class="df-review-card">
+          <div class="df-stars">★★★★★</div>
+          <p class="df-review-text">"A Thousand Splendid Suns broke me in the best way possible. Finished it in two days. This collection belongs in every home library."</p>
+          <p class="df-review-author">— James P., Avid Reader</p>
+        </div>
+        <div class="df-review-card">
+          <div class="df-stars">★★★★★</div>
+          <p class="df-review-text">"Fahrenheit 451 and The Plague both hit differently after the last few years. These are the five novels I'd save in a fire. Ten out of ten."</p>
+          <p class="df-review-author">— Sara K., Bookseller</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHECKOUT -->
+  <section class="df-section" id="checkout-section">
+    <div class="df-container">
+      <div class="df-pricing-hero">
+        <h2>Your Collection Awaits</h2>
+        <p>All 5 essential novels — one unforgettable bundle.</p>
+        
+        <div class="df-price-block">
+          <span class="df-price-current">{{ bundle_price | money }}</span>
+          {% if total_compare_price > bundle_price %}
+            <span class="df-price-original">{{ total_compare_price | money }}</span>
+            <br/>
+            <div class="df-savings-badge">
+              You Save {{ total_compare_price | minus: bundle_price | money }} By Bundling Today
+            </div>
+          {% endif %}
+        </div>
+        
+        <div class="df-btn-container" style="max-width: 500px; margin: 2rem auto 0;">
+          {% form 'cart', cart %}
+            {% for handle in bundle_handles %}
+              {% assign current_product = all_products[handle] %}
+              {% if current_product != empty %}
+                {% assign variant = current_product.first_available_variant %}
+                <input type="hidden" name="updates[{{ variant.id }}]" value="1" />
+              {% endif %}
+            {% endfor %}
+            <input type="hidden" name="checkout" value="Checkout" />
+            <button type="submit" class="df-btn" style="width:100%; max-width:480px;">
+              Proceed to Secure Checkout
+            </button>
+          {% endform %}
+        </div>
+        
+        <p style="color: #3f3f46; font-size: 0.875rem; margin-top: 1.5rem; margin-bottom: 0;">
+          30-Day Money-Back Guarantee. Encrypted Checkout.
+        </p>
+
+        <div class="df-trust-icons">
+          <div class="df-trust-icon">
+            <svg style="width:1.125rem;height:1.125rem;color:#ef4444;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+            Encrypted Checkout
+          </div>
+          <div class="df-trust-icon">
+            <svg style="width:1.125rem;height:1.125rem;color:#ef4444;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+            Instant Processing
+          </div>
+          <div class="df-trust-icon">
+            <svg style="width:1.125rem;height:1.125rem;color:#ef4444;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+            30-Day Guarantee
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STICKY BAR -->
+  <div class="df-sticky-bar" id="df-sticky-bar">
+    <span class="df-sticky-title">Stories That Changed The World</span>
+    <span class="df-sticky-price">{{ bundle_price | money }}</span>
+    {% form 'cart', cart, class: 'df-sticky-form' %}
+      {% for handle in bundle_handles %}
+        {% assign current_product = all_products[handle] %}
+        {% if current_product != empty %}
+          {% assign variant = current_product.first_available_variant %}
+          <input type="hidden" name="updates[{{ variant.id }}]" value="1" />
+        {% endif %}
+      {% endfor %}
+      <input type="hidden" name="checkout" value="Checkout" />
+      <button type="submit" class="df-btn" style="width:auto; padding:0.75rem 1.75rem; font-size:1rem;">
+        Buy Now
+      </button>
+    {% endform %}
+  </div>
+</div>
+
+<script>
+  (function() {
+    const stickyBar = document.getElementById('df-sticky-bar');
+    const checkoutSection = document.getElementById('checkout-section');
+
+    // Smooth scroll hero CTA
+    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+      anchor.addEventListener('click', function(e) {
+        var target = document.querySelector(anchor.getAttribute('href'));
+        if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+      });
+    });
+
+    // Show/hide sticky bar
+    window.addEventListener('scroll', function() {
+      if (stickyBar && checkoutSection) {
+        var checkoutTop = checkoutSection.getBoundingClientRect().top;
+        var scrolled = window.scrollY;
+        if (scrolled > 500 && checkoutTop > window.innerHeight) {
+          stickyBar.classList.add('visible');
+        } else {
+          stickyBar.classList.remove('visible');
+        }
+      }
+    });
+  })();
+</script>
