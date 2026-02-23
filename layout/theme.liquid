@@ -29,6 +29,20 @@
         background-color: #E3F0E8 !important;
         background: #E3F0E8 !important;
       }
+      
+      /* Reset for Bundle Landing Pages - Removes white space gaps */
+      body[class*="template-suffix-"] .site-main {
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      body[class*="template-suffix-"] .page {
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      /* Ensure sections within bundles don't have stray bottom margins revealing white body */
+      body[class*="template-suffix-"] .site-footer {
+        margin-top: 0 !important;
+      }
     </style>
     {% render 'facebook-pixel-fix' %}
   </head>
