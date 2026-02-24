@@ -1,0 +1,272 @@
+{% comment %}
+  =============================================================================
+  HOMEPAGE BUNDLE GALLERY — Premium "Free Style" Grid
+  Showcases all 11 Psychoreads collections with unique aesthetics.
+  =============================================================================
+{% endcomment %}
+
+<style>
+  :root {
+    --bg-main: #ffffff;
+    --text-dark: #0f172a;
+    --text-muted: #64748b;
+    --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --card-shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+
+  .gallery-wrapper {
+    background-color: var(--bg-main);
+    padding: 60px 0 120px;
+    font-family: 'Inter', -apple-system, sans-serif;
+  }
+
+  .gallery-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .gallery-intro {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 80px;
+  }
+
+  .gallery-intro h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 900;
+    color: var(--text-dark);
+    line-height: 1;
+    margin-bottom: 24px;
+    letter-spacing: -0.04em;
+  }
+
+  .gallery-intro p {
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* Bento Grid */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 320px;
+    gap: 24px;
+  }
+
+  .gallery-card {
+    position: relative;
+    border-radius: 32px;
+    overflow: hidden;
+    text-decoration: none;
+    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 40px;
+    background-color: #f1f5f9;
+  }
+
+  .gallery-card:hover {
+    transform: translateY(-8px) scale(0.98);
+    box-shadow: var(--card-shadow-hover);
+  }
+
+  .gallery-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0) 70%);
+    z-index: 1;
+    transition: opacity 0.5s ease;
+  }
+
+  .gallery-card:hover::after {
+    opacity: 0.8;
+  }
+
+  .card-content {
+    position: relative;
+    z-index: 2;
+    transition: transform 0.5s ease;
+  }
+
+  .gallery-card:hover .card-content {
+    transform: translateY(-10px);
+  }
+
+  .card-tag {
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .card-title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 12px;
+    line-height: 1.1;
+  }
+
+  .card-desc {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    max-width: 90%;
+    margin: 0;
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    transition: all 0.5s ease;
+  }
+
+  .gallery-card:hover .card-desc {
+    opacity: 1;
+    height: auto;
+    margin-top: 8px;
+  }
+
+  /* Specific Card Variants for "Free Style" */
+  .card-large { grid-column: span 2; grid-row: span 2; }
+  .card-wide { grid-column: span 2; }
+  .card-tall { grid-row: span 2; }
+
+  /* Color Signatures */
+  .bg-finance { background: linear-gradient(135deg, #10b981, #065f46), url('https://www.transparenttextures.com/patterns/carbon-fibre.png'); }
+  .bg-mastery { background: linear-gradient(135deg, #3b82f6, #1e3a8a); }
+  .bg-classic { background: linear-gradient(135deg, #f59e0b, #92400e); }
+  .bg-clinical { background: linear-gradient(135deg, #0d9488, #134e4a); }
+  .bg-trauma { background: linear-gradient(135deg, #ef4444, #7f1d1d); }
+  .bg-dystopia { background: linear-gradient(135deg, #4b5563, #111827); }
+  .bg-timeless { background: linear-gradient(135deg, #8b5cf6, #4c1d95); }
+  .bg-mystery { background: linear-gradient(135deg, #ec4899, #831843); }
+  .bg-cultural { background: linear-gradient(135deg, #6366f1, #312e81); }
+  .bg-final { background: linear-gradient(135deg, #14b8a6, #115e59); }
+  .bg-clinical-ex { background: linear-gradient(135deg, #1e3a8a, #0f172a); }
+
+  @media (max-width: 1024px) {
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .card-large, .card-wide, .card-tall { grid-column: span 1; grid-row: span 1; }
+    .gallery-card { height: 320px; }
+  }
+
+  @media (max-width: 640px) {
+    .gallery-grid { grid-template-columns: 1fr; }
+    .gallery-intro h1 { font-size: 2.5rem; }
+  }
+</style>
+
+<div class="gallery-wrapper">
+  <div class="gallery-container">
+    <header class="gallery-intro">
+      <h1>The Master Collections</h1>
+      <p>Curated libraries of the world’s most impactful knowledge. Build your foundation across 11 disciplines, designed for the obsessive reader.</p>
+    </header>
+
+    <div class="gallery-grid">
+      <!-- 1. Timeless Minds (Large) -->
+      <a href="/pages/timeless-minds" class="gallery-card card-large bg-timeless">
+        <div class="card-content">
+          <span class="card-tag">Intellectual Breadth</span>
+          <h2 class="card-title">Timeless Minds</h2>
+          <p class="card-desc">3,000 years of landmark philosophy, fiction, and cognitive science in 5 volumes.</p>
+        </div>
+      </a>
+
+      <!-- 2. Making Money -->
+      <a href="/pages/making-money" class="gallery-card bg-finance">
+        <div class="card-content">
+          <span class="card-tag">Wealth Creation</span>
+          <h2 class="card-title">Making Money</h2>
+          <p class="card-desc">The psychology and systems of true financial independence.</p>
+        </div>
+      </a>
+
+      <!-- 3. Clinical Excellence (Tall) -->
+      <a href="/pages/clinical-excellence" class="gallery-card card-tall bg-clinical-ex">
+        <div class="card-content">
+          <span class="card-tag">Advanced Professional</span>
+          <h2 class="card-title">Clinical Excellence</h2>
+          <p class="card-desc">Advanced pharmacology, medical AI, and standardized evidence-based care.</p>
+        </div>
+      </a>
+
+      <!-- 4. Mystery & Intrigue -->
+      <a href="/pages/mystery-intrigue" class="gallery-card bg-mystery">
+        <div class="card-content">
+          <span class="card-tag">Suspense</span>
+          <h2 class="card-title">Mystery & Intrigue</h2>
+          <p class="card-desc">Masterful psychological thrillers for the obsessive detective.</p>
+        </div>
+      </a>
+
+      <!-- 5. Advanced Trauma (Wide) -->
+      <a href="/pages/advanced-trauma" class="gallery-card card-wide bg-trauma">
+        <div class="card-content">
+          <span class="card-tag">Clinical Depth</span>
+          <h2 class="card-title">Advanced Trauma</h2>
+          <p class="card-desc">Comprehensive resources for repairing high-complexity trauma and attachment.</p>
+        </div>
+      </a>
+
+      <!-- 6. Mental Mastery -->
+      <a href="/pages/self-mastery" class="gallery-card bg-mastery">
+        <div class="card-content">
+          <span class="card-tag">Cognitive Control</span>
+          <h2 class="card-title">Mental Mastery</h2>
+          <p class="card-desc">Emotional intelligence and internal discipline frameworks.</p>
+        </div>
+      </a>
+
+      <!-- 7. Cultural Psychology -->
+      <a href="/pages/cultural-psychology" class="gallery-card bg-cultural">
+        <div class="card-content">
+          <span class="card-tag">Social Justice</span>
+          <h2 class="card-title">Cultural Psychology</h2>
+          <p class="card-desc">Navigating inclusivity, bias, and community mental health.</p>
+        </div>
+      </a>
+
+      <!-- 8. The Final Chapter (Wide) -->
+      <a href="/pages/final-chapter" class="gallery-card card-wide bg-final">
+        <div class="card-content">
+          <span class="card-tag">Nobel Recognition</span>
+          <h2 class="card-title">The Final Chapter</h2>
+          <p class="card-desc">The world's most hidden gems and literary giants in one collection.</p>
+        </div>
+      </a>
+
+      <!-- 9. Classic Literature -->
+      <a href="/pages/classic-literature" class="gallery-card bg-classic">
+        <div class="card-content">
+          <span class="card-tag">Literary Roots</span>
+          <h2 class="card-title">Classic Literature</h2>
+          <p class="card-desc">The foundational epics and novels that built the Western canon.</p>
+        </div>
+      </a>
+
+      <!-- 10. Dystopian Fiction -->
+      <a href="/pages/dystopian-fiction" class="gallery-card bg-dystopia">
+        <div class="card-content">
+          <span class="card-tag">Speculative Future</span>
+          <h2 class="card-title">Dystopian Fiction</h2>
+          <p class="card-desc">Dark futures and social commentary from the most radical minds.</p>
+        </div>
+      </a>
+
+      <!-- 11. Clinical Practitioner -->
+      <a href="/pages/clinical-practitioner" class="gallery-card bg-clinical">
+        <div class="card-content">
+          <span class="card-tag">Medical Practice</span>
+          <h2 class="card-title">Clinical Practitioner</h2>
+          <p class="card-desc">The primary toolbox for modern nursing and surgery.</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
