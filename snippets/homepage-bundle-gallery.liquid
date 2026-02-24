@@ -1,7 +1,7 @@
 {% comment %}
   =============================================================================
   HOMEPAGE BUNDLE GALLERY — Premium "Book Stack" Edition
-  Ultra-Stable CDN Version (Bypasses Limit, 100% Guaranteed Rendering)
+  Clean & Balanced (Standardized Sizes + Enhanced Hover)
   =============================================================================
 {% endcomment %}
 
@@ -46,11 +46,11 @@
     line-height: 1.6;
   }
 
-  /* Bento Grid */
+  /* Standardized Clean Grid */
   .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-auto-rows: 320px;
+    grid-template-columns: repeat(3, 1fr); /* 3 Columns for bigger cards */
+    grid-auto-rows: 400px; /* Taller uniform cards */
     gap: 32px;
   }
 
@@ -69,8 +69,8 @@
   }
 
   .gallery-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 30px 60px -15px rgba(15, 23, 42, 0.3);
+    transform: translateY(-8px);
+    box-shadow: 0 40px 80px -20px rgba(15, 23, 42, 0.35);
   }
 
   /* Stack Backgrounds */
@@ -89,50 +89,49 @@
   .gallery-card::after {
     content: '';
     position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 50%);
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 60%);
     z-index: 2;
   }
 
-  .card-content { position: relative; z-index: 10; }
+  .card-content { position: relative; z-index: 10; transition: transform 0.6s ease; }
+  .gallery-card:hover .card-content { transform: translateY(-10px); }
+
   .card-tag {
     font-size: 0.75rem; font-weight: 800; text-transform: uppercase;
     letter-spacing: 0.15em; color: rgba(255, 255, 255, 0.7); margin-bottom: 8px; display: block;
   }
-  .card-title { font-size: 1.85rem; font-weight: 900; color: white; margin-bottom: 4px; line-height: 1.1; }
+  .card-title { font-size: 2rem; font-weight: 900; color: white; margin-bottom: 4px; line-height: 1.1; }
 
-  /* Book Stack Magic */
+  /* Book Stack Magic - Enhanced for visibility */
   .book-stack {
-    position: absolute; right: -40px; top: 50%; transform: translateY(-50%);
-    width: 260px; height: 320px; z-index: 3; pointer-events: none;
+    position: absolute; right: 0; left: 0; top: 35%; 
+    height: 220px; z-index: 3; pointer-events: none;
+    display: flex; justify-content: center; align-items: center;
   }
   .book-item-layer {
-    position: absolute; width: 140px; height: 200px; border-radius: 6px;
-    box-shadow: -10px 10px 25px rgba(0,0,0,0.5); background-size: cover;
-    background-position: center; transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+    position: absolute; width: 130px; height: 190px; border-radius: 6px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4); background-size: cover;
+    background-position: center; transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
     border: 1px solid rgba(255,255,255,0.1);
   }
-  .layer-1 { z-index: 1; transform: rotate(-8deg) translateX(-60px); opacity: 0.9; }
-  .layer-2 { z-index: 2; transform: rotate(-2deg) translateX(-30px); opacity: 0.95; }
-  .layer-3 { z-index: 3; transform: rotate(4deg) translateX(0); }
 
-  .gallery-card:hover .layer-1 { transform: rotate(-15deg) translateX(-100px) translateY(-20px); opacity: 1; }
-  .gallery-card:hover .layer-2 { transform: rotate(-5deg) translateX(-40px) translateY(-10px); opacity: 1; }
-  .gallery-card:hover .layer-3 { transform: rotate(10deg) translateX(20px) translateY(10px) scale(1.05); }
+  /* Default Stacking */
+  .layer-1 { z-index: 1; transform: rotate(-6deg) translateX(-30px); opacity: 0.85; }
+  .layer-2 { z-index: 2; transform: rotate(-2deg) translateX(0); opacity: 0.95; }
+  .layer-3 { z-index: 3; transform: rotate(4deg) translateX(30px); }
 
-  .card-large { grid-column: span 2; grid-row: span 2; }
-  .card-wide  { grid-column: span 2; }
-  .card-tall  { grid-row: span 2; }
+  /* Enhanced Fan-Out on Hover - Making all books VISIBLE */
+  .gallery-card:hover .layer-1 { transform: rotate(-18deg) translateX(-110px) translateY(-15px); opacity: 1; }
+  .gallery-card:hover .layer-2 { transform: rotate(0deg) translateX(0) translateY(-25px) scale(1.05); opacity: 1; }
+  .gallery-card:hover .layer-3 { transform: rotate(18deg) translateX(110px) translateY(-15px); opacity: 1; }
 
-  @media (max-width: 1100px) {
+  @media (max-width: 1200px) {
     .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-    .card-large, .card-wide, .card-tall { grid-column: span 1; grid-row: span 1; }
-    .book-stack { right: -60px; transform: translateY(-50%) scale(0.8); }
   }
-  @media (max-width: 640px) {
-    .gallery-grid { grid-template-columns: 1fr; }
+  @media (max-width: 768px) {
+    .gallery-grid { grid-template-columns: 1fr; grid-auto-rows: 350px; }
     .gallery-intro h1 { font-size: 2.5rem; }
-    .book-stack { display: none; }
-    .gallery-card { border-radius: 24px; padding: 30px; }
+    .book-stack { top: 30%; scale: 0.9; }
   }
 </style>
 
@@ -146,7 +145,7 @@
     <div class="gallery-grid">
       
       <!-- 1. TIMELESS MINDS -->
-      <a href="/pages/timeless-minds" class="gallery-card card-large bg-timeless">
+      <a href="/pages/timeless-minds" class="gallery-card bg-timeless">
         <div class="card-content"><span class="card-tag">Elite Wisdom</span><h2 class="card-title">Timeless Minds</h2></div>
         <div class="book-stack">
           <div class="book-item-layer layer-1" style="background-image: url('https://cdn.shopify.com/s/files/1/0741/5070/7372/files/81sYQ3OYreL._SL1500.jpg?v=1771266769');"></div>
@@ -165,8 +164,8 @@
         </div>
       </a>
 
-      <!-- 3. CLINICAL EXCELLENCE (Tall) -->
-      <a href="/pages/clinical-excellence" class="gallery-card card-tall bg-clinical-ex">
+      <!-- 3. CLINICAL EXCELLENCE -->
+      <a href="/pages/clinical-excellence" class="gallery-card bg-clinical-ex">
         <div class="card-content"><span class="card-tag">Scientific Innovation</span><h2 class="card-title">Clinical Excellence</h2></div>
         <div class="book-stack">
           <div class="book-item-layer layer-1" style="background-image: url('https://cdn.shopify.com/s/files/1/0741/5070/7372/files/61Ssa_ruAeL._SY522.jpg?v=1771939449');"></div>
@@ -185,8 +184,8 @@
         </div>
       </a>
 
-      <!-- 5. ADVANCED TRAUMA (Wide) -->
-      <a href="/pages/advanced-trauma" class="gallery-card card-wide bg-trauma">
+      <!-- 5. ADVANCED TRAUMA -->
+      <a href="/pages/advanced-trauma" class="gallery-card bg-trauma">
         <div class="card-content"><span class="card-tag">Clinical Depth</span><h2 class="card-title">Advanced Trauma</h2></div>
         <div class="book-stack">
           <div class="book-item-layer layer-1" style="background-image: url('https://cdn.shopify.com/s/files/1/0741/5070/7372/files/71-Vlg8l0vL._SY522.jpg?v=1771932868');"></div>
@@ -215,8 +214,8 @@
         </div>
       </a>
 
-      <!-- 8. THE FINAL CHAPTER (Wide) -->
-      <a href="/pages/final-chapter" class="gallery-card card-wide bg-final">
+      <!-- 8. THE FINAL CHAPTER -->
+      <a href="/pages/final-chapter" class="gallery-card bg-final">
         <div class="card-content"><span class="card-tag">Hidden Gems</span><h2 class="card-title">The Final Chapter</h2></div>
         <div class="book-stack">
           <div class="book-item-layer layer-1" style="background-image: url('https://cdn.shopify.com/s/files/1/0741/5070/7372/files/81hhILYExhL._SY522.jpg?v=1771266778');"></div>
