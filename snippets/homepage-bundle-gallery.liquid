@@ -1,7 +1,7 @@
 {% comment %}
   =============================================================================
   HOMEPAGE BUNDLE GALLERY — Premium "Book Stack" Edition
-  Combines unique color signatures with a stylized 3D collage of collection covers.
+  Stable Hardcoded Version (No Duplicates, 100% Reliable)
   =============================================================================
 {% endcomment %}
 
@@ -86,7 +86,6 @@
   .bg-final      { background: linear-gradient(135deg, #0891b2, #155e75); }
   .bg-clinical-ex { background: linear-gradient(135deg, #1e3a8a, #0f172a); }
 
-  /* Overlay for text legibility */
   .gallery-card::after {
     content: '';
     position: absolute; inset: 0;
@@ -94,53 +93,24 @@
     z-index: 2;
   }
 
-  .card-content {
-    position: relative;
-    z-index: 10;
-  }
-
+  .card-content { position: relative; z-index: 10; }
   .card-tag {
-    font-size: 0.75rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: rgba(255, 255, 255, 0.7);
-    margin-bottom: 8px;
-    display: block;
+    font-size: 0.75rem; font-weight: 800; text-transform: uppercase;
+    letter-spacing: 0.15em; color: rgba(255, 255, 255, 0.7); margin-bottom: 8px; display: block;
   }
-
-  .card-title {
-    font-size: 1.85rem;
-    font-weight: 900;
-    color: white;
-    margin-bottom: 4px;
-    line-height: 1.1;
-  }
+  .card-title { font-size: 1.85rem; font-weight: 900; color: white; margin-bottom: 4px; line-height: 1.1; }
 
   /* Book Stack Magic */
   .book-stack {
-    position: absolute;
-    right: -40px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 260px;
-    height: 320px;
-    z-index: 3;
-    pointer-events: none;
+    position: absolute; right: -40px; top: 50%; transform: translateY(-50%);
+    width: 260px; height: 320px; z-index: 3; pointer-events: none;
   }
-
   .book-item-layer {
-    position: absolute;
-    width: 140px;
-    height: 200px;
-    border-radius: 6px;
-    box-shadow: -10px 10px 25px rgba(0,0,0,0.5);
-    background-size: cover;
-    background-position: center;
-    transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+    position: absolute; width: 140px; height: 200px; border-radius: 6px;
+    box-shadow: -10px 10px 25px rgba(0,0,0,0.5); background-size: cover;
+    background-position: center; transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
     border: 1px solid rgba(255,255,255,0.1);
   }
-
   .layer-1 { z-index: 1; transform: rotate(-8deg) translateX(-60px); opacity: 0.9; }
   .layer-2 { z-index: 2; transform: rotate(-2deg) translateX(-30px); opacity: 0.95; }
   .layer-3 { z-index: 3; transform: rotate(4deg) translateX(0); }
@@ -149,7 +119,6 @@
   .gallery-card:hover .layer-2 { transform: rotate(-5deg) translateX(-40px) translateY(-10px); opacity: 1; }
   .gallery-card:hover .layer-3 { transform: rotate(10deg) translateX(20px) translateY(10px) scale(1.05); }
 
-  /* Grid Layouts */
   .card-large { grid-column: span 2; grid-row: span 2; }
   .card-wide  { grid-column: span 2; }
   .card-tall  { grid-row: span 2; }
@@ -159,11 +128,10 @@
     .card-large, .card-wide, .card-tall { grid-column: span 1; grid-row: span 1; }
     .book-stack { right: -60px; transform: translateY(-50%) scale(0.8); }
   }
-
   @media (max-width: 640px) {
     .gallery-grid { grid-template-columns: 1fr; }
     .gallery-intro h1 { font-size: 2.5rem; }
-    .book-stack { display: none; } /* Hide stack on mobile to focus on text */
+    .book-stack { display: none; }
     .gallery-card { border-radius: 24px; padding: 30px; }
   }
 </style>
@@ -177,35 +145,104 @@
 
     <div class="gallery-grid">
       
-      {% comment %} Define Bundles Data - Slug|Tag|Title|BG|Size|Handles {% endcomment %}
-      {% capture bundle_data %}timeless-minds|Elite Wisdom|Timeless Minds|bg-timeless|card-large|the-fountainhead,the-picture-of-dorian-gray-the-original-1891-classic-readers-library-classics,mans-search-for-meaning[BUNDLE]making-money|Wealth Systems|Making Money|bg-finance||the-48-laws-of-power,zero-to-one,influence-the-psychology-of-persuasion-revised-edition[BUNDLE]clinical-excellence|Scientific Innovation|Clinical Excellence|bg-clinical-ex|card-tall|lehnes-pharmacotherapeutics-for-advanced-practice-nurses-and-physician-assistants,measurement-of-nursing-outcomes-2nd-edition-volume-2-client-outcomes-and-quality-of-care,machine-learning-and-ai-for-healthcare-big-data-for-improved-health-outcomes[BUNDLE]mystery-intrigue|Dark Suspense|Mystery & Intrigue|bg-mystery||rebecca,murder-on-the-orient-express-a-hercule-poirot-mystery-the-official-authorized-edition,the-plot-against-america-vintage-international[BUNDLE]advanced-trauma|Clinical Depth|Advanced Trauma|bg-trauma|card-wide|working-with-attachment-trauma-clinical-application-of-the-adult-attachment-projective-picture-system,emdr-and-attachment-focused-trauma-therapy-for-adults-reclaiming-authentic-self-and-healthy-attachments,attachment-focused-emdr-healing-relational-trauma[BUNDLE]self-mastery|Cognitive Control|Mental Mastery|bg-mastery||master-your-emotions-develop-emotional-intelligence-and-discover-the-essential-rules-of-when-and-how-to-control-your-feelings,psycho-cybernetics-updated-and-expanded-the-psycho-cybernetics-series,taking-charge-of-adult-adhd-proven-strategies-to-succeed-at-work-at-home-and-in-relationships[BUNDLE]cultural-psychology|Global Justice|Cultural Psychology|bg-cultural||gender-power-and-global-social-justice-the-healing-power-of-psychotherapy,addressing-cultural-complexities-in-counseling-and-clinical-practice-an-intersectional-approach,a-thousand-splendid-suns[BUNDLE]final-chapter|Hidden Gems|The Final Chapter|bg-final|card-wide|the-plague-a-new-translation-by-laura-marris,the-island-of-the-day-before,love-in-the-time-of-cholera-oprahs-book-club[BUNDLE]classic-literature|Western Canon|Classic Literature|bg-classic||the-iliad,war-and-peace,the-aeneid[BUNDLE]dystopian-fiction|Radical Futures|Dystopian Fiction|bg-dystopia||the-handmaid-s-tale,fahrenheit-451,never-let-me-go-vintage-international[BUNDLE]clinical-practitioner|Medical Toolbox|Clinical Practitioner|bg-clinical||play-therapy-4th-edition,the-guide-to-play-therapy-documentation-and-parent-consultation,the-cbt-flip-chart-an-evidence-based-psychoeducational-tool-for-anxiety{% endcapture %}
+      <!-- 1. TIMELESS MINDS -->
+      {% assign h = 'the-fountainhead,the-picture-of-dorian-gray-the-original-1891-classic-readers-library-classics,mans-search-for-meaning' | split: ',' %}
+      <a href="/pages/timeless-minds" class="gallery-card card-large bg-timeless">
+        <div class="card-content"><span class="card-tag">Elite Wisdom</span><h2 class="card-title">Timeless Minds</h2></div>
+        <div class="book-stack">
+          {% for handle in h %}{% assign p = all_products[handle] %}{% if p != empty %}<div class="book-item-layer layer-{{ forloop.index }}" style="background-image: url('{{ p.featured_image | img_url: '400x' }}');"></div>{% endif %}{% endfor %}
+        </div>
+      </a>
 
-      {% assign bundles = bundle_data | split: '[BUNDLE]' %}
-      {% for entry in bundles %}
-        {% assign items = entry | split: '|' %}
-        {% assign b_slug = items[0] | strip %}
-        {% assign b_tag = items[1] | strip %}
-        {% assign b_title = items[2] | strip %}
-        {% assign b_bg = items[3] | strip %}
-        {% assign b_size = items[4] | strip %}
-        {% assign b_handles = items[5] | strip | split: ',' %}
+      <!-- 2. MAKING MONEY -->
+      {% assign h = 'the-48-laws-of-power,zero-to-one,influence-the-psychology-of-persuasion-revised-edition' | split: ',' %}
+      <a href="/pages/making-money" class="gallery-card bg-finance">
+        <div class="card-content"><span class="card-tag">Wealth Systems</span><h2 class="card-title">Making Money</h2></div>
+        <div class="book-stack">
+          {% for handle in h %}{% assign p = all_products[handle] %}{% if p != empty %}<div class="book-item-layer layer-{{ forloop.index }}" style="background-image: url('{{ p.featured_image | img_url: '400x' }}');"></div>{% endif %}{% endfor %}
+        </div>
+      </a>
 
-        <a href="/pages/{{ b_slug }}" class="gallery-card {{ b_size }} {{ b_bg }}">
-          <div class="card-content">
-            <span class="card-tag">{{ b_tag }}</span>
-            <h2 class="card-title">{{ b_title }}</h2>
-          </div>
-          
-          <div class="book-stack">
-            {% for h in b_handles limit: 3 %}
-              {% assign book_obj = all_products[h] %}
-              {% if book_obj != empty %}
-                <div class="book-item-layer layer-{{ forloop.index }}" style="background-image: url('{{ book_obj.featured_image | img_url: '400x' }}');"></div>
-              {% endif %}
-            {% endfor %}
-          </div>
-        </a>
-      {% endfor %}
+      <!-- 3. CLINICAL EXCELLENCE (Tall) -->
+      {% assign h = 'lehnes-pharmacotherapeutics-for-advanced-practice-nurses-and-physician-assistants,measurement-of-nursing-outcomes-2nd-edition-volume-2-client-outcomes-and-quality-of-care,machine-learning-and-ai-for-healthcare-big-data-for-improved-health-outcomes' | split: ',' %}
+      <a href="/pages/clinical-excellence" class="gallery-card card-tall bg-clinical-ex">
+        <div class="card-content"><span class="card-tag">Scientific Innovation</span><h2 class="card-title">Clinical Excellence</h2></div>
+        <div class="book-stack">
+          {% for handle in h %}{% assign p = all_products[handle] %}{% if p != empty %}<div class="book-item-layer layer-{{ forloop.index }}" style="background-image: url('{{ p.featured_image | img_url: '400x' }}');"></div>{% endif %}{% endfor %}
+        </div>
+      </a>
+
+      <!-- 4. MYSTERY & INTRIGUE -->
+      {% assign h = 'rebecca,murder-on-the-orient-express-a-hercule-poirot-mystery-the-official-authorized-edition,the-plot-against-america-vintage-international' | split: ',' %}
+      <a href="/pages/mystery-intrigue" class="gallery-card bg-mystery">
+        <div class="card-content"><span class="card-tag">Dark Suspense</span><h2 class="card-title">Mystery & Intrigue</h2></div>
+        <div class="book-stack">
+          {% for handle in h %}{% assign p = all_products[handle] %}{% if p != empty %}<div class="book-item-layer layer-{{ forloop.index }}" style="background-image: url('{{ p.featured_image | img_url: '400x' }}');"></div>{% endif %}{% endfor %}
+        </div>
+      </a>
+
+      <!-- 5. ADVANCED TRAUMA (Wide) -->
+      {% assign h = 'working-with-attachment-trauma-clinical-application-of-the-adult-attachment-projective-picture-system,emdr-and-attachment-focused-trauma-therapy-for-adults-reclaiming-authentic-self-and-healthy-attachments,attachment-focused-emdr-healing-relational-trauma' | split: ',' %}
+      <a href="/pages/advanced-trauma" class="gallery-card card-wide bg-trauma">
+        <div class="card-content"><span class="card-tag">Clinical Depth</span><h2 class="card-title">Advanced Trauma</h2></div>
+        <div class="book-stack">
+          {% for handle in h %}{% assign p = all_products[handle] %}{% if p != empty %}<div class="book-item-layer layer-{{ forloop.index }}" style="background-image: url('{{ p.featured_image | img_url: '400x' }}');"></div>{% endif %}{% endfor %}
+        </div>
+      </a>
+
+      <!-- 6. MENTAL MASTERY -->
+      {% assign h = 'master-your-emotions-develop-emotional-intelligence-and-discover-the-essential-rules-of-when-and-how-to-control-your-feelings,psycho-cybernetics-updated-and-expanded-the-psycho-cybernetics-series,taking-charge-of-adult-adhd-proven-strategies-to-succeed-at-work-at-home-and-in-relationships' | split: ',' %}
+      <a href="/pages/self-mastery" class="gallery-card bg-mastery">
+        <div class="card-content"><span class="card-tag">Cognitive Control</span><h2 class="card-title">Mental Mastery</h2></div>
+        <div class="book-stack">
+          {% for handle in h %}{% assign p = all_products[handle] %}{% if p != empty %}<div class="book-item-layer layer-{{ forloop.index }}" style="background-image: url('{{ p.featured_image | img_url: '400x' }}');"></div>{% endif %}{% endfor %}
+        </div>
+      </a>
+
+      <!-- 7. CULTURAL PSYCHOLOGY -->
+      {% assign h = 'gender-power-and-global-social-justice-the-healing-power-of-psychotherapy,addressing-cultural-complexities-in-counseling-and-clinical-practice-an-intersectional-approach,a-thousand-splendid-suns' | split: ',' %}
+      <a href="/pages/cultural-psychology" class="gallery-card bg-cultural">
+        <div class="card-content"><span class="card-tag">Global Justice</span><h2 class="card-title">Cultural Psychology</h2></div>
+        <div class="book-stack">
+          {% for handle in h %}{% assign p = all_products[handle] %}{% if p != empty %}<div class="book-item-layer layer-{{ forloop.index }}" style="background-image: url('{{ p.featured_image | img_url: '400x' }}');"></div>{% endif %}{% endfor %}
+        </div>
+      </a>
+
+      <!-- 8. THE FINAL CHAPTER (Wide) -->
+      {% assign h = 'the-plague-a-new-translation-by-laura-marris,the-island-of-the-day-before,love-in-the-time-of-cholera-oprahs-book-club' | split: ',' %}
+      <a href="/pages/final-chapter" class="gallery-card card-wide bg-final">
+        <div class="card-content"><span class="card-tag">Hidden Gems</span><h2 class="card-title">The Final Chapter</h2></div>
+        <div class="book-stack">
+          {% for handle in h %}{% assign p = all_products[handle] %}{% if p != empty %}<div class="book-item-layer layer-{{ forloop.index }}" style="background-image: url('{{ p.featured_image | img_url: '400x' }}');"></div>{% endif %}{% endfor %}
+        </div>
+      </a>
+
+      <!-- 9. CLASSIC LITERATURE -->
+      {% assign h = 'the-iliad,war-and-peace,the-aeneid' | split: ',' %}
+      <a href="/pages/classic-literature" class="gallery-card bg-classic">
+        <div class="card-content"><span class="card-tag">Western Canon</span><h2 class="card-title">Classic Literature</h2></div>
+        <div class="book-stack">
+          {% for handle in h %}{% assign p = all_products[handle] %}{% if p != empty %}<div class="book-item-layer layer-{{ forloop.index }}" style="background-image: url('{{ p.featured_image | img_url: '400x' }}');"></div>{% endif %}{% endfor %}
+        </div>
+      </a>
+
+      <!-- 10. DYSTOPIAN FICTION -->
+      {% assign h = 'the-handmaid-s-tale,fahrenheit-451,never-let-me-go-vintage-international' | split: ',' %}
+      <a href="/pages/dystopian-fiction" class="gallery-card bg-dystopia">
+        <div class="card-content"><span class="card-tag">Radical Futures</span><h2 class="card-title">Dystopian Fiction</h2></div>
+        <div class="book-stack">
+          {% for handle in h %}{% assign p = all_products[handle] %}{% if p != empty %}<div class="book-item-layer layer-{{ forloop.index }}" style="background-image: url('{{ p.featured_image | img_url: '400x' }}');"></div>{% endif %}{% endfor %}
+        </div>
+      </a>
+
+      <!-- 11. CLINICAL PRACTITIONER -->
+      {% assign h = 'play-therapy-4th-edition,the-guide-to-play-therapy-documentation-and-parent-consultation,the-cbt-flip-chart-an-evidence-based-psychoeducational-tool-for-anxiety' | split: ',' %}
+      <a href="/pages/clinical-practitioner" class="gallery-card bg-clinical">
+        <div class="card-content"><span class="card-tag">Medical Toolbox</span><h2 class="card-title">Clinical Practitioner</h2></div>
+        <div class="book-stack">
+          {% for handle in h %}{% assign p = all_products[handle] %}{% if p != empty %}<div class="book-item-layer layer-{{ forloop.index }}" style="background-image: url('{{ p.featured_image | img_url: '400x' }}');"></div>{% endif %}{% endfor %}
+        </div>
+      </a>
 
     </div>
   </div>
