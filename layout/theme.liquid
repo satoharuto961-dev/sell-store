@@ -69,7 +69,7 @@
               <li><a href="/#quotes">Quotes</a></li>
             </ul>
           </nav>
-          <div class="header-auth">
+        <div class="header-auth">
             {% if customer %}
               <a class="header-auth__link header-auth__link--account" href="/account">
                 Hi, {{ customer.first_name | default: customer.email | escape }}
@@ -77,7 +77,7 @@
               <a class="header-auth__link header-auth__link--logout" href="/account/logout">Sign out</a>
             {% else %}
               <a class="header-auth__link" href="/account/login">Sign in</a>
-              <a class="header-auth__cta" href="/account/register">Join {{ shop.name | default: 'PsychoReads' | escape }}</a>
+              <a class="header-auth__cta" href="/account/register">Join</a>
             {% endif %}
         </div>
       </div>
