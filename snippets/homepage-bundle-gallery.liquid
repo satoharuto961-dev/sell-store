@@ -1,269 +1,364 @@
 {% comment %}
   =============================================================================
-  HOMEPAGE BUNDLE GALLERY — Premium "Book Stack" Edition
-  Clean & Balanced (Standardized Sizes + Enhanced Hover)
+  HOMEPAGE PRODUCT GRID — All Books with Add to Cart
   =============================================================================
 {% endcomment %}
 
 <style>
-  :root {
-    --bg-main: #ffffff;
-    --text-dark: #0f172a;
-    --text-muted: #64748b;
+  /* ── Announcement Bar ── */
+  .announce-bar {
+    background: #0f172a;
+    color: #fff;
+    padding: 10px 0;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
   }
-
-  .gallery-wrapper {
-    background-color: var(--bg-main);
-    padding: 60px 0 120px;
-    font-family: 'Inter', -apple-system, sans-serif;
-    overflow-x: hidden;
+  .announce-track {
+    display: flex;
+    gap: 80px;
+    width: max-content;
+    animation: marquee 28s linear infinite;
+    white-space: nowrap;
   }
-
-  .gallery-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 24px;
+  .announce-bar:hover .announce-track { animation-play-state: paused; }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
   }
-
-  .gallery-intro {
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto 80px;
+  .announce-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
   }
-
-  .gallery-intro h1 {
-    font-size: clamp(2.5rem, 5vw, 4rem);
+  .announce-item .tag {
+    background: #f59e0b;
+    color: #0f172a;
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-size: 0.7rem;
     font-weight: 900;
-    color: var(--text-dark);
+  }
+  .announce-dot {
+    color: #f59e0b;
+    font-size: 1.2rem;
     line-height: 1;
-    margin-bottom: 24px;
-    letter-spacing: -0.04em;
   }
 
-  .gallery-intro p {
-    font-size: 1.25rem;
-    color: var(--text-muted);
+  /* ── Page Shell ── */
+  .shop-page {
+    background: #f8fafc;
+    min-height: 100vh;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  /* ── Hero Banner ── */
+  .shop-hero {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 60%, #0f3460 100%);
+    padding: 56px 24px 48px;
+    text-align: center;
+    color: #fff;
+  }
+  .shop-hero h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    margin-bottom: 16px;
+    letter-spacing: -0.03em;
+  }
+  .shop-hero h1 span { color: #f59e0b; }
+  .shop-hero p {
+    font-size: 1.1rem;
+    color: #94a3b8;
+    max-width: 580px;
+    margin: 0 auto 32px;
     line-height: 1.6;
   }
-
-  /* Standardized Clean Grid */
-  .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 Columns for bigger cards */
-    grid-auto-rows: 400px; /* Taller uniform cards */
-    gap: 32px;
+  .hero-offers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 0;
   }
+  .hero-offer-pill {
+    background: rgba(245,158,11,0.15);
+    border: 1.5px solid #f59e0b;
+    color: #fcd34d;
+    border-radius: 999px;
+    padding: 8px 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .hero-offer-pill em { color: #fff; font-style: normal; }
 
-  /* Card Base */
-  .gallery-card {
-    position: relative;
-    border-radius: 40px;
+  /* ── Grid ── */
+  .shop-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #64748b;
+    margin-bottom: 24px;
+  }
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+  @media (max-width: 1200px) { .product-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 900px)  { .product-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 540px)  { .product-grid { grid-template-columns: 1fr; } }
+
+  /* ── Card ── */
+  .book-card {
+    background: #fff;
+    border-radius: 20px;
     overflow: hidden;
-    text-decoration: none;
-    transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+    box-shadow: 0 2px 12px rgba(15,23,42,0.07);
+    transition: transform 0.35s cubic-bezier(0.19,1,0.22,1),
+                box-shadow 0.35s cubic-bezier(0.19,1,0.22,1);
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    padding: 40px;
-    z-index: 1;
+  }
+  .book-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 48px rgba(15,23,42,0.16);
+  }
+  .book-card__img-wrap {
+    position: relative;
+    width: 100%;
+    padding-top: 140%; /* portrait ratio */
+    overflow: hidden;
+    background: #f1f5f9;
+  }
+  .book-card__img-wrap img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .book-card:hover .book-card__img-wrap img { transform: scale(1.05); }
+  .book-card__badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: #0f172a;
+    color: #f59e0b;
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 4px;
   }
 
-  .gallery-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 40px 80px -20px rgba(15, 23, 42, 0.35);
+  .book-card__body {
+    padding: 20px 20px 16px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .book-card__title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.35;
+    margin-bottom: 8px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+  }
+  .book-card__stars {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 12px;
+  }
+  .book-card__stars .stars-svg { color: #f59e0b; font-size: 0.75rem; letter-spacing: 1px; }
+  .book-card__stars .review-count { font-size: 0.73rem; color: #94a3b8; }
+  .book-card__price {
+    font-size: 1.1rem;
+    font-weight: 900;
+    color: #0f172a;
+    margin-bottom: 16px;
+    margin-top: auto;
+  }
+  .book-card__price .compare { text-decoration: line-through; color: #94a3b8; font-weight: 400; font-size: 0.85rem; margin-left: 6px; }
+
+  /* ── Add to Cart Button ── */
+  .btn-atc {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 12px 16px;
+    background: #0f172a;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    text-decoration: none;
+  }
+  .btn-atc:hover { background: #1e293b; transform: scale(1.02); }
+  .btn-atc:active { transform: scale(0.98); }
+  .btn-atc svg { width: 16px; height: 16px; flex-shrink: 0; }
+  .btn-atc.added {
+    background: #059669;
   }
 
-  /* Stack Backgrounds */
-  .bg-finance    { background: linear-gradient(135deg, #059669, #064e3b); }
-  .bg-mastery    { background: linear-gradient(135deg, #2563eb, #1e3a8a); }
-  .bg-classic    { background: linear-gradient(135deg, #d97706, #78350f); }
-  .bg-clinical   { background: linear-gradient(135deg, #0d9488, #134e4a); }
-  .bg-trauma     { background: linear-gradient(135deg, #dc2626, #7f1d1d); }
-  .bg-dystopia   { background: linear-gradient(135deg, #4b5563, #111827); }
-  .bg-timeless   { background: linear-gradient(135deg, #7c3aed, #4c1d95); }
-  .bg-mystery    { background: linear-gradient(135deg, #db2777, #831843); }
-  .bg-cultural   { background: linear-gradient(135deg, #4f46e5, #312e81); }
-  .bg-final      { background: linear-gradient(135deg, #0891b2, #155e75); }
-  .bg-clinical-ex { background: linear-gradient(135deg, #1e3a8a, #0f172a); }
-
-  .gallery-card::after {
-    content: '';
-    position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 60%);
-    z-index: 2;
-  }
-
-  .card-content { position: relative; z-index: 10; transition: transform 0.6s ease; }
-  .gallery-card:hover .card-content { transform: translateY(-10px); }
-
-  .card-tag {
-    font-size: 0.75rem; font-weight: 800; text-transform: uppercase;
-    letter-spacing: 0.15em; color: rgba(255, 255, 255, 0.7); margin-bottom: 8px; display: block;
-  }
-  .card-title { font-size: 2rem; font-weight: 900; color: white; margin-bottom: 4px; line-height: 1.1; }
-
-  /* Book Stack Magic - Enhanced for visibility */
-  .book-stack {
-    position: absolute; right: 0; left: 0; top: 10%; 
-    height: 220px; z-index: 3; pointer-events: none;
-    display: flex; justify-content: center; align-items: center;
-  }
-  .book-item-layer {
-    position: absolute; width: 130px; height: 190px; border-radius: 6px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.4); background-size: cover;
-    background-position: center; transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
-    border: 1px solid rgba(255,255,255,0.1);
-  }
-
-  /* Default Stacking */
-  .layer-1 { z-index: 1; transform: rotate(-6deg) translateX(-30px); opacity: 0.85; }
-  .layer-2 { z-index: 2; transform: rotate(-2deg) translateX(0); opacity: 0.95; }
-  .layer-3 { z-index: 3; transform: rotate(4deg) translateX(30px); }
-
-  /* Enhanced Fan-Out on Hover - Making all books VISIBLE */
-  .gallery-card:hover .layer-1 { transform: rotate(-18deg) translateX(-110px) translateY(-15px); opacity: 1; }
-  .gallery-card:hover .layer-2 { transform: rotate(0deg) translateX(0) translateY(-25px) scale(1.05); opacity: 1; }
-  .gallery-card:hover .layer-3 { transform: rotate(18deg) translateX(110px) translateY(-15px); opacity: 1; }
-
-  @media (max-width: 1200px) {
-    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-  @media (max-width: 768px) {
-    .gallery-grid { grid-template-columns: 1fr; grid-auto-rows: 350px; }
-    .gallery-intro h1 { font-size: 2.5rem; }
-    .book-stack { top: 10%; scale: 0.9; }
+  /* ── Empty state ── */
+  .no-products {
+    text-align: center;
+    padding: 80px 24px;
+    color: #64748b;
+    font-size: 1.1rem;
   }
 </style>
 
-<div class="gallery-wrapper">
-  <div class="gallery-container">
-    <header class="gallery-intro">
-      <h1>Infinite Thinking</h1>
-      <p>Curated libraries of the world’s most impactful knowledge. Build your intellectual foundation across 11 master disciplines.</p>
-    </header>
+<div class="shop-page">
 
-    <div class="gallery-grid">
-      
-      <!-- 1. TIMELESS MINDS -->
-      <a href="/pages/timeless-minds" class="gallery-card bg-timeless">
-        <div class="card-content"><span class="card-tag">Elite Wisdom</span><h2 class="card-title">Timeless Minds</h2></div>
-        <div class="book-stack">
-          <div class="book-item-layer layer-1" style="background-image: url('https://cdn.shopify.com/s/files/1/0741/5070/7372/files/81sYQ3OYreL._SL1500.jpg?v=1771266769');"></div>
-          <div class="book-item-layer layer-2" style="background-image: url('https://cdn.shopify.com/s/files/1/0741/5070/7372/files/612i4VaqpvL._SL1499.jpg?v=1771266776');"></div>
-          <div class="book-item-layer layer-3" style="background-image: url('https://cdn.shopify.com/s/files/1/0741/5070/7372/files/81UhnGT7BvL._SL1500.jpg?v=1771266749');"></div>
-        </div>
-      </a>
-
-      <!-- 2. MAKING MONEY -->
-      <a href="/pages/making-money" class="gallery-card bg-finance">
-        <div class="card-content"><span class="card-tag">Wealth Systems</span><h2 class="card-title">Making Money</h2></div>
-        <div class="book-stack">
-          <div class="book-item-layer layer-1" style="background-image: url('https://cdn.shopify.com/s/files/1/0741/5070/7372/files/61UZS3QA1UL._SY522.jpg?v=1771543499');"></div>
-          <div class="book-item-layer layer-2" style="background-image: url('https://cdn.shopify.com/s/files/1/0741/5070/7372/files/71uAI28kJuL._SL1500.jpg?v=1771547927');"></div>
-          <div class="book-item-layer layer-3" style="background-image: url('https://cdn.shopify.com/s/files/1/0741/5070/7372/files/61wwAomEffL._SL1500.jpg?v=1771542052');"></div>
-        </div>
-      </a>
-
-      <!-- 3. CLINICAL EXCELLENCE -->
-      <a href="/pages/clinical-excellence" class="gallery-card bg-clinical-ex">
-        <div class="card-content"><span class="card-tag">Scientific Innovation</span><h2 class="card-title">Clinical Excellence</h2></div>
-        <div class="book-stack">
-          <div class="book-item-layer layer-1" style="background-image: url('https://cdn.shopify.com/s/files/1/0741/5070/7372/files/61Ssa_ruAeL._SY522.jpg?v=1771939449');"></div>
-          <div class="book-item-layer layer-2" style="background-image: url('https://cdn.shopify.com/s/files/1/0741/5070/7372/files/61mrBb7gWgL._SL1500.jpg?v=1771938987');"></div>
-          <div class="book-item-layer layer-3" style="background-image: url('https://cdn.shopify.com/s/files/1/0741/5070/7372/files/61Ec5YmZxmL._SL1180.jpg?v=1771938123');"></div>
-        </div>
-      </a>
-
-      <!-- 4. MYSTERY & INTRIGUE -->
-      <a href="/pages/mystery-intrigue" class="gallery-card bg-mystery">
-        <div class="card-content"><span class="card-tag">Dark Suspense</span><h2 class="card-title">Mystery & Intrigue</h2></div>
-        <div class="book-stack">
-          <div class="book-item-layer layer-1" style="background-image: url('https://cdn.shopify.com/s/files/1/0741/5070/7372/files/61hBBpiiRFL._SY522.jpg?v=1771266762');"></div>
-          <div class="book-item-layer layer-2" style="background-image: url('https://cdn.shopify.com/s/files/1/0741/5070/7372/files/81aY_Fk-g8L._SY522.jpg?v=1771266753');"></div>
-          <div class="book-item-layer layer-3" style="background-image: url('https://cdn.shopify.com/s/files/1/0741/5070/7372/files/91Ri0zBLDKL._SL1500.jpg?v=1771266778');"></div>
-        </div>
-      </a>
-
-      <!-- 5. ADVANCED TRAUMA -->
-      <a href="/pages/advanced-trauma" class="gallery-card bg-trauma">
-        <div class="card-content"><span class="card-tag">Clinical Depth</span><h2 class="card-title">Advanced Trauma</h2></div>
-        <div class="book-stack">
-          <div class="book-item-layer layer-1" style="background-image: url('https://cdn.shopify.com/s/files/1/0741/5070/7372/files/71-Vlg8l0vL._SY522.jpg?v=1771932868');"></div>
-          <div class="book-item-layer layer-2" style="background-image: url('https://cdn.shopify.com/s/files/1/0741/5070/7372/files/71fbfE9kcWL._SY522.jpg?v=1771266739');"></div>
-          <div class="book-item-layer layer-3" style="background-image: url('https://cdn.shopify.com/s/files/1/0741/5070/7372/files/71b_YuwbHwL._SY522.jpg?v=1771266733');"></div>
-        </div>
-      </a>
-
-      <!-- 6. MENTAL MASTERY -->
-      <a href="/pages/self-mastery" class="gallery-card bg-mastery">
-        <div class="card-content"><span class="card-tag">Cognitive Control</span><h2 class="card-title">Mental Mastery</h2></div>
-        <div class="book-stack">
-          <div class="book-item-layer layer-1" style="background-image: url('https://cdn.shopify.com/s/files/1/0741/5070/7372/files/71iFYWNT_xL._SY522.jpg?v=1771266750');"></div>
-          <div class="book-item-layer layer-2" style="background-image: url('https://cdn.shopify.com/s/files/1/0741/5070/7372/files/61NpPe_wHAL._SL1200.jpg?v=1771547661');"></div>
-          <div class="book-item-layer layer-3" style="background-image: url('https://cdn.shopify.com/s/files/1/0741/5070/7372/files/716cXzhO_0L._SY522.jpg?v=1771354390');"></div>
-        </div>
-      </a>
-
-      <!-- 7. CULTURAL PSYCHOLOGY -->
-      <a href="/pages/cultural-psychology" class="gallery-card bg-cultural">
-        <div class="card-content"><span class="card-tag">Global Justice</span><h2 class="card-title">Cultural Psychology</h2></div>
-        <div class="book-stack">
-          <div class="book-item-layer layer-1" style="background-image: url('https://cdn.shopify.com/s/files/1/0741/5070/7372/files/hy.jpg?v=1771266744');"></div>
-          <div class="book-item-layer layer-2" style="background-image: url('https://cdn.shopify.com/s/files/1/0741/5070/7372/files/913_laMrPoL._SY522.jpg?v=1771266730');"></div>
-          <div class="book-item-layer layer-3" style="background-image: url('https://cdn.shopify.com/s/files/1/0741/5070/7372/files/A1alIcqdZfL._SY522.jpg?v=1771266728');"></div>
-        </div>
-      </a>
-
-      <!-- 8. THE FINAL CHAPTER -->
-      <a href="/pages/final-chapter" class="gallery-card bg-final">
-        <div class="card-content"><span class="card-tag">Hidden Gems</span><h2 class="card-title">The Final Chapter</h2></div>
-        <div class="book-stack">
-          <div class="book-item-layer layer-1" style="background-image: url('https://cdn.shopify.com/s/files/1/0741/5070/7372/files/81hhILYExhL._SY522.jpg?v=1771266778');"></div>
-          <div class="book-item-layer layer-2" style="background-image: url('https://cdn.shopify.com/s/files/1/0741/5070/7372/files/81Fy_fSyBPL._SY522.jpg?v=1771266773');"></div>
-          <div class="book-item-layer layer-3" style="background-image: url('https://cdn.shopify.com/s/files/1/0741/5070/7372/files/712UYItqnwL._SL1500.jpg?v=1771266747');"></div>
-        </div>
-      </a>
-
-      <!-- 9. CLASSIC LITERATURE -->
-      <a href="/pages/classic-literature" class="gallery-card bg-classic">
-        <div class="card-content"><span class="card-tag">Western Canon</span><h2 class="card-title">Classic Literature</h2></div>
-        <div class="book-stack">
-          <div class="book-item-layer layer-1" style="background-image: url('https://cdn.shopify.com/s/files/1/0741/5070/7372/files/91R3cB3kQGL._SY522.jpg?v=1771266772');"></div>
-          <div class="book-item-layer layer-2" style="background-image: url('https://cdn.shopify.com/s/files/1/0741/5070/7372/files/71eK3ri8ROL._SY522.jpg?v=1771266784');"></div>
-          <div class="book-item-layer layer-3" style="background-image: url('https://cdn.shopify.com/s/files/1/0741/5070/7372/files/71oIgUbGkTL._SY522.jpg?v=1771266763');"></div>
-        </div>
-      </a>
-
-      <!-- 10. DYSTOPIAN FICTION -->
-      <a href="/pages/dystopian-fiction" class="gallery-card bg-dystopia">
-        <div class="card-content"><span class="card-tag">Radical Futures</span><h2 class="card-title">Dystopian Fiction</h2></div>
-        <div class="book-stack">
-          <div class="book-item-layer layer-1" style="background-image: url('https://cdn.shopify.com/s/files/1/0741/5070/7372/files/61su39k8NUL._SY522.jpg?v=1771266771');"></div>
-          <div class="book-item-layer layer-2" style="background-image: url('https://cdn.shopify.com/s/files/1/0741/5070/7372/files/61sKsbPb5GL._SY522.jpg?v=1771266742');"></div>
-          <div class="book-item-layer layer-3" style="background-image: url('https://cdn.shopify.com/s/files/1/0741/5070/7372/files/71DgZ3LElXL._SY522.jpg?v=1771266754');"></div>
-        </div>
-      </a>
-
-      <!-- 11. CLINICAL PRACTITIONER -->
-      <a href="/pages/clinical-practitioner" class="gallery-card bg-clinical">
-        <div class="card-content"><span class="card-tag">Medical Toolbox</span><h2 class="card-title">Clinical Practitioner</h2></div>
-        <div class="book-stack">
-          <div class="book-item-layer layer-1" style="background-image: url('https://cdn.shopify.com/s/files/1/0741/5070/7372/files/71YiQ0U5IKL._SY522.jpg?v=1771266760');"></div>
-          <div class="book-item-layer layer-2" style="background-image: url('https://cdn.shopify.com/s/files/1/0741/5070/7372/files/819_xL4kEyL._SL1500.jpg?v=1771266770');"></div>
-          <div class="book-item-layer layer-3" style="background-image: url('https://cdn.shopify.com/s/files/1/0741/5070/7372/files/61EzyrQ3q4L._SL1341.jpg?v=1771266765');"></div>
-        </div>
-      </a>
-
-      <!-- 12. EMOTION & CBT -->
-      <a href="/pages/emotion-cbt" class="gallery-card" style="background: linear-gradient(135deg, #7c3aed, #4c1d95);">
-        <div class="card-content"><span class="card-tag">Emotion & Therapy</span><h2 class="card-title">Emotion & CBT</h2></div>
-        <div class="book-stack">
-          <div class="book-item-layer layer-1" style="background-image: url('https://cdn.shopify.com/s/files/1/0741/5070/7372/files/a_22bddb14-10fe-4a18-8565-c30b0d9938a5.jpg?v=1771266740');"></div>
-          <div class="book-item-layer layer-2" style="background-image: url('https://cdn.shopify.com/s/files/1/0741/5070/7372/files/71iFYWNT_xL._SY522.jpg?v=1771266750');"></div>
-          <div class="book-item-layer layer-3" style="background-image: url('https://cdn.shopify.com/s/files/1/0741/5070/7372/files/61EzyrQ3q4L._SL1341.jpg?v=1771266765');"></div>
-        </div>
-      </a>
-
+  <!-- ── Hero ── -->
+  <div class="shop-hero">
+    <h1>Build Your <span>Library.</span></h1>
+    <p>Curated psychology & self-improvement books. Grab more, save more — exclusive bundles just for you.</p>
+    <div class="hero-offers">
+      <div class="hero-offer-pill">🎁 Buy <em>1</em> → Get <em>2 Free</em></div>
+      <div class="hero-offer-pill">🎁 Buy <em>2</em> → Get <em>5 Free</em></div>
+      <div class="hero-offer-pill">🎁 Buy <em>3</em> → Get <em>12 Free</em></div>
     </div>
   </div>
+
+  <!-- ── Product Grid ── -->
+  <div class="shop-container">
+    <p class="section-label">All Books — {{ collections.all.products_count }} titles</p>
+
+    {% if collections.all.products.size > 0 %}
+      <div class="product-grid">
+        {% for product in collections.all.products limit: 100 %}
+          {% assign variant = product.first_available_variant | default: product.variants.first %}
+          <div class="book-card">
+
+            <!-- Image -->
+            <a href="{{ product.url }}" class="book-card__img-wrap">
+              {% if product.featured_image %}
+                <img
+                  src="{{ product.featured_image | img_url: '600x900', crop: 'center' }}"
+                  alt="{{ product.featured_image.alt | default: product.title | escape }}"
+                  loading="lazy"
+                >
+              {% else %}
+                <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#e2e8f0;color:#94a3b8;font-size:0.8rem;">No image</div>
+              {% endif %}
+              <span class="book-card__badge">Book Bundle</span>
+            </a>
+
+            <!-- Body -->
+            <div class="book-card__body">
+              <a href="{{ product.url }}" style="text-decoration:none;">
+                <h2 class="book-card__title">{{ product.title }}</h2>
+              </a>
+
+              <!-- Stars -->
+              <div class="book-card__stars">
+                <span class="stars-svg">★★★★★</span>
+                <span class="review-count">({{ product.metafields.reviews.rating_count | default: '4.9' }})</span>
+              </div>
+
+              <!-- Price -->
+              <div class="book-card__price">
+                {{ variant.price | money }}
+                {% if variant.compare_at_price > variant.price %}
+                  <span class="compare">{{ variant.compare_at_price | money }}</span>
+                {% endif %}
+              </div>
+
+              <!-- Add to Cart -->
+              {% if variant.available %}
+                <form action="/cart/add" method="post" class="atc-form" data-product-id="{{ product.id }}">
+                  <input type="hidden" name="id" value="{{ variant.id }}">
+                  <input type="hidden" name="quantity" value="1">
+                  <button type="submit" class="btn-atc">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                    Add to Cart
+                  </button>
+                </form>
+              {% else %}
+                <button class="btn-atc" disabled style="background:#94a3b8;cursor:not-allowed;">Sold Out</button>
+              {% endif %}
+
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+    {% else %}
+      <div class="no-products">
+        <p>No products found. Add some products to your store to see them here.</p>
+      </div>
+    {% endif %}
+  </div>
+
 </div>
+
+<script>
+  // AJAX Add to Cart — intercept forms and use fetch API
+  document.querySelectorAll('.atc-form').forEach(function(form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var btn = form.querySelector('.btn-atc');
+      var originalText = btn.innerHTML;
+      btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> Adding...';
+      btn.disabled = true;
+
+      fetch('/cart/add.js', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ id: form.querySelector('[name="id"]').value, quantity: 1 })
+      })
+      .then(function(res) { return res.json(); })
+      .then(function() {
+        btn.classList.add('added');
+        btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> Added!';
+        // Update cart count if your theme has one
+        fetch('/cart.js').then(function(r){ return r.json(); }).then(function(cart){
+          var counters = document.querySelectorAll('[data-cart-count], .cart-count, .cart__count');
+          counters.forEach(function(el){ el.textContent = cart.item_count; });
+        });
+        setTimeout(function() {
+          btn.classList.remove('added');
+          btn.innerHTML = originalText;
+          btn.disabled = false;
+        }, 2500);
+      })
+      .catch(function() {
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+        window.location = '/cart';
+      });
+    });
+  });
+</script>

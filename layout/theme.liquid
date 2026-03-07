@@ -51,6 +51,72 @@
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M2H2S2ZK"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
+    <!-- ── Announcement Bar ── -->
+    <div class="announce-bar" role="complementary" aria-label="Promotional offers">
+      <div class="announce-track">
+        <!-- Duplicated for seamless loop -->
+        <span class="announce-item"><span class="tag">🎁 LIMITED OFFER</span> Buy <strong>1</strong> Book &rarr; Get <strong>2 FREE</strong></span>
+        <span class="announce-dot">✦</span>
+        <span class="announce-item"><span class="tag">🎁 LIMITED OFFER</span> Buy <strong>2</strong> Books &rarr; Get <strong>5 FREE</strong></span>
+        <span class="announce-dot">✦</span>
+        <span class="announce-item"><span class="tag">🎁 LIMITED OFFER</span> Buy <strong>3</strong> Books &rarr; Get <strong>12 FREE</strong></span>
+        <span class="announce-dot">✦</span>
+        <!-- Second copy for seamless marquee -->
+        <span class="announce-item"><span class="tag">🎁 LIMITED OFFER</span> Buy <strong>1</strong> Book &rarr; Get <strong>2 FREE</strong></span>
+        <span class="announce-dot">✦</span>
+        <span class="announce-item"><span class="tag">🎁 LIMITED OFFER</span> Buy <strong>2</strong> Books &rarr; Get <strong>5 FREE</strong></span>
+        <span class="announce-dot">✦</span>
+        <span class="announce-item"><span class="tag">🎁 LIMITED OFFER</span> Buy <strong>3</strong> Books &rarr; Get <strong>12 FREE</strong></span>
+        <span class="announce-dot">✦</span>
+      </div>
+    </div>
+    <style>
+      .announce-bar {
+        background: #0f172a;
+        color: #fff;
+        padding: 10px 0;
+        overflow: hidden;
+        width: 100%;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+      .announce-track {
+        display: flex;
+        align-items: center;
+        gap: 60px;
+        width: max-content;
+        animation: announce-marquee 30s linear infinite;
+        white-space: nowrap;
+      }
+      .announce-bar:hover .announce-track { animation-play-state: paused; }
+      @keyframes announce-marquee {
+        from { transform: translateX(0); }
+        to   { transform: translateX(-50%); }
+      }
+      .announce-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 0.82rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        color: #e2e8f0;
+      }
+      .announce-item strong { color: #fcd34d; }
+      .announce-item .tag {
+        background: #f59e0b;
+        color: #0f172a;
+        border-radius: 4px;
+        padding: 2px 8px;
+        font-size: 0.68rem;
+        font-weight: 900;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .announce-dot { color: #f59e0b; font-size: 1rem; }
+    </style>
+
     <header class="site-header" role="banner">
       <div class="header-inner">
         <a class="brand" href="/">
