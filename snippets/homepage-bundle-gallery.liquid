@@ -655,8 +655,6 @@
         btn.innerHTML = '✓ Added!';
         showToast('✓ "' + title + '" added to cart!');
         HPCart.refresh();
-        /* Auto-open drawer */
-        HPCart.open();
         setTimeout(function(){
           btn.classList.remove('state-added');
           btn.innerHTML = orig;
@@ -672,7 +670,7 @@
           method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           body: 'id=' + variantId + '&quantity=1'
-        }).then(function(){ HPCart.open(); HPCart.refresh(); });
+        }).then(function(){ HPCart.refresh(); });
       });
     },
 
@@ -686,7 +684,7 @@
         body: JSON.stringify({ id: parseInt(id, 10), quantity: 1 })
       })
       .then(function(r){ return r.json(); })
-      .then(function() { HPCart.open(); HPCart.refresh(); showToast('✓ Added to cart!'); });
+      .then(function() { HPCart.refresh(); showToast('✓ Added to cart!'); });
     },
 
     /* Update sticky bar with last hovered book */
