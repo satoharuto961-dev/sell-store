@@ -1,0 +1,56 @@
+{% assign variant = product.first_available_variant | default: product.variants.first %}
+<div class="book-card"
+     data-product-title="{{ product.title | escape }}"
+     data-variant-id="{{ variant.id }}"
+     data-price="{{ variant.price | money }}"
+     data-img="{{ product.featured_image | img_url: '200x280', crop: 'center' }}">
+
+  <a href="{{ product.url }}" class="book-card__img-wrap">
+    {% if product.featured_image %}
+      <img
+        src="{{ product.featured_image | img_url: '600x900', crop: 'center' }}"
+        alt="{{ product.featured_image.alt | default: product.title | escape }}"
+        loading="lazy">
+    {% else %}
+      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#e2e8f0;color:#94a3b8;font-size:0.8rem;">No image</div>
+    {% endif %}
+    
+    <!-- Hover Description Overlay -->
+    <div class="book-card__desc-overlay">
+      <div class="book-card__desc-text">
+        {{ product.description | strip_html | truncatewords: 35 }}
+      </div>
+    </div>
+
+    <span class="book-card__badge">Bundle</span>
+  </a>
+
+  <div class="book-card__body">
+    <a href="{{ product.url }}" class="book-card__title">{{ product.title }}</a>
+    <div class="book-card__stars">
+      <span class="stars">★★★★★</span>
+      <span class="count">(4.9)</span>
+    </div>
+    <div class="book-card__price">
+      {{ variant.price | money }}
+      {% if variant.compare_at_price > variant.price %}
+        <span class="compare">{{ variant.compare_at_price | money }}</span>
+      {% endif %}
+    </div>
+
+    {% if variant.available %}
+      <button
+        class="btn-atc"
+        data-variant-id="{{ variant.id }}"
+        data-title="{{ product.title | escape }}"
+        data-price="{{ variant.price | money }}"
+        data-img="{{ product.featured_image | img_url: '200x280', crop: 'center' }}"
+        onclick="HPCart.addToCart(this)">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+        Add to Cart
+      </button>
+    {% else %}
+      <button class="btn-atc" disabled>Sold Out</button>
+    {% endif %}
+  </div>
+</div>
