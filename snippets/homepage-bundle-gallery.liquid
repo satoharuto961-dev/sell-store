@@ -473,6 +473,8 @@
 
     {% if collections.frontpage.products.size > 0 %}
       <div class="product-grid">
+        {% paginate collections.frontpage.products by 100 %}
+
         {% assign target_book = all_products['the-body-keeps-the-score-brain-mind-and-body-in-the-healing-of-trauma'] %}
         {% if target_book == empty or target_book == blank %}
           {% assign target_book = all_products['the-body-keeps-the-score'] %}
@@ -489,6 +491,8 @@
           {% endif %}
           {% render 'book-card', product: product %}
         {% endfor %}
+        
+        {% endpaginate %}
       </div>
     {% else %}
       <div style="text-align:center;padding:80px 24px;color:#64748b;">
