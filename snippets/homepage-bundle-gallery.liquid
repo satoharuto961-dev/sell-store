@@ -469,9 +469,9 @@
 
   <!-- Grid -->
   <div class="shop-container">
-    <p class="section-label">All Books — {{ collections.all.products_count }} titles</p>
+    <p class="section-label">All Books — {{ collections.frontpage.products_count }} titles</p>
 
-    {% if collections.all.products.size > 0 %}
+    {% if collections.frontpage.products.size > 0 %}
       <div class="product-grid">
         {% assign target_book = all_products['the-body-keeps-the-score-brain-mind-and-body-in-the-healing-of-trauma'] %}
         {% if target_book == empty or target_book == blank %}
@@ -482,7 +482,7 @@
           {% render 'book-card', product: target_book %}
         {% endif %}
 
-        {% assign products_sorted = collections.all.products | sort: 'published_at' | reverse %}
+        {% assign products_sorted = collections.frontpage.products %}
         {% for product in products_sorted limit: 100 %}
           {% if target_book and product.handle == target_book.handle %}
             {% continue %}
