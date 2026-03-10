@@ -556,6 +556,365 @@
     </div>
   </section>
 
+  {%- comment -%} ═══════════════════ TESTIMONIALS ═══════════════════ {%- endcomment -%}
+  <style>
+    .tt-testimonials {
+      background: linear-gradient(180deg, #f0f9ff 0%, #ffffff 100%);
+      padding: 80px 20px;
+    }
+
+    .tt-testimonials-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .tt-testimonials-eyebrow {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 14px;
+    }
+
+    .tt-testimonials-eyebrow span {
+      background: #e0f2fe;
+      color: #0369a1;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 6px 18px;
+      border-radius: 999px;
+      border: 1px solid #bae6fd;
+    }
+
+    .tt-testimonials-title {
+      text-align: center;
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 900;
+      color: #0f172a;
+      margin: 0 0 8px;
+    }
+
+    .tt-testimonials-sub {
+      text-align: center;
+      color: #64748b;
+      font-size: 16px;
+      margin: 0 0 52px;
+    }
+
+    .tt-reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .tt-review-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 28px 24px;
+      box-shadow: 0 4px 20px rgba(15, 23, 42, 0.07);
+      border: 1px solid #e2e8f0;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      position: relative;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .tt-review-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(15, 23, 42, 0.12);
+    }
+
+    .tt-review-quote {
+      position: absolute;
+      top: 20px;
+      right: 22px;
+      font-size: 52px;
+      line-height: 1;
+      color: #e0f2fe;
+      font-family: Georgia, serif;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .tt-review-stars {
+      display: flex;
+      gap: 3px;
+    }
+
+    .tt-review-stars span {
+      color: #f59e0b;
+      font-size: 16px;
+    }
+
+    .tt-review-text {
+      font-size: 14px;
+      line-height: 1.7;
+      color: #334155;
+      flex: 1;
+      font-style: italic;
+    }
+
+    .tt-review-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-top: 1px solid #f1f5f9;
+      padding-top: 14px;
+      margin-top: auto;
+    }
+
+    .tt-review-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      font-size: 15px;
+      font-weight: 800;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      letter-spacing: -0.5px;
+    }
+
+    .tt-review-info { flex: 1; min-width: 0; }
+
+    .tt-review-name {
+      font-size: 14px;
+      font-weight: 800;
+      color: #0f172a;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .tt-review-title {
+      font-size: 12px;
+      color: #64748b;
+      font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .tt-verified {
+      font-size: 11px;
+      font-weight: 700;
+      color: #0ea5e9;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 4px;
+    }
+
+    /* Accent colors per card */
+    .tt-av-1  { background: linear-gradient(135deg, #0ea5e9, #0369a1); }
+    .tt-av-2  { background: linear-gradient(135deg, #14b8a6, #0f766e); }
+    .tt-av-3  { background: linear-gradient(135deg, #8b5cf6, #6d28d9); }
+    .tt-av-4  { background: linear-gradient(135deg, #f97316, #c2410c); }
+    .tt-av-5  { background: linear-gradient(135deg, #ec4899, #be185d); }
+    .tt-av-6  { background: linear-gradient(135deg, #10b981, #047857); }
+    .tt-av-7  { background: linear-gradient(135deg, #f59e0b, #b45309); }
+    .tt-av-8  { background: linear-gradient(135deg, #6366f1, #4338ca); }
+    .tt-av-9  { background: linear-gradient(135deg, #0ea5e9, #0c4a6e); }
+    .tt-av-10 { background: linear-gradient(135deg, #14b8a6, #134e4a); }
+    .tt-av-11 { background: linear-gradient(135deg, #f43f5e, #be123c); }
+    .tt-av-12 { background: linear-gradient(135deg, #a855f7, #7e22ce); }
+
+    /* Responsive grid */
+    @media (max-width: 1100px) {
+      .tt-reviews-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .tt-reviews-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .tt-reviews-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+
+  <section class="tt-testimonials">
+    <div class="tt-testimonials-inner">
+
+      <div class="tt-testimonials-eyebrow"><span>⭐ Verified Reviews</span></div>
+      <h2 class="tt-testimonials-title">Trusted by Mental Health Professionals Worldwide</h2>
+      <p class="tt-testimonials-sub">Join thousands of therapists who use these tools every week in real sessions.</p>
+
+      <div class="tt-reviews-grid">
+
+        <div class="tt-review-card">
+          <div class="tt-review-quote">"</div>
+          <div class="tt-review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <p class="tt-review-text">This toolkit saved me hours of preparation every week. It's now an essential part of my practice.</p>
+          <div class="tt-review-author">
+            <div class="tt-review-avatar tt-av-1">SM</div>
+            <div class="tt-review-info">
+              <div class="tt-review-name">Dr. Sarah Mitchell</div>
+              <div class="tt-review-title">Clinical Psychologist</div>
+              <div class="tt-verified">✔ Verified Purchase</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tt-review-card">
+          <div class="tt-review-quote">"</div>
+          <div class="tt-review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <p class="tt-review-text">The CBT worksheets are extremely practical in real sessions. My clients find them clear and helpful.</p>
+          <div class="tt-review-author">
+            <div class="tt-review-avatar tt-av-2">JC</div>
+            <div class="tt-review-info">
+              <div class="tt-review-name">James Carter</div>
+              <div class="tt-review-title">Licensed Therapist</div>
+              <div class="tt-verified">✔ Verified Purchase</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tt-review-card">
+          <div class="tt-review-quote">"</div>
+          <div class="tt-review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <p class="tt-review-text">My clients respond very well to these exercises. I've seen real progress in sessions since I started using them.</p>
+          <div class="tt-review-author">
+            <div class="tt-review-avatar tt-av-3">LG</div>
+            <div class="tt-review-info">
+              <div class="tt-review-name">Laura Gomez</div>
+              <div class="tt-review-title">Counselor</div>
+              <div class="tt-verified">✔ Verified Purchase</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tt-review-card">
+          <div class="tt-review-quote">"</div>
+          <div class="tt-review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <p class="tt-review-text">One of the most complete therapy resource libraries I've ever come across. Incredible value.</p>
+          <div class="tt-review-author">
+            <div class="tt-review-avatar tt-av-4">DW</div>
+            <div class="tt-review-info">
+              <div class="tt-review-name">Daniel Wong</div>
+              <div class="tt-review-title">Psychotherapist</div>
+              <div class="tt-verified">✔ Verified Purchase</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tt-review-card">
+          <div class="tt-review-quote">"</div>
+          <div class="tt-review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <p class="tt-review-text">The session scripts make structuring therapy sessions effortless. I feel so much more prepared going in.</p>
+          <div class="tt-review-author">
+            <div class="tt-review-avatar tt-av-5">ET</div>
+            <div class="tt-review-info">
+              <div class="tt-review-name">Emily Thompson</div>
+              <div class="tt-review-title">Mental Health Coach</div>
+              <div class="tt-verified">✔ Verified Purchase</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tt-review-card">
+          <div class="tt-review-quote">"</div>
+          <div class="tt-review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <p class="tt-review-text">Excellent resource for therapists working with anxiety and trauma. Well-structured and clinically sound.</p>
+          <div class="tt-review-author">
+            <div class="tt-review-avatar tt-av-6">MB</div>
+            <div class="tt-review-info">
+              <div class="tt-review-name">Dr. Michael Brown</div>
+              <div class="tt-review-title">CBT Specialist</div>
+              <div class="tt-verified">✔ Verified Purchase</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tt-review-card">
+          <div class="tt-review-quote">"</div>
+          <div class="tt-review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <p class="tt-review-text">Very professional worksheets that are easy for clients to follow. I use them in almost every session now.</p>
+          <div class="tt-review-author">
+            <div class="tt-review-avatar tt-av-7">OH</div>
+            <div class="tt-review-info">
+              <div class="tt-review-name">Olivia Harris</div>
+              <div class="tt-review-title">Trauma Therapist</div>
+              <div class="tt-verified">✔ Verified Purchase</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tt-review-card">
+          <div class="tt-review-quote">"</div>
+          <div class="tt-review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <p class="tt-review-text">The treatment plans are clear and ready to use immediately. Exactly what I needed for my family therapy work.</p>
+          <div class="tt-review-author">
+            <div class="tt-review-avatar tt-av-8">DC</div>
+            <div class="tt-review-info">
+              <div class="tt-review-name">David Chen</div>
+              <div class="tt-review-title">Family Counselor</div>
+              <div class="tt-verified">✔ Verified Purchase</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tt-review-card">
+          <div class="tt-review-quote">"</div>
+          <div class="tt-review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <p class="tt-review-text">A fantastic toolkit for both new and experienced therapists. I recommend it to every colleague I know.</p>
+          <div class="tt-review-author">
+            <div class="tt-review-avatar tt-av-9">SM</div>
+            <div class="tt-review-info">
+              <div class="tt-review-name">Sophia Martinez</div>
+              <div class="tt-review-title">Licensed Psychologist</div>
+              <div class="tt-verified">✔ Verified Purchase</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tt-review-card">
+          <div class="tt-review-quote">"</div>
+          <div class="tt-review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <p class="tt-review-text">The AI prompts help generate therapy materials quickly. It's like having an assistant ready at all times.</p>
+          <div class="tt-review-author">
+            <div class="tt-review-avatar tt-av-10">AP</div>
+            <div class="tt-review-info">
+              <div class="tt-review-name">Andrew Patel</div>
+              <div class="tt-review-title">Behavioral Therapist</div>
+              <div class="tt-verified">✔ Verified Purchase</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tt-review-card">
+          <div class="tt-review-quote">"</div>
+          <div class="tt-review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <p class="tt-review-text">I now spend far less time preparing for sessions and can focus more on actually helping my clients.</p>
+          <div class="tt-review-author">
+            <div class="tt-review-avatar tt-av-11">RA</div>
+            <div class="tt-review-info">
+              <div class="tt-review-name">Rachel Adams</div>
+              <div class="tt-review-title">Mental Health Counselor</div>
+              <div class="tt-verified">✔ Verified Purchase</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tt-review-card">
+          <div class="tt-review-quote">"</div>
+          <div class="tt-review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <p class="tt-review-text">Highly recommended for any mental health professional. This is genuinely one of the best investments I've made.</p>
+          <div class="tt-review-author">
+            <div class="tt-review-avatar tt-av-12">MJ</div>
+            <div class="tt-review-info">
+              <div class="tt-review-name">Mark Johnson</div>
+              <div class="tt-review-title">Addiction Therapist</div>
+              <div class="tt-verified">✔ Verified Purchase</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   {%- comment -%} ═══════════════════ FAQ ═══════════════════ {%- endcomment -%}
   <section class="tt-container tt-faq">
     <h2 class="tt-section-title">Frequently Asked Questions</h2>
