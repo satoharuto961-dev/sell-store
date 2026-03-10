@@ -159,11 +159,13 @@
 
   .tt-gallery-main {
     width: 100%;
-    aspect-ratio: 4/3;
-    object-fit: cover;
+    aspect-ratio: 3/4;
+    object-fit: contain;
+    background: #f3f4f6;
     border-radius: 16px;
     box-shadow: 0 20px 60px rgba(0,0,0,0.12);
     cursor: zoom-in;
+    padding: 16px;
   }
 
   .tt-gallery-thumbs {
@@ -175,12 +177,14 @@
   .tt-gallery-thumb {
     width: 72px;
     height: 72px;
-    object-fit: cover;
+    object-fit: contain;
+    background: #f3f4f6;
     border-radius: 8px;
     cursor: pointer;
     border: 2px solid transparent;
     transition: border-color 0.2s;
     opacity: 0.7;
+    padding: 4px;
   }
 
   .tt-gallery-thumb:hover,
