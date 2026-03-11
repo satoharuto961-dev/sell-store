@@ -1,11 +1,12 @@
 {% comment %}
   4-Book Trauma & Emotional Intelligence Bundle Landing Page
   Template: page.4-book-bundle.liquid
-  Product: 4-book-trauma-bundle
 {% endcomment %}
 
-{% assign bundle_product = all_products['4-book-trauma-bundle'] %}
-{% assign bundle_variant = bundle_product.variants.first %}
+{% assign book1 = all_products['emotional-intelligence-2-0'] %}
+{% assign book2 = all_products['the-boy-who-was-raised-as-a-dog-and-other-stories-from-a-child-psychiatrists-notebook-what-traumatized-children-can-teach-us-about-loss-love-and-healing'] %}
+{% assign book3 = all_products['waking-the-tiger-healing-trauma'] %}
+{% assign book4 = all_products['the-body-keeps-the-score-brain-mind-and-body-in-the-healing-of-trauma'] %}
 
 <style>
   /* ── GLOBALS & RESET ── */
@@ -69,6 +70,7 @@
     box-shadow: 0 20px 30px -10px rgba(255, 107, 0, 0.5);
   }
   .tt-btn-full { width: 100%; }
+  .tt-btn:disabled { opacity: 0.7; cursor: not-allowed; }
   
   .tt-btn-subtext {
     display: block;
@@ -170,18 +172,28 @@
     display: flex;
     flex-direction: column;
     text-align: center;
+    align-items: center;
+  }
+  .tt-inv-img-wrap {
+    width: 100%;
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    background: #fff;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
   }
   .tt-inv-img {
-    width: 100%;
-    height: auto;
-    max-height: 250px;
+    max-width: 100%;
+    max-height: 100%;
     object-fit: contain;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    box-shadow: 2px 4px 8px rgba(0,0,0,0.1);
   }
   .tt-inv-title { font-size: 20px; font-weight: 800; color: #0f172a; margin: 0 0 8px; }
-  .tt-inv-author { font-size: 14px; font-weight: 600; color: #64748b; margin: 0 0 12px; }
   .tt-inv-desc { color: #475569; font-size: 15px; margin: 0; line-height: 1.5; }
 
   /* ── PRODUCT SHOWCASE ── */
@@ -192,12 +204,23 @@
   .tt-gallery-main {
     width: 100%;
     aspect-ratio: 1/1;
-    object-fit: contain;
     background: #ffffff;
     border-radius: 20px;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
     padding: 24px;
     border: 1px solid #e2e8f0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+    align-items: center;
+    justify-items: center;
+  }
+  .tt-gallery-main img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    box-shadow: 2px 4px 12px rgba(0,0,0,0.15);
+    border-radius: 4px;
   }
 
   /* Details */
@@ -326,14 +349,9 @@
       <h1>Master the Mind-Body Connection</h1>
       <p class="tt-subtitle">Get the four definitive bestselling books on trauma, healing, and emotional mastery bundled together for an unbeatable price.</p>
       
-      <form action="/cart/add" method="post" style="margin: 0;">
-        <input type="hidden" name="id" value="{{ bundle_variant.id | default: '1' }}">
-        <input type="hidden" name="quantity" value="1">
-        <input type="hidden" name="return_to" value="/checkout">
-        <button type="submit" class="tt-btn">
-          Get The Bundle Now — {{ bundle_variant.price | default: 3999 | money }}
-        </button>  
-      </form>
+      <button class="tt-btn add-bundle-to-cart">
+        Get The Bundle Now — $29.00
+      </button>  
       <span class="tt-btn-subtext">Free Worldwide Shipping &bull; 30-day guarantee</span>
     </div>
   </section>
@@ -367,29 +385,45 @@
       </div>
 
       <div class="tt-inventory-grid">
-        <!-- The Body Keeps the Score -->
+        <!-- Book 1 -->
         <div class="tt-inv-card">
-          <h3 class="tt-inv-title">The Body Keeps the Score</h3>
-          <p class="tt-inv-author">By Bessel van der Kolk, M.D.</p>
-          <p class="tt-inv-desc">The #1 New York Times bestseller that transformed our understanding of trauma, revealing how it literally reshapes both body and brain.</p>
+          <div class="tt-inv-img-wrap">
+            {% if book1.featured_image %}
+              <img src="{{ book1.featured_image | img_url: '400x' }}" alt="{{ book1.title | escape }}" class="tt-inv-img" />
+            {% endif %}
+          </div>
+          <h3 class="tt-inv-title">{{ book1.title | default: "Emotional Intelligence 2.0" }}</h3>
+          <p class="tt-inv-desc">{{ book1.description | default: "A step-by-step program for increasing your emotional intelligence using the four core EQ skills." | strip_html | truncatewords: 20 }}</p>
         </div>
-        <!-- Emotional Intelligence 2.0 -->
+        <!-- Book 2 -->
         <div class="tt-inv-card">
-          <h3 class="tt-inv-title">Emotional Intelligence 2.0</h3>
-          <p class="tt-inv-author">By Travis Bradberry & Jean Greaves</p>
-          <p class="tt-inv-desc">The premier guide to increasing your EQ. Includes a step-by-step program to boost emotional intelligence in all areas of life.</p>
+          <div class="tt-inv-img-wrap">
+            {% if book2.featured_image %}
+              <img src="{{ book2.featured_image | img_url: '400x' }}" alt="{{ book2.title | escape }}" class="tt-inv-img" />
+            {% endif %}
+          </div>
+          <h3 class="tt-inv-title">{{ book2.title | default: "The Boy Who Was Raised as a Dog" }}</h3>
+          <p class="tt-inv-desc">{{ book2.description | default: "What traumatized children can teach us about loss, love, and healing from a child psychiatrist's notebook." | strip_html | truncatewords: 20 }}</p>
         </div>
-        <!-- The Boy Who Was Raised as a Dog -->
+        <!-- Book 3 -->
         <div class="tt-inv-card">
-          <h3 class="tt-inv-title">The Boy Who Was Raised as a Dog</h3>
-          <p class="tt-inv-author">By Bruce D. Perry, MD, PhD</p>
-          <p class="tt-inv-desc">A gripping exploration of how severe trauma affects the developing brain, offering profound lessons on loss, love, and the healing process.</p>
+          <div class="tt-inv-img-wrap">
+             {% if book3.featured_image %}
+              <img src="{{ book3.featured_image | img_url: '400x' }}" alt="{{ book3.title | escape }}" class="tt-inv-img" />
+            {% endif %}
+          </div>
+          <h3 class="tt-inv-title">{{ book3.title | default: "Waking the Tiger" }}</h3>
+          <p class="tt-inv-desc">{{ book3.description | default: "The innate capacity to transform overwhelming experiences and heal trauma." | strip_html | truncatewords: 20 }}</p>
         </div>
-        <!-- Waking the Tiger -->
+        <!-- Book 4 -->
         <div class="tt-inv-card">
-          <h3 class="tt-inv-title">Waking the Tiger</h3>
-          <p class="tt-inv-author">By Peter A. Levine</p>
-          <p class="tt-inv-desc">The pioneering book on Somatic Experiencing. Learn how the body's natural instincts hold the key to healing traumatic experiences.</p>
+          <div class="tt-inv-img-wrap">
+            {% if book4.featured_image %}
+              <img src="{{ book4.featured_image | img_url: '400x' }}" alt="{{ book4.title | escape }}" class="tt-inv-img" />
+            {% endif %}
+          </div>
+          <h3 class="tt-inv-title">{{ book4.title | default: "The Body Keeps the Score" }}</h3>
+          <p class="tt-inv-desc">{{ book4.description | default: "Brain, mind, and body in the healing of trauma." | strip_html | truncatewords: 20 }}</p>
         </div>
       </div>
     </div>
@@ -402,19 +436,12 @@
         
         <!-- Gallery -->
         <div class="tt-gallery">
-          {% if bundle_product.images.size > 0 %}
-            <img class="tt-gallery-main" src="{{ bundle_product.images.first | image_url: width: 800 }}" alt="{{ bundle_product.title | default: '4-Book Bundle' }}">
-          {% else %}
-            <!-- Placeholder if product has no image yet -->
-            <div class="tt-gallery-main" style="display: flex; align-items: center; justify-content: center; background: #f1f5f9; position: relative;">
-               <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 20px; width: 100%; height: 100%;">
-                 <div style="background: #3b82f6; border-radius: 8px; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; text-align: center; padding: 10px;">The Body Keeps the Score</div>
-                 <div style="background: #f97316; border-radius: 8px; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; text-align: center; padding: 10px;">Emotional Intelligence 2.0</div>
-                 <div style="background: #0f766e; border-radius: 8px; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; text-align: center; padding: 10px;">The Boy Who Was Raised as a Dog</div>
-                 <div style="background: #eab308; border-radius: 8px; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; text-align: center; padding: 10px;">Waking the Tiger</div>
-               </div>
-            </div>
-          {% endif %}
+          <div class="tt-gallery-main">
+            {% if book1.featured_image %}<img src="{{ book1.featured_image | img_url: '600x' }}" alt="{{ book1.title | escape }}">{% endif %}
+            {% if book2.featured_image %}<img src="{{ book2.featured_image | img_url: '600x' }}" alt="{{ book2.title | escape }}" style="margin-top:20px;">{% endif %}
+            {% if book3.featured_image %}<img src="{{ book3.featured_image | img_url: '600x' }}" alt="{{ book3.title | escape }}" style="margin-top:-20px;">{% endif %}
+            {% if book4.featured_image %}<img src="{{ book4.featured_image | img_url: '600x' }}" alt="{{ book4.title | escape }}">{% endif %}
+          </div>
         </div>
 
         <!-- Content -->
@@ -426,7 +453,7 @@
           <ul class="tt-features-list">
             <li>
                <div class="icon">✓</div>
-               <div><span class="tt-feat-title">4 Bestselling Books</span>Physical copies delivered straight to your door.</div>
+               <div><span class="tt-feat-title">4 Physical Books</span>Shipped directly to your door.</div>
             </li>
             <li>
                <div class="icon">✓</div>
@@ -440,24 +467,25 @@
 
           <div class="tt-price-block">
             <div class="tt-price-row">
-              <span class="tt-price-now">{{ bundle_variant.price | default: 3999 | money }}</span>
-              {% if bundle_variant.compare_at_price > bundle_variant.price %}
-                <span class="tt-price-was">{{ bundle_variant.compare_at_price | money }}</span>
-                <span class="tt-price-save">Save {{ bundle_variant.compare_at_price | minus: bundle_variant.price | money }}</span>
-              {% else %}
-                <span class="tt-price-was">{{ 7996 | money }}</span>
-                <span class="tt-price-save">Save {{ 7996 | minus: 3999 | money }}</span>
-              {% endif %}
+              <span class="tt-price-now">$29.00</span>
+              <span class="tt-price-was">
+                {% assign total_compare = 0 %}
+                {% if book1 %}{% assign total_compare = total_compare | plus: book1.price %}{% endif %}
+                {% if book2 %}{% assign total_compare = total_compare | plus: book2.price %}{% endif %}
+                {% if book3 %}{% assign total_compare = total_compare | plus: book3.price %}{% endif %}
+                {% if book4 %}{% assign total_compare = total_compare | plus: book4.price %}{% endif %}
+                {% if total_compare > 0 %}
+                   {{ total_compare | money }}
+                {% else %}
+                   $79.96
+                {% endif %}
+              </span>
+              <span class="tt-price-save">Save Over 60%</span>
             </div>
 
-            <form action="/cart/add" method="post" style="margin:0;">
-              <input type="hidden" name="id" value="{{ bundle_variant.id | default: '1' }}">
-              <input type="hidden" name="quantity" value="1">
-              <input type="hidden" name="return_to" value="/checkout">
-              <button type="submit" class="tt-btn tt-btn-full">
-                Add Bundle to Cart
-              </button>
-            </form>
+            <button class="tt-btn tt-btn-full add-bundle-to-cart">
+              Add Bundle to Cart
+            </button>
             <span class="tt-btn-subtext">Secure Checkout &bull; Ships in 24 Hours</span>
           </div>
         </div>
@@ -477,27 +505,33 @@
 
         <div class="tt-val-box">
           <div class="tt-val-row">
-            <span>The Body Keeps the Score (Retail)</span>
-            <strong>$19.99</strong>
+            <span>{{ book4.title | default: "The Body Keeps the Score" }} (Retail)</span>
+            <strong>{{ book4.price | money | default: "$19.99" }}</strong>
           </div>
           <div class="tt-val-row">
-            <span>Emotional Intelligence 2.0 (Retail)</span>
-            <strong>$19.99</strong>
+            <span>{{ book1.title | default: "Emotional Intelligence 2.0" }} (Retail)</span>
+            <strong>{{ book1.price | money | default: "$19.99" }}</strong>
           </div>
           <div class="tt-val-row">
-            <span>The Boy Who Was Raised as a Dog (Retail)</span>
-            <strong>$19.99</strong>
+            <span>{{ book2.title | default: "The Boy Who Was Raised as a Dog" }} (Retail)</span>
+            <strong>{{ book2.price | money | default: "$19.99" }}</strong>
           </div>
           <div class="tt-val-row">
-            <span>Waking the Tiger (Retail)</span>
-            <strong>$19.99</strong>
+            <span>{{ book3.title | default: "Waking the Tiger" }} (Retail)</span>
+            <strong>{{ book3.price | money | default: "$19.99" }}</strong>
           </div>
           
           <div class="tt-val-total">
             <span class="tt-val-total-label">Total Retail Value</span>
             <div class="tt-val-prices">
-              <span class="tt-val-total-price">$79.96</span>
-              <span class="tt-val-bundle-price">Only {{ bundle_variant.price | default: 3999 | money }}</span>
+              <span class="tt-val-total-price">
+                {% if total_compare > 0 %}
+                   {{ total_compare | money }}
+                {% else %}
+                   $79.96
+                {% endif %}
+              </span>
+              <span class="tt-val-bundle-price">Only $29.00</span>
             </div>
           </div>
         </div>
@@ -506,3 +540,66 @@
   </section>
 
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const bundleButtons = document.querySelectorAll('.add-bundle-to-cart');
+    
+    // Grab the first available variant ID for each of the 4 valid products
+    const itemsToAdd = [];
+    
+    {% if book1.first_available_variant %}
+       itemsToAdd.push({ id: {{ book1.first_available_variant.id }}, quantity: 1 });
+    {% endif %}
+    {% if book2.first_available_variant %}
+       itemsToAdd.push({ id: {{ book2.first_available_variant.id }}, quantity: 1 });
+    {% endif %}
+    {% if book3.first_available_variant %}
+       itemsToAdd.push({ id: {{ book3.first_available_variant.id }}, quantity: 1 });
+    {% endif %}
+    {% if book4.first_available_variant %}
+       itemsToAdd.push({ id: {{ book4.first_available_variant.id }}, quantity: 1 });
+    {% endif %}
+
+    bundleButtons.forEach(button => {
+      button.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        if(itemsToAdd.length === 0) {
+            alert("Sorry, these items are currently unavailable. Please ensure products are published.");
+            return;
+        }
+
+        // Disable button to prevent double-clicks
+        const originalText = this.innerText;
+        this.innerText = 'Adding to Cart...';
+        this.disabled = true;
+
+        fetch(window.Shopify.routes.root + 'cart/add.js', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ items: itemsToAdd })
+        })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(data => {
+          // Redirect straight to checkout for highest conversion
+          window.location.href = '/checkout';
+        })
+        .catch(error => {
+          console.error('Error adding bundle to cart:', error);
+          alert('There was a problem adding the bundle to your cart. Please try again.');
+          
+          this.innerText = originalText;
+          this.disabled = false;
+        });
+      });
+    });
+  });
+</script>
