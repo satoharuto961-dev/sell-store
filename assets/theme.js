@@ -68,9 +68,10 @@
         throw new Error(`Request failed with status ${response.status}`);
       }
 
-      // Check cart count before redirecting
-      const cartResponse = await fetch('/cart.js');
+      // Must fetch full cart to get accurate total item_count
+      const cartResponse = await fetch('/cart.js', { headers: { 'Accept': 'application/json' } });
       const cart = await cartResponse.json();
+      
       if (cart.item_count < 5) {
         window.location.href = '/cart';
       } else {
