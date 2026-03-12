@@ -349,10 +349,8 @@
     z-index: 8000;
     display: flex; align-items: center; justify-content: space-between; gap: 16px;
     box-shadow: 0 -8px 32px rgba(15,23,42,0.3);
-    transform: translateY(100%);
     transition: transform 0.4s cubic-bezier(0.19,1,0.22,1);
   }
-  .sticky-atc-bar.visible { transform: translateY(0); }
   .sticky-atc-bar__left { display: flex; align-items: center; gap: 12px; min-width: 0; }
   .sticky-atc-bar__left img { width: 44px; height: 60px; object-fit: cover; border-radius: 6px; flex-shrink: 0; }
   .sticky-atc-bar__info { min-width: 0; }
@@ -749,19 +747,6 @@
       HPCart._lastVariantId = variantId;
     }
   };
-
-  /* ── Sticky bar visibility on scroll ── */
-  var stickyBar = document.getElementById('stickyAtcBar');
-  var heroEl    = document.querySelector('.shop-hero');
-  window.addEventListener('scroll', function() {
-    if (!heroEl) return;
-    var heroBottom = heroEl.getBoundingClientRect().bottom;
-    if (heroBottom < 0) {
-      stickyBar.classList.add('visible');
-    } else {
-      stickyBar.classList.remove('visible');
-    }
-  }, { passive: true });
 
   /* ── Update sticky on card hover ── */
   document.querySelectorAll('.book-card').forEach(function(card) {
