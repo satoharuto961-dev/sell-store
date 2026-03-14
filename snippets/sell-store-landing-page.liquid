@@ -1,3 +1,5 @@
+{% assign sl_product = all_products['ready-to-launch-shopify-digital-products-store-60-products-proven-500k-system'] %}
+{% assign sl_variant = sl_product.variants.first %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -527,7 +529,12 @@
   <div class="sl-nav">
     <div class="sl-nav-inner">
       <span class="sl-nav-logo">⚡ ShopifyStore</span>
-      <a href="https://psychoreads.com/products/ready-to-launch-shopify-digital-products-store-60-products-proven-500k-system" class="sl-nav-cta" target="_blank" rel="noopener">Get Store — $70</a>
+      <form action="/cart/add" method="post" style="margin:0;">
+        <input type="hidden" name="id" value="{{ sl_variant.id }}">
+        <input type="hidden" name="quantity" value="1">
+        <input type="hidden" name="return_to" value="/checkout">
+        <button type="submit" class="sl-nav-cta">Get Store — $70</button>
+      </form>
     </div>
   </div>
 
@@ -541,9 +548,14 @@
       Get a fully built Shopify store with 60 digital products, a premium custom theme, and a proven system that has already generated over <strong>$500,000 in sales</strong>.
     </p>
     <div class="sl-hero-actions">
-      <a href="https://psychoreads.com/products/ready-to-launch-shopify-digital-products-store-60-products-proven-500k-system" class="sl-btn-primary" target="_blank" rel="noopener">
-        🛒 Get Your Store Now — <strong>$70</strong>
-      </a>
+      <form action="/cart/add" method="post" style="margin:0;">
+        <input type="hidden" name="id" value="{{ sl_variant.id }}">
+        <input type="hidden" name="quantity" value="1">
+        <input type="hidden" name="return_to" value="/checkout">
+        <button type="submit" class="sl-btn-primary">
+          🛒 Get Your Store Now — <strong>$70</strong>
+        </button>
+      </form>
       <a href="#sl-proof" class="sl-btn-secondary">
         📊 See Live Proof
       </a>
@@ -679,9 +691,14 @@
           <div class="sl-total-per">One-time payment • No recurring fees</div>
         </div>
         <div class="sl-price-cta">
-          <a href="https://psychoreads.com/products/ready-to-launch-shopify-digital-products-store-60-products-proven-500k-system" class="sl-btn-primary" style="width:100%;justify-content:center;font-size:1.1rem;" target="_blank" rel="noopener">
-            🛒 Get Your Store Now — $70
-          </a>
+          <form action="/cart/add" method="post" style="margin:0;">
+            <input type="hidden" name="id" value="{{ sl_variant.id }}">
+            <input type="hidden" name="quantity" value="1">
+            <input type="hidden" name="return_to" value="/checkout">
+            <button type="submit" class="sl-btn-primary" style="width:100%;justify-content:center;font-size:1.1rem;">
+              🛒 Get Your Store Now — $70
+            </button>
+          </form>
           <p style="margin-top:12px;font-size:0.8rem;color:var(--text-muted);">Secure purchase • Delivered within 1 hour • Support included</p>
         </div>
       </div>
@@ -724,9 +741,14 @@
       <div class="sl-label" style="color:rgba(255,255,255,0.6);">Get Started</div>
       <h2 class="sl-title">Start Your Digital Product Business Today</h2>
       <p class="sl-sub">Get your ready-to-launch Shopify store and start selling immediately.</p>
-      <a href="https://psychoreads.com/products/ready-to-launch-shopify-digital-products-store-60-products-proven-500k-system" class="sl-btn-white" target="_blank" rel="noopener">
-        🚀 Buy Now — $70
-      </a>
+      <form action="/cart/add" method="post" style="margin:0;">
+        <input type="hidden" name="id" value="{{ sl_variant.id }}">
+        <input type="hidden" name="quantity" value="1">
+        <input type="hidden" name="return_to" value="/checkout">
+        <button type="submit" class="sl-btn-white">
+          🚀 Buy Now — $70
+        </button>
+      </form>
       <div class="sl-urgency">
         <span class="sl-urgency-dot"></span>
         Limited availability to ensure support for every buyer.
