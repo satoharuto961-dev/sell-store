@@ -624,20 +624,24 @@
       btn.classList.add('state-adding');
       btn.innerHTML = '⟳ Adding…';
 
+      var vid = parseInt(variantId, 10);
+      if (!vid || isNaN(vid)) {
+        console.error('HPCart: missing variant ID on button', btn);
+        btn.disabled = false;
+        btn.innerHTML = orig;
+        return;
+      }
+
       fetch('/cart/add.js', {
         method: 'POST',
-        headers: { 
-          'Content-Type': 'application/json', 
-          'Accept': 'application/json',
-          'X-Requested-With': 'XMLHttpRequest'
-        },
-        body: JSON.stringify({ id: parseInt(variantId, 10), quantity: 1 })
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ items: [{ id: vid, quantity: 1 }] })
       })
       .then(function(r){
         if (!r.ok) {
-          return r.json().then(function(err){ 
+          return r.json().then(function(err){
             console.error('Shopify Add Error:', err);
-            throw new Error(err.description || err.message || 'Cart add failed'); 
+            throw new Error(err.description || err.message || 'Cart add failed');
           });
         }
         return r.json();
