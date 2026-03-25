@@ -329,13 +329,13 @@
     }
     .sl-reviews::-webkit-scrollbar { display: none; }
     .sl-review-card {
-      min-width: 300px; background: #fff; border-radius: 16px; padding: 24px;
+      min-width: 300px; max-width: 90vw; background: #fff; border-radius: 16px; padding: 24px;
       box-shadow: 0 4px 20px rgba(0,0,0,0.05); border: 1px solid var(--border);
-      scroll-snap-align: center; flex: 0 0 auto;
+      scroll-snap-align: center; flex: 0 0 auto; white-space: normal !important;
     }
     .sl-stars { color: #F59E0B; font-size: 1.1rem; margin-bottom: 12px; }
-    .sl-review-text { font-size: 0.95rem; color: var(--text-secondary); font-style: italic; margin-bottom: 16px; line-height: 1.6; }
-    .sl-review-author { font-weight: 800; font-size: 0.9rem; color: var(--text-primary); }
+    .sl-review-text { font-size: 0.95rem; color: var(--text-secondary); font-style: italic; margin-bottom: 16px; line-height: 1.6; white-space: normal !important; word-wrap: break-word !important; overflow-wrap: break-word !important; }
+    .sl-review-author { font-weight: 800; font-size: 0.9rem; color: var(--text-primary); white-space: normal !important; }
 
     /* ── ROI CALCULATOR ── */
     .sl-roi-section {
@@ -489,8 +489,8 @@
       .sl-roi-section { margin: 40px 16px; padding: 60px 20px; border-radius: 24px; }
       .sl-roi-results { grid-template-columns: 1fr; text-align: center; }
       .sl-sticky-cta { flex-direction: column; text-align: center; gap: 12px; }
-      .sl-review-card { min-width: 260px; padding: 18px; }
-      .sl-review-text { font-size: 0.85rem; line-height: 1.5; white-space: normal; }
+      .sl-review-card { min-width: 260px; max-width: 85vw; padding: 18px; }
+      .sl-review-text { font-size: 0.85rem; line-height: 1.5; white-space: normal !important; }
     }
   </style>
 </head>
