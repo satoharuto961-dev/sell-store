@@ -1,5 +1,9 @@
 {% assign ifs_wb_product = all_products['the-internal-family-systems-workbook-a-guide-to-discover-your-self-and-heal-your-parts-sounds-true-inner-workbooks'] %}
 {% assign ifs_wb_variant = ifs_wb_product.variants.first %}
+{% assign body_keeps_score_product = all_products['the-body-keeps-the-score-brain-mind-and-body-in-the-healing-of-trauma'] %}
+{% assign stop_overthinking_product = all_products['stop-overthinking-3-books-in-1-overthinking-self-discipline-cognitive-behavioral-therapy-declutter-your-mind-create-atomic-habits-and-happiness-to-manage-anger-stress-anxiety-and-depression'] %}
+{% assign body_keeps_score_variant = body_keeps_score_product.variants.first %}
+{% assign stop_overthinking_variant = stop_overthinking_product.variants.first %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -129,10 +133,14 @@
     <div class="sl-nav-inner">
       <span class="sl-nav-logo">PsychoReads</span>
       <form action="/cart/add" method="post" style="margin:0;">
-        <input type="hidden" name="id" value="{{ ifs_wb_variant.id }}">
-        <input type="hidden" name="quantity" value="1">
+        <input type="hidden" name="items[0][id]" value="{{ ifs_wb_variant.id }}">
+        <input type="hidden" name="items[0][quantity]" value="1">
+        <input type="hidden" name="items[1][id]" value="{{ body_keeps_score_variant.id }}">
+        <input type="hidden" name="items[1][quantity]" value="1">
+        <input type="hidden" name="items[2][id]" value="{{ stop_overthinking_variant.id }}">
+        <input type="hidden" name="items[2][quantity]" value="1">
         <input type="hidden" name="return_to" value="/checkout">
-        <button type="submit" class="sl-nav-cta">Buy Now</button>
+        <button type="submit" class="sl-nav-cta">Get the Bundle</button>
       </form>
     </div>
   </div>
@@ -140,19 +148,23 @@
   <!-- HERO -->
   <div class="sl-hero">
     <div class="sl-hero-badge">
-      <span>🌀</span> Sounds True Inner Workbooks
+      <span>🔥</span> Special Offer: Buy 1 Get 2 Free Bundle
     </div>
     <h1>The Internal Family Systems Workbook</h1>
     <p class="sl-hero-sub">
-      A compassionate, step-by-step guide to discovering your Self and healing your inner parts — using the proven Internal Family Systems (IFS) model.
+      A compassionate, step-by-step guide to discovering your Self and healing your inner parts — using the proven Internal Family Systems (IFS) model. Plus, get 2 more best-selling books for free!
     </p>
     <div class="sl-hero-actions">
       <form action="/cart/add" method="post" style="margin:0;">
-        <input type="hidden" name="id" value="{{ ifs_wb_variant.id }}">
-        <input type="hidden" name="quantity" value="1">
+        <input type="hidden" name="items[0][id]" value="{{ ifs_wb_variant.id }}">
+        <input type="hidden" name="items[0][quantity]" value="1">
+        <input type="hidden" name="items[1][id]" value="{{ body_keeps_score_variant.id }}">
+        <input type="hidden" name="items[1][quantity]" value="1">
+        <input type="hidden" name="items[2][id]" value="{{ stop_overthinking_variant.id }}">
+        <input type="hidden" name="items[2][quantity]" value="1">
         <input type="hidden" name="return_to" value="/checkout">
         <button type="submit" class="sl-btn-primary" id="hero-btn">
-          🛒 Get the Workbook — {{ ifs_wb_product.price | money }}
+          🛒 Get the 3-Book Bundle — {{ ifs_wb_product.price | money }}
         </button>
       </form>
     </div>
@@ -169,9 +181,9 @@
 
   <!-- TRUST BAR -->
   <div class="sl-trust">
-    <div class="sl-trust-item"><span>📚</span> Sounds True Publisher</div>
-    <div class="sl-trust-item"><span>⭐</span> Highly Rated by Readers</div>
-    <div class="sl-trust-item"><span>🧠</span> Evidence-Based IFS Model</div>
+    <div class="sl-trust-item"><span>📚</span> 3 Books Included</div>
+    <div class="sl-trust-item"><span>🎁</span> 2 Bonus Books Free</div>
+    <div class="sl-trust-item"><span>⭐</span> Top-Rated Bundle</div>
     <div class="sl-trust-item"><span>⚡</span> Instant PDF Access</div>
     <div class="sl-trust-item"><span>🌍</span> English Language</div>
   </div>
@@ -212,7 +224,50 @@
     </div>
   </div>
 
-  <!-- FEATURES -->
+  <!-- BUNDLE CONTENTS -->
+  <div class="sl-section" id="bundle-includes">
+    <div class="sl-section-inner">
+      <div style="text-align: center; margin-bottom: 48px;">
+        <div class="sl-label">Bundle Exclusive</div>
+        <h2 class="sl-title">Get All 3 Best-Sellers for One Low Price</h2>
+        <p class="sl-hero-sub" style="margin:0 auto; max-width:640px;">
+          When you grab the IFS Workbook today, you'll also receive these two essential resources for trauma recovery and mental clarity—absolutely free.
+        </p>
+      </div>
+      <div class="sl-grid-3">
+        <div class="sl-card" style="border: 2px solid var(--brand);">
+          <div class="sl-card-body">
+            <div style="font-size: 0.75rem; font-weight: 800; color: var(--brand); text-transform: uppercase; margin-bottom: 12px; display: block;">Main Workbook</div>
+            <div style="height: 180px; margin-bottom: 20px; display: flex; align-items: center; justify-content: center;">
+              <img src="{{ ifs_wb_product.images.first | img_url: '300x' }}" style="max-height: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);" />
+            </div>
+            <div class="sl-card-title">The IFS Workbook</div>
+            <div class="sl-card-text">The core guide to Internal Family Systems therapy.</div>
+          </div>
+        </div>
+        <div class="sl-card" style="border: 2px dashed var(--accent);">
+          <div class="sl-card-body">
+            <div style="font-size: 0.75rem; font-weight: 800; color: var(--accent); text-transform: uppercase; margin-bottom: 12px; display: block;">Free Bonus #1</div>
+            <div style="height: 180px; margin-bottom: 20px; display: flex; align-items: center; justify-content: center;">
+              <img src="{{ body_keeps_score_product.images.first | img_url: '300x' }}" style="max-height: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);" />
+            </div>
+            <div class="sl-card-title">The Body Keeps the Score</div>
+            <div class="sl-card-text">The #1 trauma recovery book in the world.</div>
+          </div>
+        </div>
+        <div class="sl-card" style="border: 2px dashed var(--accent);">
+          <div class="sl-card-body">
+            <div style="font-size: 0.75rem; font-weight: 800; color: var(--accent); text-transform: uppercase; margin-bottom: 12px; display: block;">Free Bonus #2</div>
+            <div style="height: 180px; margin-bottom: 20px; display: flex; align-items: center; justify-content: center;">
+              <img src="{{ stop_overthinking_product.images.first | img_url: '300x' }}" style="max-height: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);" />
+            </div>
+            <div class="sl-card-title">Stop Overthinking (3-in-1)</div>
+            <div class="sl-card-text">Complete bundle for mental clarity and habits.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="sl-section">
     <div class="sl-section-inner">
       <div class="sl-label">Why This Workbook</div>
@@ -511,11 +566,15 @@
       <h2 class="sl-title">Begin Your Journey to Wholeness</h2>
       <p class="sl-hero-sub">Heal the parts of yourself that have been waiting to be seen, heard, and loved.</p>
       <form action="/cart/add" method="post" style="margin:0;">
-        <input type="hidden" name="id" value="{{ ifs_wb_variant.id }}">
-        <input type="hidden" name="quantity" value="1">
+        <input type="hidden" name="items[0][id]" value="{{ ifs_wb_variant.id }}">
+        <input type="hidden" name="items[0][quantity]" value="1">
+        <input type="hidden" name="items[1][id]" value="{{ body_keeps_score_variant.id }}">
+        <input type="hidden" name="items[1][quantity]" value="1">
+        <input type="hidden" name="items[2][id]" value="{{ stop_overthinking_variant.id }}">
+        <input type="hidden" name="items[2][quantity]" value="1">
         <input type="hidden" name="return_to" value="/checkout">
         <button type="submit" class="sl-btn-white">
-          🛒 Get the Workbook — {{ ifs_wb_product.price | money }}
+          🛒 Get the 3-Book Bundle — {{ ifs_wb_product.price | money }}
         </button>
       </form>
     </div>
@@ -530,11 +589,15 @@
       </div>
     </div>
     <form action="/cart/add" method="post" style="margin:0;">
-      <input type="hidden" name="id" value="{{ ifs_wb_variant.id }}">
-      <input type="hidden" name="quantity" value="1">
+      <input type="hidden" name="items[0][id]" value="{{ ifs_wb_variant.id }}">
+      <input type="hidden" name="items[0][quantity]" value="1">
+      <input type="hidden" name="items[1][id]" value="{{ body_keeps_score_variant.id }}">
+      <input type="hidden" name="items[1][quantity]" value="1">
+      <input type="hidden" name="items[2][id]" value="{{ stop_overthinking_variant.id }}">
+      <input type="hidden" name="items[2][quantity]" value="1">
       <input type="hidden" name="return_to" value="/checkout">
       <button type="submit" class="sl-btn-primary" style="padding: 12px 28px; font-size: 0.95rem;">
-        🛒 Buy Now — {{ ifs_wb_product.price | money }}
+        🛒 Get Bundle — {{ ifs_wb_product.price | money }}
       </button>
     </form>
   </div>
