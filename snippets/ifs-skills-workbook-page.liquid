@@ -52,6 +52,10 @@
     .sl-hero-actions { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; margin-bottom: 24px; }
     .sl-btn-primary { display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, var(--brand), var(--brand-dark)); color: #fff; border: none; border-radius: 14px; padding: 18px 40px; font-size: 1.1rem; font-weight: 900; cursor: pointer; text-decoration: none; box-shadow: 0 10px 30px rgba(47,133,90,0.35); transition: all 0.25s; }
     .sl-btn-primary:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 16px 40px rgba(47,133,90,0.48); }
+    .sl-price-comparison { margin: 24px 0; font-weight: 800; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+    .sl-val-regular { text-decoration: line-through; color: var(--text-muted); font-size: 1.1rem; }
+    .sl-val-today { color: #e53e3e; font-size: 1.8rem; letter-spacing: -0.5px; }
+    .sl-urgency-banner { background: #fff5f5; border: 1px solid #feb2b2; color: #c53030; padding: 12px 20px; border-radius: 12px; font-size: 0.9rem; font-weight: 700; margin-bottom: 24px; display: inline-flex; align-items: center; gap: 8px; }
     .sl-hero-img { margin-top: 50px; }
     .sl-hero-img img { max-width: 520px; width: 100%; border-radius: 20px; box-shadow: 0 32px 90px rgba(47,133,90,0.2); border: 2px solid rgba(255,255,255,0.7); }
 
@@ -122,12 +126,20 @@
   <!-- HERO -->
   <div class="sl-hero">
     <div class="sl-hero-badge">
-      <span>🔥</span> Special Offer: Buy 1 Get 2 Free Bundle
+      <span>✨</span> Your Complete Inner Healing System
     </div>
-    <h1>The Internal Family Systems Workbook</h1>
+    <h1>Build Your Personal Healing System (3 Books)</h1>
     <p class="sl-hero-sub">
-      Heal trauma, calm anxiety, resolve inner chaos, and build profound self-confidence. Plus, get 2 more best-selling books for free in this exclusive bundle offer!
+      Get the <strong>IFS Skills Manual</strong> + 2 Best-Selling Books Free.<br>
+      One price. Immediate access. Real transformation.
     </p>
+    <div class="sl-urgency-banner">
+      ⏳ Limited-time offer — may be removed anytime
+    </div>
+    <div class="sl-price-comparison">
+      <span class="sl-val-regular">Regular Value: $75+</span>
+      <span class="sl-val-today">Today: {{ ifs_skills_product.price | money }}</span>
+    </div>
     <div class="sl-hero-actions">
       <form action="/cart/add" method="post" style="margin:0;">
         <input type="hidden" name="items[0][id]" value="{{ ifs_skills_variant.id }}">
@@ -138,7 +150,7 @@
         <input type="hidden" name="items[2][quantity]" value="1">
         <input type="hidden" name="return_to" value="/checkout">
         <button type="submit" class="sl-btn-primary" id="hero-btn">
-          🛒 Get the 3-Book Bundle — {{ ifs_skills_product.price | money }}
+          👉 Get Instant Access Now
         </button>
       </form>
     </div>
@@ -202,10 +214,9 @@
   <div class="sl-section" id="bundle-includes">
     <div class="sl-section-inner">
       <div style="text-align: center; margin-bottom: 48px;">
-        <div class="sl-label">Bundle Exclusive</div>
-        <h2 class="sl-title">Get All 3 Best-Sellers for One Low Price</h2>
+        <h2 class="sl-title">The Complete Step-by-Step System</h2>
         <p class="sl-hero-sub" style="margin:0 auto; max-width:640px;">
-          When you grab the IFS Workbook today, you'll also receive these two essential resources for trauma recovery and mental clarity—absolutely free.
+          This isn’t just reading. It’s a complete system to understand your trauma, work with your inner parts, and rewire your thinking for good.
         </p>
       </div>
       <div class="sl-grid-3">
@@ -348,8 +359,8 @@
   <!-- FINAL CTA -->
   <div class="sl-cta-section">
     <div class="sl-section-inner">
-      <h2 class="sl-title">Start Your Healing Journey Today</h2>
-      <p class="sl-cta-sub">Get the practical skills training manual you need to overcome trauma, soothe anxiety, and finally find inner peace.</p>
+      <h2 class="sl-title">👉 Get Instant Access Now</h2>
+      <p class="sl-cta-sub">This bundle is only available for a short time. Secure your Complete Inner Healing System today.</p>
       <form action="/cart/add" method="post" style="margin:0;">
         <input type="hidden" name="items[0][id]" value="{{ ifs_skills_variant.id }}">
         <input type="hidden" name="items[0][quantity]" value="1">
@@ -380,7 +391,7 @@
       <input type="hidden" name="items[2][quantity]" value="1">
       <input type="hidden" name="return_to" value="/checkout">
       <button type="submit" class="sl-btn-primary" style="padding: 12px 28px; font-size: 0.95rem;">
-        🛒 Get Bundle — {{ ifs_skills_product.price | money }}
+        👉 Get Instant Access — {{ ifs_skills_product.price | money }}
       </button>
     </form>
   </div>
