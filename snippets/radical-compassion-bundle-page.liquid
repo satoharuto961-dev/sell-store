@@ -1,0 +1,309 @@
+{% assign p1 = all_products['outshining-trauma-a-new-vision-of-radical-self-compassion-integrating-internal-family-systems-and-buddhist-meditation'] %}
+{% assign v1 = p1.variants.first %}
+{% assign p2 = all_products['radical-acceptance-embracing-your-life-with-the-heart-of-a-buddha'] %}
+{% assign v2 = p2.variants.first %}
+{% assign p3 = all_products['healing-the-fragmented-selves-of-trauma-survivors'] %}
+{% assign v3 = p3.variants.first %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Radical Compassion Healing Bundle — 3 Essential Books for Trauma & Self-Compassion</title>
+  <meta name="description" content="Get three essential books on trauma healing and radical self-compassion — Outshining Trauma, Radical Acceptance, and Healing the Fragmented Selves — for one powerful bundle price." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --brand: #744210;
+      --brand-mid: #c05621;
+      --brand-dark: #652b19;
+      --brand-light: #fffaf0;
+      --accent: #ed8936;
+      --accent-hover: #c05621;
+      --text-primary: #1a202c;
+      --text-secondary: #4a5568;
+      --text-muted: #a0aec0;
+      --bg: #ffffff;
+      --surface: #fef9f0;
+      --border: rgba(196, 130, 50, 0.25);
+      --shadow: 0 8px 32px rgba(196, 130, 50, 0.08);
+      --shadow-lg: 0 16px 48px rgba(196, 130, 50, 0.18);
+      --glass-bg: rgba(255, 255, 255, 0.88);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text-primary); line-height: 1.6; -webkit-font-smoothing: antialiased; padding-bottom: 80px; }
+
+    /* NAV */
+    .bn-nav { position: sticky; top: 0; z-index: 1000; background: var(--glass-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); padding: 0 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.03); }
+    .bn-nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .bn-nav-logo { font-weight: 900; font-size: 1.2rem; color: var(--text-primary); letter-spacing: -0.5px; }
+    .bn-btn-sm { background: linear-gradient(135deg, var(--accent), var(--accent-hover)); color: #fff; border: none; border-radius: 10px; padding: 10px 24px; font-size: 0.9rem; font-weight: 800; cursor: pointer; font-family: inherit; transition: all 0.2s; box-shadow: 0 4px 14px rgba(237,137,54,0.35); }
+    .bn-btn-sm:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(237,137,54,0.5); }
+
+    /* STICKY CTA */
+    .bn-sticky { position: fixed; bottom: -100px; left: 0; right: 0; background: var(--glass-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-top: 1px solid var(--border); padding: 16px 24px; z-index: 999; display: flex; justify-content: center; align-items: center; gap: 20px; box-shadow: 0 -10px 40px rgba(0,0,0,0.08); transition: bottom 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+    .bn-sticky.visible { bottom: 0; }
+
+    /* HERO */
+    .bn-hero { position: relative; overflow: hidden; background: linear-gradient(135deg, #fffaf0 0%, #feebc8 55%, #fbd38d 100%); padding: 100px 24px 90px; text-align: center; }
+    .bn-hero::before { content: ''; position: absolute; top: -80px; left: 50%; transform: translateX(-50%); width: 800px; height: 800px; background: radial-gradient(circle, rgba(237,137,54,0.1) 0%, transparent 70%); pointer-events: none; }
+    .bn-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,250,240,0.95); backdrop-filter: blur(10px); border: 1px solid #f6ad55; border-radius: 999px; padding: 6px 18px; font-size: 0.85rem; font-weight: 800; color: var(--brand-mid); margin-bottom: 24px; text-transform: uppercase; letter-spacing: 1px; }
+    .bn-hero h1 { font-size: clamp(2rem, 5vw, 3.6rem); font-weight: 900; color: var(--brand-dark); line-height: 1.1; letter-spacing: -1.5px; max-width: 900px; margin: 0 auto 24px; }
+    .bn-hero-sub { font-size: clamp(1.05rem, 2.5vw, 1.2rem); color: var(--text-secondary); max-width: 680px; margin: 0 auto 32px; line-height: 1.75; font-weight: 500; }
+    .bn-price-block { margin-bottom: 32px; }
+    .bn-price { font-size: 3.2rem; font-weight: 900; color: var(--brand-dark); }
+    .bn-price-orig { font-size: 1.2rem; text-decoration: line-through; color: var(--text-muted); margin-left: 12px; font-weight: 600; }
+    .bn-btn-main { display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, var(--accent), var(--accent-hover)); color: #fff; border: none; border-radius: 14px; padding: 20px 48px; font-size: 1.15rem; font-weight: 900; cursor: pointer; font-family: inherit; box-shadow: 0 10px 30px rgba(237,137,54,0.4); transition: all 0.25s; }
+    .bn-btn-main:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 16px 40px rgba(237,137,54,0.55); }
+    .bn-hero-note { margin-top: 16px; font-size: 0.88rem; color: var(--text-secondary); font-weight: 500; }
+
+    /* TRUST BAR */
+    .bn-trust { display: flex; flex-wrap: wrap; justify-content: center; gap: 32px; padding: 28px 24px; border-bottom: 1px solid var(--border); background: #fff; }
+    .bn-trust-item { display: flex; align-items: center; gap: 8px; font-size: 0.88rem; font-weight: 700; color: var(--text-secondary); }
+
+    /* BOOKS GRID */
+    .bn-section { padding: 90px 24px; }
+    .bn-section-inner { max-width: 1100px; margin: 0 auto; }
+    .bn-label { font-size: 0.82rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--brand-mid); margin-bottom: 16px; display: inline-block; background: var(--brand-light); padding: 6px 16px; border-radius: 999px; border: 1px solid #f6ad55; }
+    .bn-title { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 900; color: var(--text-primary); letter-spacing: -1px; line-height: 1.15; margin-bottom: 20px; }
+
+    .bn-books-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; margin-top: 48px; }
+    .bn-book-card { background: #fff; border: 1px solid var(--border); border-radius: 24px; padding: 36px 28px; text-align: center; box-shadow: var(--shadow); transition: transform 0.3s, box-shadow 0.3s; }
+    .bn-book-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+    .bn-book-num { display: inline-block; background: linear-gradient(135deg, var(--accent), var(--accent-hover)); color: #fff; font-size: 0.75rem; font-weight: 900; padding: 4px 12px; border-radius: 999px; margin-bottom: 20px; letter-spacing: 1px; text-transform: uppercase; }
+    .bn-book-img { width: 100%; max-width: 180px; height: 260px; object-fit: contain; margin: 0 auto 20px; border-radius: 8px; box-shadow: 0 12px 30px rgba(0,0,0,0.12); display: block; }
+    .bn-book-img-placeholder { width: 180px; height: 260px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; margin: 0 auto 20px; }
+    .bn-book-title { font-size: 1.05rem; font-weight: 800; color: var(--text-primary); line-height: 1.35; margin-bottom: 10px; }
+    .bn-book-desc { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; }
+
+    /* VALUE SECTION */
+    .bn-value-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; margin-top: 40px; }
+    .bn-value-item { display: flex; align-items: flex-start; gap: 16px; background: #fff; border: 1px solid var(--border); border-radius: 20px; padding: 24px; box-shadow: 0 4px 16px rgba(0,0,0,0.03); }
+    .bn-value-icon { width: 42px; height: 42px; background: linear-gradient(135deg, var(--accent), var(--accent-hover)); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
+    .bn-value-title { font-size: 1rem; font-weight: 800; color: var(--text-primary); margin-bottom: 4px; }
+    .bn-value-sub { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.55; }
+
+    /* CTA SECTION */
+    .bn-cta-section { background: linear-gradient(135deg, var(--accent) 0%, var(--brand-dark) 100%); color: #fff; text-align: center; padding: 90px 24px; }
+    .bn-cta-section .bn-title { color: #fff; }
+    .bn-cta-sub { font-size: clamp(1rem, 2vw, 1.15rem); color: rgba(255,255,255,0.88); margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+    .bn-btn-white { background: #fff; color: var(--accent-hover); font-size: 1.15rem; padding: 20px 48px; border-radius: 14px; font-weight: 900; border: none; cursor: pointer; font-family: inherit; box-shadow: 0 10px 30px rgba(0,0,0,0.18); transition: all 0.25s; display: inline-flex; align-items: center; gap: 10px; }
+    .bn-btn-white:hover { transform: translateY(-4px) scale(1.02); }
+
+    @media (max-width: 768px) {
+      .bn-hero { padding: 80px 20px 60px; }
+      .bn-sticky { flex-direction: column; text-align: center; gap: 12px; }
+      .bn-books-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="bn-nav">
+    <div class="bn-nav-inner">
+      <span class="bn-nav-logo">PsychoReads</span>
+      <button class="bn-btn-sm" onclick="checkoutBundle()">Get Bundle Now</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="bn-hero">
+    <div class="bn-badge">🌿 Limited Time Bundle</div>
+    <h1>The Radical Compassion Healing Bundle</h1>
+    <p class="bn-hero-sub">
+      Three transformative books on IFS, Buddhist mindfulness, and trauma integration — everything you need to heal with radical self-compassion.
+    </p>
+    <div class="bn-price-block">
+      <span class="bn-price">$29.00</span>
+      <span class="bn-price-orig">$75.00 Value</span>
+    </div>
+    <button class="bn-btn-main" id="hero-btn" onclick="checkoutBundle()">
+      🛒 Get All 3 Books for $29
+    </button>
+    <p class="bn-hero-note">Instant PDF Download &nbsp;•&nbsp; Secure Checkout &nbsp;•&nbsp; One-Click Access</p>
+  </header>
+
+  <!-- TRUST BAR -->
+  <div class="bn-trust">
+    <div class="bn-trust-item"><span>📚</span> 3 Transformative Books</div>
+    <div class="bn-trust-item"><span>⚡</span> Instant Digital Access</div>
+    <div class="bn-trust-item"><span>🧠</span> IFS + Mindfulness + Trauma</div>
+    <div class="bn-trust-item"><span>💚</span> Radical Self-Compassion</div>
+  </div>
+
+  <!-- BOOKS -->
+  <section class="bn-section" style="background: var(--surface);">
+    <div class="bn-section-inner">
+      <div style="text-align:center;">
+        <div class="bn-label">What's Inside the Bundle</div>
+        <h2 class="bn-title">Three Books. One Complete Path to Healing.</h2>
+        <p style="font-size:1.1rem; color:var(--text-secondary); max-width:620px; margin:0 auto; line-height:1.75;">Each book builds on the last — from healing fragmented trauma, to outshining it with IFS and compassion, to finally embracing life with the heart of a Buddha.</p>
+      </div>
+      <div class="bn-books-grid">
+
+        <!-- Book 1 -->
+        <div class="bn-book-card">
+          <div class="bn-book-num">Book 1</div>
+          {% if p1.images.first %}
+            <img src="{{ p1.images.first | img_url: '600x' }}" alt="{{ p1.title }}" class="bn-book-img" />
+          {% else %}
+            <div class="bn-book-img-placeholder" style="background:linear-gradient(135deg,#fffaf0,#feebc8);">🌿</div>
+          {% endif %}
+          <div class="bn-book-title">{{ p1.title | default: "Outshining Trauma" }}</div>
+          <div class="bn-book-desc">A new vision of radical self-compassion integrating Internal Family Systems and Buddhist meditation — transform your relationship with trauma through the power of IFS and mindfulness.</div>
+        </div>
+
+        <!-- Book 2 -->
+        <div class="bn-book-card">
+          <div class="bn-book-num">Book 2</div>
+          {% if p2.images.first %}
+            <img src="{{ p2.images.first | img_url: '600x' }}" alt="{{ p2.title }}" class="bn-book-img" />
+          {% else %}
+            <div class="bn-book-img-placeholder" style="background:linear-gradient(135deg,#fffaf0,#fbd38d);">☸️</div>
+          {% endif %}
+          <div class="bn-book-title">{{ p2.title | default: "Radical Acceptance" }}</div>
+          <div class="bn-book-desc">Tara Brach's landmark guide to embracing your life with the heart of a Buddha — discover how radical acceptance of your present experience can free you from the trance of unworthiness.</div>
+        </div>
+
+        <!-- Book 3 -->
+        <div class="bn-book-card">
+          <div class="bn-book-num">Book 3</div>
+          {% if p3.images.first %}
+            <img src="{{ p3.images.first | img_url: '600x' }}" alt="{{ p3.title }}" class="bn-book-img" />
+          {% else %}
+            <div class="bn-book-img-placeholder" style="background:linear-gradient(135deg,#fffaf0,#feebc8);">🧩</div>
+          {% endif %}
+          <div class="bn-book-title">{{ p3.title | default: "Healing the Fragmented Selves of Trauma Survivors" }}</div>
+          <div class="bn-book-desc">Janina Fisher's essential guide to understanding and integrating structural dissociation in trauma survivors — a compassionate, body-oriented approach to lasting recovery.</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUE PROPS -->
+  <section class="bn-section">
+    <div class="bn-section-inner">
+      <div class="bn-label">Why This Bundle</div>
+      <h2 class="bn-title">Everything You Need to Heal with Compassion</h2>
+      <div class="bn-value-grid">
+        <div class="bn-value-item">
+          <div class="bn-value-icon">🌿</div>
+          <div>
+            <div class="bn-value-title">IFS-Informed Healing</div>
+            <div class="bn-value-sub">Learn to work with all your inner parts using the gold-standard Internal Family Systems approach woven through all three books.</div>
+          </div>
+        </div>
+        <div class="bn-value-item">
+          <div class="bn-value-icon">☸️</div>
+          <div>
+            <div class="bn-value-title">Mindfulness & Acceptance</div>
+            <div class="bn-value-sub">Combine Buddhist wisdom with trauma science — learn to hold your pain with radical acceptance rather than fighting it.</div>
+          </div>
+        </div>
+        <div class="bn-value-item">
+          <div class="bn-value-icon">🧩</div>
+          <div>
+            <div class="bn-value-title">Trauma Integration</div>
+            <div class="bn-value-sub">Understand structural dissociation and how to gently bring all fragmented parts of yourself back into wholeness and harmony.</div>
+          </div>
+        </div>
+        <div class="bn-value-item">
+          <div class="bn-value-icon">💛</div>
+          <div>
+            <div class="bn-value-title">Radical Self-Compassion</div>
+            <div class="bn-value-sub">Move from self-criticism and shame to a deeply compassionate relationship with yourself — the foundation of lasting healing.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MID CTA -->
+  <div style="background: var(--surface); padding: 60px 24px; text-align:center; border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <p style="font-size:1.05rem; color:var(--text-secondary); margin-bottom:24px; font-weight:600;">Get all 3 books instantly — <strong style="color:var(--brand-dark);">save over $46</strong> with the bundle price.</p>
+    <button class="bn-btn-main" onclick="checkoutBundle()">🛒 Get All 3 Books for $29</button>
+  </div>
+
+  <!-- FINAL CTA -->
+  <div class="bn-cta-section">
+    <div class="bn-section-inner">
+      <h2 class="bn-title">Begin Your Journey to Wholeness</h2>
+      <p class="bn-cta-sub">Get instant access to all three books and start applying trauma healing, radical acceptance, and self-compassion techniques today.</p>
+      <button class="bn-btn-white" onclick="checkoutBundle()">🛒 Get the Bundle — $29.00</button>
+    </div>
+  </div>
+
+  <!-- STICKY CTA -->
+  <div class="bn-sticky" id="sticky-cta">
+    <div style="font-weight:700; font-size:0.95rem;">
+      <div style="font-weight:900; color:var(--text-primary); line-height:1.2;">Radical Compassion Bundle</div>
+      <div style="font-size:0.82rem; color:var(--text-secondary);">3 Books &nbsp;·&nbsp; $29.00</div>
+    </div>
+    <button class="bn-btn-sm" onclick="checkoutBundle()">Get Bundle Now</button>
+  </div>
+
+  <script>
+    // Sticky CTA on scroll
+    const heroBtn = document.getElementById('hero-btn');
+    const stickyCta = document.getElementById('sticky-cta');
+    window.addEventListener('scroll', () => {
+      if (!heroBtn || !stickyCta) return;
+      if (heroBtn.getBoundingClientRect().bottom < 0) {
+        stickyCta.classList.add('visible');
+      } else {
+        stickyCta.classList.remove('visible');
+      }
+    });
+
+    // Scroll animations
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.bn-book-card, .bn-value-item').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(28px)';
+      el.style.transition = 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+      observer.observe(el);
+    });
+
+    // Bundle checkout
+    function checkoutBundle() {
+      const v1 = '{{ v1.id }}';
+      const v2 = '{{ v2.id }}';
+      const v3 = '{{ v3.id }}';
+      if (!v1 || !v2 || !v3) { alert('Bundle configuration error. Please refresh and try again.'); return; }
+      document.querySelectorAll('.bn-btn-main, .bn-btn-sm, .bn-btn-white').forEach(btn => {
+        btn.textContent = 'Processing…';
+        btn.disabled = true;
+      });
+      fetch('/cart/clear.js', { method: 'POST' })
+        .then(() => fetch('/cart/add.js', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({ items: [{ id: v1, quantity: 1 }, { id: v2, quantity: 1 }, { id: v3, quantity: 1 }] })
+        }))
+        .then(res => res.json())
+        .then(() => { window.location.href = '/checkout'; })
+        .catch(() => {
+          alert('There was an error. Please try again.');
+          document.querySelectorAll('.bn-btn-main, .bn-btn-sm, .bn-btn-white').forEach(btn => {
+            btn.textContent = 'Get Bundle Now';
+            btn.disabled = false;
+          });
+        });
+    }
+  </script>
+
+</body>
+</html>
