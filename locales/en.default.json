@@ -21,7 +21,8 @@
     "checkout": {
       "order_summary": {
         "discount_placeholder": "TOTAL SAVINGS",
-        "apply_discount_button_label": "TOTAL SAVINGS"
+        "apply_discount_button_label": "TOTAL SAVINGS",
+        "discount_label": "TOTAL SAVINGS"
       }
     }
   }
