@@ -14,8 +14,8 @@
     "welcome_body": "",
     "content_for_index": [],
     "blocks": {
-      "2567389343055140935": {
-        "type": "shopify://apps/microsoft-clarity/blocks/clarity_js/31c3d126-8116-4b4a-8ba1-baeda7c4aeea",
+      "6864468922717759293": {
+        "type": "shopify://apps/privy-pop-ups-email-sms/blocks/privy-convert-production/1d8599fa-4edf-4071-bda6-4d5d6d82de9c",
         "disabled": false,
         "settings": {}
       }
